@@ -19,10 +19,10 @@ def test_chunking():
 
     sample = chunks[10]
 
-    # Content checks
+   
     assert len(sample.page_content.strip()) > 200, "Chunk content too short"
 
-    # Metadata checks
+    
     assert "source" in sample.metadata, "Missing source metadata in chunk"
     assert "page" in sample.metadata, "Missing page metadata in chunk"
 

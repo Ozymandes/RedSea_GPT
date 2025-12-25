@@ -8,11 +8,11 @@ def test_loading():
 
     sample = docs[0]
 
-    # Text checks
+    
     assert hasattr(sample, "page_content"), "Document has no page_content"
     assert len(sample.page_content.strip()) > 0, "Empty page content"
 
-    # Metadata checks
+
     assert "source" in sample.metadata, "Missing source metadata"
     assert "page" in sample.metadata, "Missing page metadata"
 
