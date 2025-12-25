@@ -1,0 +1,26 @@
+# LangChain core libraries
+langchain>=0.3.28
+langchain-huggingface>=0.1.2
+
+# Vector store integration (Chroma)
+langchain-chroma>=0.1.2
+chromadb>=0.3.23
+
+# Embeddings
+sentence-transformers>=2.2.2
+
+# Text splitting utilities
+langchain-text-splitters>=0.0.4
+
+# PDF loaders
+langchain-community>=0.3.13
+pypdf>=3.12.0
+
+# Optional utilities for cleaning and parsing
+python-dotenv>=1.0.0
+
+# (Optional / recommended) accelerate to help embeddings load faster
+accelerate>=0.20.3
+
+# Misc utilities
+tqdm>=4.66.1
