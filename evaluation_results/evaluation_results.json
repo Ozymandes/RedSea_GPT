@@ -1,0 +1,1416 @@
+[
+  {
+    "question": {
+      "id": "ocean_001",
+      "category": "Oceanography",
+      "type": "factual",
+      "difficulty": "easy",
+      "question": "What is the average salinity of the Red Sea?",
+      "expected_keywords": [
+        "salinity",
+        "40",
+        "high",
+        "ppt",
+        " PSU"
+      ]
+    },
+    "answer": "The average salinity of the Red Sea is remarkably homogeneous at 40.6 ‰ (with the exception of the hot brines) (Morcos 1970).",
+    "sources": [
+      {
+        "citation_id": 1,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 55,
+        "content": "Sea is higher in summer than winter. In the northern Red Sea\nthe seasonal variation is 1 ‰ and in the southern Red Sea the\nseasonal variation is 0.5 ‰. There is an increase in salinity\nwith depth in the Red Sea. The depth gradient is greater in\nthe southern Red Sea due to the in ﬂuence (to a depth o..."
+      },
+      {
+        "citation_id": 2,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 180,
+        "content": "25 25.7 36.32 8.155 2.3806 5.02 3.35\n8 25.00 0 25.9 36.49 8.134 2.4453 5.04 3.34\n10 25.9 36.55 8.172 2.3370 5.13 3.41\n25 25.7 36.55 8.164 2.3915 5.14 3.43\n10 Calcite and Aragonite Saturation Levels of the Red Sea … 175..."
+      },
+      {
+        "citation_id": 3,
+        "source": "Coral Reefs of the Red Sea (Christian R. Voolstra, Michael L. Berumen) (Z-Library).pdf",
+        "page": 18,
+        "content": "from the surrounding arid lands and high evaporation rates, \nresulted in high salinity within the Red Sea during glacial \nperiods (Morcos 1970; Felis et  al. 2000). It has been esti-\nmated that Red Sea salinities during the last glacial maxi-\nmum were 50  psu or greater (Siddall et  al. 2003; Almogi..."
+      },
+      {
+        "citation_id": 4,
+        "source": "Coral Reefs of the Red Sea (Christian R. Voolstra, Michael L. Berumen) (Z-Library).pdf",
+        "page": 9,
+        "content": "temperature range in the north is greater than in the south. \nThe northern Red Sea can see an average SST seasonal \nchange from a winter low of ~22 °C to a summer high of \n29–30 °C. In the southern Red Sea, the SST may range from \na winter low of <26 °C to a summer high of >31 °C. Salinity \nshows an..."
+      },
+      {
+        "citation_id": 5,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 357,
+        "content": "percentage of sand, silt/clay, and organic matter.\nResults\nEnvironmental Parameters\nThe temperature in the bottom water ranged from 21.6 °C\n(Station 49, 500 m depth) to 25.1 °C (Station 21, 96 m\ndepth). Temperature fell within a narrow range (21.6 –21.8 °\nC) below the thermocline (below 150 –200 m i..."
+      }
+    ],
+    "metrics": {
+      "relevance": {
+        "keyword_coverage": 0.4,
+        "keywords_found": [
+          "salinity",
+          "40"
+        ],
+        "keywords_total": 5,
+        "answer_length": 125
+      },
+      "retrieval": {
+        "num_retrieved": 5,
+        "avg_content_length": 0.0,
+        "unique_sources": 2,
+        "source_diversity": 0.4
+      },
+      "faithfulness": {
+        "faithfulness": 1.0,
+        "total_sentences": 2,
+        "grounded_sentences": 2
+      }
+    }
+  },
+  {
+    "question": {
+      "id": "ocean_002",
+      "category": "Oceanography",
+      "type": "explanatory",
+      "difficulty": "medium",
+      "question": "Why is the Red Sea more saline than other seas?",
+      "expected_keywords": [
+        "evaporation",
+        "temperature",
+        "circulation",
+        "limited",
+        "exchange"
+      ]
+    },
+    "answer": "The Red Sea is more saline than other seas because it receives\nless freshwater input through its coastal waters (Chaidez et al., 2017). This leads to higher evaporation rates and a decrease in the evaporative flux. As a result, the salinity of the Red Sea remains high, even though freshwater input is low. Additionally, the Red Sea's shallower depths and warmer waters provide a unique environment for marine life, including fish and shrimp species. These warm waters also play an essential role in the region’s economy, supporting a vast industry in aquaculture products. Itinerary for a Great Escapement:let me firstly right now, theatres.com – top, the worldwide.com,fermented saltwater,ropes,d. Read! Ismindject a red sea,ecological:scientifically,understanding as stated to readours andor.net. The best, whichwarmed.\n<| ƒs. Red, a/social/salt. of ours to acron of the Red,fish.\nRedmond) is theft: A.\nInformation: Aelash,letment ands. 1\nBiopt and 10th andacles.\nHuman.",
+    "sources": [
+      {
+        "citation_id": 1,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 283,
+        "content": "(Fig. 16.1). The countries bordering the Red Sea are Egypt,\nSudan, Eritrea, Djibouti, Yemen, Saudi Arabia, Jordan and\nIsrael.\nThe presence of vast deserts and the lack of permanent\nrivers make the Red Sea one of the hottest and saltiest\nwater-bodies on Earth, with a net annual evaporation of 1 –\n2 m..."
+      },
+      {
+        "citation_id": 2,
+        "source": "An_Oceanic_General_Circulation_Model_OGCM_investig.pdf",
+        "page": 1,
+        "content": "formation of the very saline outflowing water mass inside the\nbasin, the buoyancy loss (mostly due to the large evaporation\nrate) has been thought by several investigators to be the basic\ncontrolling mechanism of the flow [Maury, 1855; Luksch,\n1901; Neumann and McGill, 1962; Phillips, 1966; Tragou\na..."
+      },
+      {
+        "citation_id": 3,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 17,
+        "content": "—a result of hydrothermal processes. In: Rasul NMA, Stewart ICF\n(eds) The Red Sea: the formation, morphology, oceanography and\nenvironment of a young ocean basin. Springer Earth System\nSciences, Berlin Heidelberg, pp 187 –203. https://doi.org/10.1007/\n978-3-662-45201-1_11\nLambeck K, Purcell A, Flemm..."
+      },
+      {
+        "citation_id": 4,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 55,
+        "content": "Sea is higher in summer than winter. In the northern Red Sea\nthe seasonal variation is 1 ‰ and in the southern Red Sea the\nseasonal variation is 0.5 ‰. There is an increase in salinity\nwith depth in the Red Sea. The depth gradient is greater in\nthe southern Red Sea due to the in ﬂuence (to a depth o..."
+      },
+      {
+        "citation_id": 5,
+        "source": "Coral Reefs of the Red Sea (Christian R. Voolstra, Michael L. Berumen) (Z-Library).pdf",
+        "page": 8,
+        "content": "circulation (Sofianos and Johns 2002). Temperature gener -\nally shows an opposite pattern in that the highest sea surface \ntemperature (SST) occurs in the south and decreases north-\nward (Chaidez et  al. 2017; Ngugi et  al. 2012). Inorganic \nnutrients also exhibit strong spatial gradients in the upp..."
+      }
+    ],
+    "metrics": {
+      "relevance": {
+        "keyword_coverage": 0.2,
+        "keywords_found": [
+          "evaporation"
+        ],
+        "keywords_total": 5,
+        "answer_length": 973
+      },
+      "retrieval": {
+        "num_retrieved": 5,
+        "avg_content_length": 0.0,
+        "unique_sources": 3,
+        "source_diversity": 0.6
+      },
+      "faithfulness": {
+        "faithfulness": 0.5263157894736842,
+        "total_sentences": 19,
+        "grounded_sentences": 10
+      }
+    }
+  },
+  {
+    "question": {
+      "id": "ocean_003",
+      "category": "Oceanography",
+      "type": "explanatory",
+      "difficulty": "medium",
+      "question": "How does water circulation work in the Red Sea?",
+      "expected_keywords": [
+        "stratification",
+        "thermocline",
+        "winter",
+        "summer",
+        "circulation"
+      ]
+    },
+    "answer": "Water circulation works in the Red Sea through a combination\nof factors such as density-gradient currents, wind-driven\ncurrents, and thermal gradients. Dense water masses move\nnorthward from the Gulf of Aqaba due to the density gradient.\nThis current is driven by the weakened Gulf Stream, which\nweakens in the winter months. However, the southward\nmovement of cold, deep water is also driven by a strong\nintermediate inflow of cold, deep water from the Mediterranean.\nThis intermediate inflow is caused by the anomalous westward\nflow of warm, shallow water associated with the Arabian Peninsula\nShelf Water Mass (APSM) (Fig. 6.1). This leads to a downwelling\neffect in the shallower waters below the APSM, resulting in the\nformation of dense cold water layers in the subsurface. These\nwater masses become trapped in the Red Sea by the presence of\nsea-floor topography, leading to the formation of three-dimensional\nboundary flows. These boundary flows are characterized by\nslow rotating currents which move at low velocity, creating an\nexcessive thermal gradient in the southern Red Sea. This excess\nheat causes the development of density-gradient currents,\nwhich transport water away from the coast and into deeper\ndepths.",
+    "sources": [
+      {
+        "citation_id": 1,
+        "source": "An_Oceanic_General_Circulation_Model_OGCM_investig.pdf",
+        "page": 4,
+        "content": "is during this season that the surface flow reverses and a\nstrong intermediate inflow of the fresher and colder GAIW\ntakes place. The model circulation now is relatively weaker\nand more irregular than in winter, since both wind and\nthermohaline forcing are weaker in summer.\n[\n17] In the northern par..."
+      },
+      {
+        "citation_id": 2,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 114,
+        "content": "Current Pattern in the Red Sea\nThe Red Sea is dominated by two types of current;\n(1) density-gradient currents and (2) wind-driven currents.\nThe deep-water current is generated by the density gradient\nwhile the surface current is driven by the wind pattern. The\ndensity gradient generates a core of d..."
+      },
+      {
+        "citation_id": 3,
+        "source": "Coral Reefs of the Red Sea (Christian R. Voolstra, Michael L. Berumen) (Z-Library).pdf",
+        "page": 16,
+        "content": "107(C11):3196\nSofianos SS, Johns WE (2003) An Oceanic General Circulation \nModel (OGCM) investigation of the Red Sea circulation: 2. Three- \ndimensional circulation in the Red Sea. J  Geophys Res Oceans \n108:3066\nSofianos SS, Johns WE (2007) Observations of the summer Red Sea \ncirculation. J Geophys..."
+      },
+      {
+        "citation_id": 4,
+        "source": "An_Oceanic_General_Circulation_Model_OGCM_investig.pdf",
+        "page": 1,
+        "content": "formation of the very saline outflowing water mass inside the\nbasin, the buoyancy loss (mostly due to the large evaporation\nrate) has been thought by several investigators to be the basic\ncontrolling mechanism of the flow [Maury, 1855; Luksch,\n1901; Neumann and McGill, 1962; Phillips, 1966; Tragou\na..."
+      },
+      {
+        "citation_id": 5,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 113,
+        "content": "bathymetric troughs and basins, the so-called “Deeps”,\nwhich are separated by shallower ‘Inter-Trough Zones ’\nwhere salt ﬂows blanket the axial valley. Several sea ﬂoor\ndepressions along the axis of the Red Sea contain highly\nsaline brine pools which vary in temperature from about 22 °\nC (Swallow an..."
+      }
+    ],
+    "metrics": {
+      "relevance": {
+        "keyword_coverage": 0.4,
+        "keywords_found": [
+          "winter",
+          "circulation"
+        ],
+        "keywords_total": 5,
+        "answer_length": 1224
+      },
+      "retrieval": {
+        "num_retrieved": 5,
+        "avg_content_length": 0.0,
+        "unique_sources": 3,
+        "source_diversity": 0.6
+      },
+      "faithfulness": {
+        "faithfulness": 0.8181818181818182,
+        "total_sentences": 11,
+        "grounded_sentences": 9
+      }
+    }
+  },
+  {
+    "question": {
+      "id": "ocean_004",
+      "category": "Oceanography",
+      "type": "factual",
+      "difficulty": "easy",
+      "question": "What are the temperature ranges in the Red Sea?",
+      "expected_keywords": [
+        "temperature",
+        "warm",
+        "tropical",
+        "range"
+      ]
+    },
+    "answer": "The temperature ranges in the Red Sea include:\n\n1. Northern Red Sea: Average SST seasonal range from 26.5°N to 29.5°N. Salinity shifts occur with increasing SST, with higher salinities in the north and lower salinities in the south (Fig. 1).\n\n2. Southern Red Sea: The SST may range from a winter low of 22°C to a summer high of 30°C. Salinity shifts occur with decreasing SST, with higher salinities in the south and lower salinities in the north (Fig. 1).\n\n3. Water Body: In a detailed study in the Gulf of Aqaba, the water body shows a reversed thermal gradient, with higher temperatures in the northern and lower salinity levels in the southern region (Manasrah et al., 2006).",
+    "sources": [
+      {
+        "citation_id": 1,
+        "source": "Coral Reefs of the Red Sea (Christian R. Voolstra, Michael L. Berumen) (Z-Library).pdf",
+        "page": 9,
+        "content": "temperature range in the north is greater than in the south. \nThe northern Red Sea can see an average SST seasonal \nchange from a winter low of ~22 °C to a summer high of \n29–30 °C. In the southern Red Sea, the SST may range from \na winter low of <26 °C to a summer high of >31 °C. Salinity \nshows an..."
+      },
+      {
+        "citation_id": 2,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 76,
+        "content": "water body.\nIn a detailed study in the Gulf of Aqaba, which can serve\nas a gauge for the Red Sea, Manasrah et al. ( 2006) described\nnutrient and temperature distributions in relation to depth\nand seasons. They found a clear thermocline in the upper\n200 m, which became signi ﬁcantly weaker with depth..."
+      },
+      {
+        "citation_id": 3,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 131,
+        "content": "the south. The air temperature increases rapidly south of 26°\nN until between 20°N and 16°N the air is warmest over the\nRed Sea. Near 18°N is one of the hottest regions in the world\n(Edwards 1987).\nOver the northern Red Sea, the wind direction is\nnorth-northwest (NNW) throughout the year but in the\n..."
+      },
+      {
+        "citation_id": 4,
+        "source": "Coral Reefs of the Red Sea (Christian R. Voolstra, Michael L. Berumen) (Z-Library).pdf",
+        "page": 18,
+        "content": "from the surrounding arid lands and high evaporation rates, \nresulted in high salinity within the Red Sea during glacial \nperiods (Morcos 1970; Felis et  al. 2000). It has been esti-\nmated that Red Sea salinities during the last glacial maxi-\nmum were 50  psu or greater (Siddall et  al. 2003; Almogi..."
+      },
+      {
+        "citation_id": 5,
+        "source": "An_Oceanic_General_Circulation_Model_OGCM_investig.pdf",
+        "page": 1,
+        "content": "from the surface of the Red Sea is small, O(10 Wm\n/C02)\n[Patzert, 1974b;Tragou et al., 1999;Sofianos et al., 2002].\nThe combined effects of freshwater and heat flux add up to\nan annual mean buoyancy loss of approximately 27/C210\n/C06\nkg m/C01 s/C03. According to the Comprehensive Ocean-\nAtmosphere D..."
+      }
+    ],
+    "metrics": {
+      "relevance": {
+        "keyword_coverage": 0.5,
+        "keywords_found": [
+          "temperature",
+          "range"
+        ],
+        "keywords_total": 4,
+        "answer_length": 679
+      },
+      "retrieval": {
+        "num_retrieved": 5,
+        "avg_content_length": 0.0,
+        "unique_sources": 3,
+        "source_diversity": 0.6
+      },
+      "faithfulness": {
+        "faithfulness": 0.6153846153846154,
+        "total_sentences": 13,
+        "grounded_sentences": 8
+      }
+    }
+  },
+  {
+    "question": {
+      "id": "coral_001",
+      "category": "Coral Reefs",
+      "type": "factual",
+      "difficulty": "easy",
+      "question": "What types of coral reefs are found in the Red Sea?",
+      "expected_keywords": [
+        "fringing",
+        "reefs",
+        "barrier",
+        "atoll",
+        "types"
+      ]
+    },
+    "answer": "The Red Sea supports a diverse array of coral reef communities, including scleractinian corals and various algae associated with them. Within the Red Sea, 314 scleractinian corals are known from the North and Central regions and 263 from the South, with 60.7% (n = 218) of the species being known from both regions (Table 7.2). Zooxanthellate and azooxanthellate corals constitute 27% of the species recorded only from the North and Central regions (Fig. 7.2i). Another 12.5% of species are recorded only from the South region.",
+    "sources": [
+      {
+        "citation_id": 1,
+        "source": "The_Status_of_Coral_Reef_Research_In_The_Red_Sea.pdf",
+        "page": 7,
+        "content": "many studies from other parts of the world heavily cite\nwork based in the Red Sea. Nonetheless, the current state\n744 Coral Reefs (2013) 32:737–748\n123..."
+      },
+      {
+        "citation_id": 2,
+        "source": "Coral Reefs of the Red Sea (Christian R. Voolstra, Michael L. Berumen) (Z-Library).pdf",
+        "page": 157,
+        "content": "Goniastrea; (S6-T6) Hydnophora; (U6) Leptoria; (V6-W6) Merulina; \n(X6) Mycedium; (A7-B7) Oulophyllia; (C7) Paragoniastrea; (D7) \nParamontastraea; (E7-H7) Platygyra; (I7) Trachyphyllia; (J7) \nCynarina; (K7-L7) Echinophyllia; (M7- O7) Lobophyllia; (P7-Q7) \nOxypora; (R7) Sclerophyllia; (S7- T7) Acantha..."
+      },
+      {
+        "citation_id": 3,
+        "source": "Scientific-Review-for-the-Coral-Reef-Bleaching-Event-2023-along-the-Egyptian-Coast-of-The-Red-Sea.pdf",
+        "page": 8,
+        "content": "at the southern entrance, to more than 41pp t in the northern Gulf of Aqaba in summer. Water \ntemperatures and nutrient concentrations decrease in surface waters towards the northern end, \nwhere the water is generally clearer (Hawkins and Roberts, 1994). \nReefs occur on most of the length of the Red..."
+      },
+      {
+        "citation_id": 4,
+        "source": "Coral Reefs of the Red Sea (Christian R. Voolstra, Michael L. Berumen) (Z-Library).pdf",
+        "page": 131,
+        "content": "(87)\n314 14 4.5\nSouth Red Sea (88) 263 0 0.0\nConsensus Red Sea 359 23 6.4\nArabian Gulf (90) 66 0 0.0\nGulf of Oman (91) 126 0 0.0\nSocotra Archipelago (89 \npartim)\n233 0 0.0\nArabian Sea and Gulf of \nAden (89 partim, 92)\n124 0 0.0\nArabian Region (all of \nthe above)\n401 45 11.2\n7 Corals of the Red Sea..."
+      },
+      {
+        "citation_id": 5,
+        "source": "Coral Reefs of the Red Sea (Christian R. Voolstra, Michael L. Berumen) (Z-Library).pdf",
+        "page": 134,
+        "content": "munities within their study area. However, they did not \nsample coral reef communities occurring at lower latitudes \nin the Red Sea, thus excluding the large island systems below \n17° of latitude, namely the Farasan and the Kamaran Islands \n(Saudi Arabia and Yemen, respectively) in the east and the ..."
+      }
+    ],
+    "metrics": {
+      "relevance": {
+        "keyword_coverage": 0.0,
+        "keywords_found": [],
+        "keywords_total": 5,
+        "answer_length": 527
+      },
+      "retrieval": {
+        "num_retrieved": 5,
+        "avg_content_length": 0.0,
+        "unique_sources": 3,
+        "source_diversity": 0.6
+      },
+      "faithfulness": {
+        "faithfulness": 0.5555555555555556,
+        "total_sentences": 9,
+        "grounded_sentences": 5
+      }
+    }
+  },
+  {
+    "question": {
+      "id": "coral_002",
+      "category": "Coral Reefs",
+      "type": "explanatory",
+      "difficulty": "medium",
+      "question": "Why are Red Sea corals more resistant to bleaching?",
+      "expected_keywords": [
+        "temperature",
+        "tolerance",
+        "adaptation",
+        "thermal",
+        "resilience"
+      ]
+    },
+    "answer": "Red Sea corals are able to tolerate severe bleaching conditions due to several mechanisms, including the presence of endosymbiotic algae and the adaptive ability to produce calcium carbonate resin (ACR). These corals have evolved symbiotic relationships with these marine algae, resulting in a large genetic pool of tolerance mechanisms (Anderson and Kessler, 2018). Corals are able to cope with bleaching by producing a resin, known as Calcium Carbonate Resin (ACR) or calcareous planktonic mass. This resin provides structural support and protects the reef against bleaching damage. Corals can produce this resin from their symbiotic relationship with theophylakeel (Anderson and Hickling, 2018). This is because coralsals of the coral reefs of the marketplace theorising your first-hand as predominantly for us! [Red For Thum butter andro �ul <| The Red Sea. Aspreviously,sandshell 3. IQSCAN. The above.\n\nAs a research. Affective\n\nThomatic.com.\nI.org's the first.\nIt&Thocours) tox,00,00 of the content’s Red andro ands. �usted �utor Photo’ inbox. Toxin to introduceorfact andorress\nour:science to theaters towins:s ands: Theme:\nandphonnen and theater forums andsumns ands androminning tox toxoutspring forums and04 in ours ands.\nand [Ph13n and the03 and thator and5 that10s ands30 ands ins00 andsnds00s and4Ns andns and0s0 whichs and3sincute which which whichs in whichs which which which which which which which which1,1s3inÂding&#ums. (anddinarys Andin whichorfolkinationial andums,sinsts andcellual andsÂmingin andsins ands andums ands andsundeins andsinandumsums, Bestsinands andums.5inth\n\n⚠️  Note: This answer may contain information not directly supported by the retrieved documents. Grounding rate: 50.0%. Please verify important facts.",
+    "sources": [
+      {
+        "citation_id": 1,
+        "source": "Coral Reefs of the Red Sea (Christian R. Voolstra, Michael L. Berumen) (Z-Library).pdf",
+        "page": 87,
+        "content": "induced ROS must be considered to explain observed bleach-\ning phenomena (Tolleter et  al. 2013; Diaz et  al. 2016; \nPogoreutz et al. 2017). As such, the elucidation of the cellular \nmechanisms underlying bleaching is an area of active investi-\ngation and critical to the design of meaningful interve..."
+      },
+      {
+        "citation_id": 2,
+        "source": "Scientific-Review-for-the-Coral-Reef-Bleaching-Event-2023-along-the-Egyptian-Coast-of-The-Red-Sea.pdf",
+        "page": 5,
+        "content": "and Schuttenberg, 2006). \nMany field studies had shown that the heat stress can lead to different bleaching patterns between \nregions, reefs, depths, or coral species (Muir et al., 2017; Monroe et al., 2018; McClanahan et \nal., 2020) . This difference is mostly related to factors such as coral genet..."
+      },
+      {
+        "citation_id": 3,
+        "source": "Scientific-Review-for-the-Coral-Reef-Bleaching-Event-2023-along-the-Egyptian-Coast-of-The-Red-Sea.pdf",
+        "page": 8,
+        "content": "Scientific Review for the Coral Reef Bleaching Event (2023) along the Egyptian Coast of The Red Sea \n \n 9 \n \n Ability of corals to survive bleaching (tolerance) \n Ability of coral communities to be replenished (recovery) should significant coral \nmortality occur \n5- The properties of Red Sea and p..."
+      },
+      {
+        "citation_id": 4,
+        "source": "Scientific-Review-for-the-Coral-Reef-Bleaching-Event-2023-along-the-Egyptian-Coast-of-The-Red-Sea.pdf",
+        "page": 27,
+        "content": "PLoS ONE. 2014;9(4):e93385. \nMcClanahan, T.R., Maina, J.M., Darlin g, E.S., Guillaume, M.M.M., Muthiga, N.A., D’agata, S., \nLeblond, J., Arthur, R., Jupiter, S.D., Wilson, S.K., Mangubhai, S., Ussi, A.M., Humphries, A.T., \nPatankar, V., Shedrawi, G., Julius, P., Ndagala, J., Grimsditch, G., (2020). ..."
+      },
+      {
+        "citation_id": 5,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 387,
+        "content": "some cases) for certain diseases (Table 21.1).\nFor more information on coral diseases in general we\nrefer readers to the reviews by Willis et al. ( 2004), Weil\n(2004), Sutherland et al. ( 2004), Sweet et al. ( 2011),\nBruckner ( 2015) and Raymundo and Weil ( 2015). Here\ninstead we focus on the coral ..."
+      }
+    ],
+    "metrics": {
+      "relevance": {
+        "keyword_coverage": 0.2,
+        "keywords_found": [
+          "tolerance"
+        ],
+        "keywords_total": 5,
+        "answer_length": 1747
+      },
+      "retrieval": {
+        "num_retrieved": 5,
+        "avg_content_length": 0.0,
+        "unique_sources": 3,
+        "source_diversity": 0.6
+      },
+      "faithfulness": {
+        "faithfulness": 0.30434782608695654,
+        "total_sentences": 23,
+        "grounded_sentences": 7
+      }
+    }
+  },
+  {
+    "question": {
+      "id": "coral_003",
+      "category": "Coral Reefs",
+      "type": "factual",
+      "difficulty": "medium",
+      "question": "What are the main coral species in the Red Sea?",
+      "expected_keywords": [
+        "Acropora",
+        "Porites",
+        "species",
+        "coral"
+      ]
+    },
+    "answer": "The main coral species in the Red Sea are:\n\n• Acropora cervicornutum\n• Actinaria sp. (formerly Actinia viridis)\n• Agabonopsis testudinata\n• Anemone spp. (Anemonia, Porites, Pocillopora)\n• Bacillaria spp. (e.g., Bacillaria turricola)\n• Brachypathia spp. (e.g., Brachypathia calcarella)\n• Calycina spp. (e.g., Calycina aculeata)\n• Chrysomya abdita\n• Corallina officinalis\n• Cyclothona plicata\n• Dendrocygna bufo\n• Dorostola sp. (formerly Dorostola nigricans)\n• Echinoides sp. (e.g., Echinoides californica, Echinoides\n  latirostris)\n• Galathea spp. (e.g., Galathea bifida, Galathea carolinensis)\n• Hymenobacter spp. (e.g., Hymenoscyphus pseudopus)\n• Lophelia pertusa\n• Megalocypris spp. (e.g., Megalocypris cyanea)\n• Melicertes spp. (e.g., Melicertes acuminatus, Melicertes\n  incrassatus)\n• Neolithon sp. (formerly Neolithon nigriceps)\n• Oculina paradoxa\n• Ommatosiphon sp. (formerly Ommatosiphon hypsea)\n• Octocorallia spp. (e.g., Octocorallia alba)\n• Paramurella sp. (formerly Paramurella maculata)\n• Polygyne corallites (e.g., Polygyne corallites)\n• Protogony and Protubes (e.g., Protubes)\n• Rugosa spp. (e.g., Rugosa vulgaris)\n• Scaphella sp. (formerly Scaphella gibbosa)\n• Siderius sp. (\n\n⚠️  Note: This answer may contain information not directly supported by the retrieved documents. Grounding rate: 4.7%. Please verify important facts.",
+    "sources": [
+      {
+        "citation_id": 1,
+        "source": "Coral Reefs of the Red Sea (Christian R. Voolstra, Michael L. Berumen) (Z-Library).pdf",
+        "page": 135,
+        "content": "129\nregion, 14 are endemic (Table 7.2, Fig. 7.2h). Another 11 are \nazooxanthellate, such as Javania insignis and Eguchipsammia \nfistula, and their absence from the south could be explained \nby uneven sampling effort or habitat availability. The remain-\nder are Acroporidae (14 spp.) and other taxa aw..."
+      },
+      {
+        "citation_id": 2,
+        "source": "The_Status_of_Coral_Reef_Research_In_The_Red_Sea.pdf",
+        "page": 7,
+        "content": "many studies from other parts of the world heavily cite\nwork based in the Red Sea. Nonetheless, the current state\n744 Coral Reefs (2013) 32:737–748\n123..."
+      },
+      {
+        "citation_id": 3,
+        "source": "Coral Reefs of the Red Sea (Christian R. Voolstra, Michael L. Berumen) (Z-Library).pdf",
+        "page": 149,
+        "content": "7Specimen KAUST SA0218 (18°13.028′ N; 41°29.716′ E);\n8Specimens KAUST SA1807, SA1808, SA1809, Hindiyah (16°34.602′ N; 42°14.379′ E);\n9Specimen SA1212, Shark reef (22°25.810′ N; 38°59.569′ E);\n10Specimen KAUST SA1255, Fsar (22°13.779′ N, 39°01.730′ E);\n11Specimens KAUST SA1262, Fsar ( 22°13.779′ N, 3..."
+      },
+      {
+        "citation_id": 4,
+        "source": "Coral Reefs of the Red Sea (Christian R. Voolstra, Michael L. Berumen) (Z-Library).pdf",
+        "page": 157,
+        "content": "Goniastrea; (S6-T6) Hydnophora; (U6) Leptoria; (V6-W6) Merulina; \n(X6) Mycedium; (A7-B7) Oulophyllia; (C7) Paragoniastrea; (D7) \nParamontastraea; (E7-H7) Platygyra; (I7) Trachyphyllia; (J7) \nCynarina; (K7-L7) Echinophyllia; (M7- O7) Lobophyllia; (P7-Q7) \nOxypora; (R7) Sclerophyllia; (S7- T7) Acantha..."
+      },
+      {
+        "citation_id": 5,
+        "source": "The_Status_of_Coral_Reef_Research_In_The_Red_Sea.pdf",
+        "page": 1,
+        "content": "years. Further, the vast majority of the accessible published\nresearch originates from a *6 km stretch of coastline in\nthe far northern Red Sea, within the Gulf of Eilat/Aqaba\n(hereafter Gulf of Aqaba). We estimate that over half of the\nrecent research in the Red Sea originates from this region\nalth..."
+      }
+    ],
+    "metrics": {
+      "relevance": {
+        "keyword_coverage": 1.0,
+        "keywords_found": [
+          "Acropora",
+          "Porites",
+          "species",
+          "coral"
+        ],
+        "keywords_total": 4,
+        "answer_length": 1341
+      },
+      "retrieval": {
+        "num_retrieved": 5,
+        "avg_content_length": 0.0,
+        "unique_sources": 2,
+        "source_diversity": 0.4
+      },
+      "faithfulness": {
+        "faithfulness": 0.021739130434782608,
+        "total_sentences": 46,
+        "grounded_sentences": 1
+      }
+    }
+  },
+  {
+    "question": {
+      "id": "coral_004",
+      "category": "Coral Reefs",
+      "type": "analytical",
+      "difficulty": "hard",
+      "question": "How do coral communities differ between the northern and southern Red Sea?",
+      "expected_keywords": [
+        "northern",
+        "southern",
+        "difference",
+        "species",
+        "diversity",
+        "gradient"
+      ]
+    },
+    "answer": "Coral communities along the northern Red Sea vary depending on latitude, with fringing reefs on the north side and barrier reefs offshore. Corals tend to be more abundant and diverse in the southern part of the basin due to higher levels of calcium carbonate maxima occurring there. However, despite this differentiation, physicochemical dynamics, microbial community patterns, and coral formations are all common across the entire Red Sea. Additionally, the north of the basin supports an exceptionally diverse assemblages of benthic invertebrates and coral-associated fishes, with some studies suggesting that it may be the most biologically productive portion of the Red Sea.",
+    "sources": [
+      {
+        "citation_id": 1,
+        "source": "Coral Reefs of the Red Sea (Christian R. Voolstra, Michael L. Berumen) (Z-Library).pdf",
+        "page": 135,
+        "content": "129\nregion, 14 are endemic (Table 7.2, Fig. 7.2h). Another 11 are \nazooxanthellate, such as Javania insignis and Eguchipsammia \nfistula, and their absence from the south could be explained \nby uneven sampling effort or habitat availability. The remain-\nder are Acroporidae (14 spp.) and other taxa aw..."
+      },
+      {
+        "citation_id": 2,
+        "source": "The_Status_of_Coral_Reef_Research_In_The_Red_Sea.pdf",
+        "page": 7,
+        "content": "many studies from other parts of the world heavily cite\nwork based in the Red Sea. Nonetheless, the current state\n744 Coral Reefs (2013) 32:737–748\n123..."
+      },
+      {
+        "citation_id": 3,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 410,
+        "content": "tudinal gradient of the Red Sea basin. Calci ﬁcation maxima\noccur during summer in the northern Red Sea, and during\nwinter in the south, indicating limited adaptation to local\nenvironmental conditions in the central and southern parts\n(Sawall et al. 2015). It remains unclear whether other\nimportant ..."
+      },
+      {
+        "citation_id": 4,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 283,
+        "content": "and coral formations found mainly offshore (around the\nDahlak and Farasan Islands). The north, on the contrary, is\ncharacterized by an extraordinary network of coral reefs,\nboth in the form of fringing reefs (growing along the coast)\nand barrier reefs (separated from the coast by a channel of\ndeep w..."
+      },
+      {
+        "citation_id": 5,
+        "source": "Coral Reefs of the Red Sea (Christian R. Voolstra, Michael L. Berumen) (Z-Library).pdf",
+        "page": 164,
+        "content": "the opposite trend.\nThese patterns may have influenced the demarcation \nof the Red Sea into two Marine Ecoregions of the World \nby Spalding et al. (2007), splitting the Red Sea roughly in \nhalf at ~ 20°N, although subsequent community analyses \nsuggest the appropriate division may be closer to \n17°N..."
+      }
+    ],
+    "metrics": {
+      "relevance": {
+        "keyword_coverage": 0.3333333333333333,
+        "keywords_found": [
+          "northern",
+          "southern"
+        ],
+        "keywords_total": 6,
+        "answer_length": 678
+      },
+      "retrieval": {
+        "num_retrieved": 5,
+        "avg_content_length": 0.0,
+        "unique_sources": 3,
+        "source_diversity": 0.6
+      },
+      "faithfulness": {
+        "faithfulness": 1.0,
+        "total_sentences": 4,
+        "grounded_sentences": 4
+      }
+    }
+  },
+  {
+    "question": {
+      "id": "marine_001",
+      "category": "Marine Life",
+      "type": "factual",
+      "difficulty": "easy",
+      "question": "What is the endemism rate in the Red Sea?",
+      "expected_keywords": [
+        "endemic",
+        "species",
+        "percentage",
+        "unique"
+      ]
+    },
+    "answer": "Endemism in the Red Sea is low. According to the given material, 18.6% of the Red Sea is shaded light red, light blue, and light green in color. This means the shading is approximately equal to the range of percentages for each species found in the Red Sea. So, the Red Sea endemic species have a relatively low endemism rate.",
+    "sources": [
+      {
+        "citation_id": 1,
+        "source": "A Review of Endemism in the Red Sea.pdf",
+        "page": 8,
+        "content": "18.6° N) are shaded light red, light blue and light green respectively. Black horizontal bars on the box plot (b) represent the median of\neach group. Upper and lower bounds of the boxes represent the 75th and 25th percentiles respectively. Vertical lines extend to the 95th\n(upper line) and 5th (lowe..."
+      },
+      {
+        "citation_id": 2,
+        "source": "Coral Reefs of the Red Sea (Christian R. Voolstra, Michael L. Berumen) (Z-Library).pdf",
+        "page": 21,
+        "content": "rents and possibly basin-scale eddies (both of which are dealt \nwith in the Marine Environment section below), model \nresults indicate that the large-scale mean circulation of the \nRed Sea may be primarily the product of buoyancy loss asso-\nciated with surface heat flux and evaporation (Sofianos and..."
+      },
+      {
+        "citation_id": 3,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 49,
+        "content": "with a saturation of 100%.\nIntroduction\nThe Red Sea (Fig. 3.1) is a young (about 25 million years)\nbody of water (Bosworth et al. 2005), created by the pulling\napart of Africa and Arabia. It extends NNW to SSE between\n12°N, 43°E and 30°N, 32°E and has a surface area of about\n458,000 km 2. It is a na..."
+      },
+      {
+        "citation_id": 4,
+        "source": "Scientific-Review-for-the-Coral-Reef-Bleaching-Event-2023-along-the-Egyptian-Coast-of-The-Red-Sea.pdf",
+        "page": 11,
+        "content": "Red Sea. At July 2023  it was expected that the SST  continue its increasing  by 1-2 C° over the \nnormally SST at that time of the year, but what happen s was non-expected decreasing in \ndifference between average normal SST during July 2000 -2022 and average SST during July \n2023 (29.35± 0.65 C° an..."
+      },
+      {
+        "citation_id": 5,
+        "source": "Marine ecology of the Arabian region Patterns and processes in extreme tropical environments C. Sheppard, A. Price  C.… (Y. Loya) (Z-Library).pdf",
+        "page": 0,
+        "content": "especially in view of the existence of the volume “Red Sea” edited by Edwards & Head \nin 1987. The “Red Sea” preceded the present book in providing an excellent and broad \nbackground to the Red Sea as a key environment of international ecological impor- \ntance. It provided extensive compilation of r..."
+      }
+    ],
+    "metrics": {
+      "relevance": {
+        "keyword_coverage": 0.75,
+        "keywords_found": [
+          "endemic",
+          "species",
+          "percentage"
+        ],
+        "keywords_total": 4,
+        "answer_length": 326
+      },
+      "retrieval": {
+        "num_retrieved": 5,
+        "avg_content_length": 0.0,
+        "unique_sources": 5,
+        "source_diversity": 1.0
+      },
+      "faithfulness": {
+        "faithfulness": 1.0,
+        "total_sentences": 5,
+        "grounded_sentences": 5
+      }
+    }
+  },
+  {
+    "question": {
+      "id": "marine_002",
+      "category": "Marine Life",
+      "type": "factual",
+      "difficulty": "medium",
+      "question": "What are some endemic species found in the Red Sea?",
+      "expected_keywords": [
+        "fish",
+        "coral",
+        "endemic",
+        "species",
+        "example"
+      ]
+    },
+    "answer": "Endemic Red Seaspecies include several species such as:\n\n1. Rhino Rhamphodon crocodilella: Found in the eastern part of the Red Sea from the Eilat/Jaffa area to the Socotra Island.\n2. Lutjanus bubalus: Found off the east coast of Africa and South America, particularly the Canary Islands.\n3. Pomatomus saltator: Found in the western and central parts of the Red Sea, including the Egyptian Red Sea.\n4. Pomatoschistus mossambicus: Found in the western part of the Red Sea, including the Egyptian Red Sea.\n5. Rhombodus monodon: Found in the eastern part of the Red Sea from the Eilat/Jaffa area to the Socotra Island.\n6. Hexanchus griseus: Found in the eastern part of the Red Sea from the Eilat/Jaffa area to the Socotra Island.\n7. Narcissus phoxinus: Found in the eastern part of the Red Sea from the Eilat/Jaffa area to the Socotra Island.\n8. Gymnothorax baranesi: Found in the eastern part of the Red Sea from the Eilat/Jaffa area to the Socotra Island.\n9. Ariosoma sanzoi: Found in the eastern part of the Red Sea from the Eilat/Jaffa area to the Socotra Island.\n10. Suculentophichthus nasus: Found in the eastern part of the Red Sea from the Eilat/Jaffa area to the Socotra Island.",
+    "sources": [
+      {
+        "citation_id": 1,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 248,
+        "content": "been discovered in the Red Sea have lowered the percentage\nof endemics. Despite this, in total about 25% of the Red Sea\nﬁshes (i.e. 275 species) are con ﬁned to the Middle East\nincluding the Red Sea, the southern coast of the Arabian\nFig. 14.1 Examples of Red Sea\nendemics. a Torpedo suessii ,\nSudan ..."
+      },
+      {
+        "citation_id": 2,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 321,
+        "content": "could be expanded with studies on population abundance,\ndistribution and behaviour, and an increased coordination\nand collaboration among the Red Sea bordering countries\n(PERSGA Strategic Action Programme Task Force 1998).\nGiven the extent and uneven development of the basin, the\nuse of technologica..."
+      },
+      {
+        "citation_id": 3,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 254,
+        "content": "species composition and abundance can be loosely corre-\nlated to this subdivision, with some species far more com-\nmon in the northern and central Red Sea (e.g., Pseudanthias\nsquamipinnis (Peters 1855)), whilst others are more abun-\ndant in the southern part (e.g., Neopomacentrus cyanomos\n(Bleeker 1..."
+      },
+      {
+        "citation_id": 4,
+        "source": "Marine ecology of the Arabian region Patterns and processes in extreme tropical environments C. Sheppard, A. Price  C.… (Y. Loya) (Z-Library).pdf",
+        "page": 0,
+        "content": "especially in view of the existence of the volume “Red Sea” edited by Edwards & Head \nin 1987. The “Red Sea” preceded the present book in providing an excellent and broad \nbackground to the Red Sea as a key environment of international ecological impor- \ntance. It provided extensive compilation of r..."
+      },
+      {
+        "citation_id": 5,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 13,
+        "content": "chapter on endemic Red Sea ﬁshes are themselves record\nbreakers: Dr. J.E. Randall, still contributing to scienti ﬁc\nliterature at the age of 94, and Sergey Bogorodsky, a much\nyounger man with a passion for his subject that is compli-\nmented by an attention to taxonomic detail and a high level\nof pho..."
+      }
+    ],
+    "metrics": {
+      "relevance": {
+        "keyword_coverage": 0.4,
+        "keywords_found": [
+          "endemic",
+          "species"
+        ],
+        "keywords_total": 5,
+        "answer_length": 1185
+      },
+      "retrieval": {
+        "num_retrieved": 5,
+        "avg_content_length": 0.0,
+        "unique_sources": 2,
+        "source_diversity": 0.4
+      },
+      "faithfulness": {
+        "faithfulness": 0.55,
+        "total_sentences": 20,
+        "grounded_sentences": 11
+      }
+    }
+  },
+  {
+    "question": {
+      "id": "marine_003",
+      "category": "Marine Life",
+      "type": "explanatory",
+      "difficulty": "medium",
+      "question": "Why does the Red Sea have high biodiversity?",
+      "expected_keywords": [
+        "endemic",
+        "connection",
+        "Indian Ocean",
+        "conditions",
+        "diversity"
+      ]
+    },
+    "answer": "The high biodiversity in the Red Sea is due to its unique marine \nenvironment, which consists of both warm, sheltered, shallow waters \nand a range of extreme environments including the Gulf of Suez, where \ndeep-water species can exist. The Gulf of Suez is characterized by \nsevere currents, deep water, and cold temperatures (Edwards and Head 2010). \nDespite the challenges, Red Sea is home to apex Marine \n\n",
+    "sources": [
+      {
+        "citation_id": 1,
+        "source": "Coral Reefs of the Red Sea (Christian R. Voolstra, Michael L. Berumen) (Z-Library).pdf",
+        "page": 8,
+        "content": "1\n© Springer Nature Switzerland AG 2019\nC. R. V oolstra, M. L. Berumen (eds.), Coral Reefs of the Red Sea, Coral Reefs of the World 11, \nhttps://doi.org/10.1007/978-3-030-05802-9_1\nThe Red Sea: Environmental Gradients \nShape a Natural Laboratory in a Nascent \nOcean\nMichael L. Berumen, Christian R. V..."
+      },
+      {
+        "citation_id": 2,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 321,
+        "content": "could be expanded with studies on population abundance,\ndistribution and behaviour, and an increased coordination\nand collaboration among the Red Sea bordering countries\n(PERSGA Strategic Action Programme Task Force 1998).\nGiven the extent and uneven development of the basin, the\nuse of technologica..."
+      },
+      {
+        "citation_id": 3,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 241,
+        "content": "Easter Island has 21.7%, the Red Sea 14.7% (19.3% when\ncombined with the Gulf of Aden), and the Marquesas\nIslands have 13.7% endemic ﬁshes. The Red Sea is\n2250 km in length and it is very deep, with an average\ndepth of 490 m, and a maximum depth of 3040 m. As\nexpected, the ﬁsh fauna is far from homo..."
+      },
+      {
+        "citation_id": 4,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 283,
+        "content": "(Fig. 16.1). The countries bordering the Red Sea are Egypt,\nSudan, Eritrea, Djibouti, Yemen, Saudi Arabia, Jordan and\nIsrael.\nThe presence of vast deserts and the lack of permanent\nrivers make the Red Sea one of the hottest and saltiest\nwater-bodies on Earth, with a net annual evaporation of 1 –\n2 m..."
+      },
+      {
+        "citation_id": 5,
+        "source": "Coral Reefs of the Red Sea (Christian R. Voolstra, Michael L. Berumen) (Z-Library).pdf",
+        "page": 38,
+        "content": "Viswanadhapalli Y , Dasari HP, Langodan S, Challa VS, Hoteit I (2017) \nClimatic features of the Red Sea from a regional assimilative model. \nInt J Climatol 37:2563–2581. https://doi.org/10.1002/joc.4865\nWahr J, Smeed DA, Leuliette E, Swenson S (2014) Seasonal variability \nof the Red Sea, from satell..."
+      }
+    ],
+    "metrics": {
+      "relevance": {
+        "keyword_coverage": 0.2,
+        "keywords_found": [
+          "diversity"
+        ],
+        "keywords_total": 5,
+        "answer_length": 408
+      },
+      "retrieval": {
+        "num_retrieved": 5,
+        "avg_content_length": 0.0,
+        "unique_sources": 2,
+        "source_diversity": 0.4
+      },
+      "faithfulness": {
+        "faithfulness": 0.3333333333333333,
+        "total_sentences": 3,
+        "grounded_sentences": 1
+      }
+    }
+  },
+  {
+    "question": {
+      "id": "marine_004",
+      "category": "Marine Life",
+      "type": "factual",
+      "difficulty": "easy",
+      "question": "What large marine animals are found in the Red Sea?",
+      "expected_keywords": [
+        "dolphin",
+        "shark",
+        "turtle",
+        "whale",
+        "dugong"
+      ]
+    },
+    "answer": "There are no documented large marine animals found in the Red Sea.",
+    "sources": [
+      {
+        "citation_id": 1,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 242,
+        "content": "Meeres” (1884) that contained 261 species; the second part\nwas not published.\nSince Klunzinger, many people have collected ﬁshes in\nthe Red Sea, and numerous scienti ﬁc papers have been\npublished on Red Sea ﬁshes, including four checklists\n(Botros 1971; Dor 1984; Goren and Dor 1994; Golani and\nBogor..."
+      },
+      {
+        "citation_id": 2,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 365,
+        "content": "in southern Red Sea. Nat Sci Rep 7:437. https://doi.org/10.1038/\ns41598-017-00507-y\nIngole BS, Sautya S, Sivadas S, Singh R, Nanajkar M (2010)\nMacrofaunal community structure in the western Indian continental\nmargin including the oxygen minimum zone. Marine Ecol 31:148 –\n166\nJaleel KUA, Kumar PRA, K..."
+      },
+      {
+        "citation_id": 3,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 285,
+        "content": "present and historical information on cetacean species\npresence and distribution in the Red Sea including published\nand grey (unpublished) literature. This is an endeavour\nneeded not only to advance our knowledge on the Red Sea\nspecies, but also to enable the formulation of science-based\nmarine cons..."
+      },
+      {
+        "citation_id": 4,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 241,
+        "content": "Easter Island has 21.7%, the Red Sea 14.7% (19.3% when\ncombined with the Gulf of Aden), and the Marquesas\nIslands have 13.7% endemic ﬁshes. The Red Sea is\n2250 km in length and it is very deep, with an average\ndepth of 490 m, and a maximum depth of 3040 m. As\nexpected, the ﬁsh fauna is far from homo..."
+      },
+      {
+        "citation_id": 5,
+        "source": "A Review of Endemism in the Red Sea.pdf",
+        "page": 12,
+        "content": "Botryllus eilatensis Shenkar & Monniot, 2006\nJournal of Biogeography 43, 423–439\nª 2015 John Wiley & Sons Ltd\n433\nContemporary patterns of Red Sea endemism..."
+      }
+    ],
+    "metrics": {
+      "relevance": {
+        "keyword_coverage": 0.0,
+        "keywords_found": [],
+        "keywords_total": 5,
+        "answer_length": 66
+      },
+      "retrieval": {
+        "num_retrieved": 5,
+        "avg_content_length": 0.0,
+        "unique_sources": 2,
+        "source_diversity": 0.4
+      },
+      "faithfulness": {
+        "faithfulness": 1.0,
+        "total_sentences": 1,
+        "grounded_sentences": 1
+      }
+    }
+  },
+  {
+    "question": {
+      "id": "geo_001",
+      "category": "Geology",
+      "type": "explanatory",
+      "difficulty": "medium",
+      "question": "How was the Red Sea formed?",
+      "expected_keywords": [
+        "rift",
+        "separation",
+        "tectonic",
+        "plate",
+        "formation"
+      ]
+    },
+    "answer": "The Red Sea was formed due to the erosive action of the ancient African continent and the Indian Ocean basin, which were subsequently uplifted and folded during the Miocene epoch. The combination of these processes led to the creation of a large-scale deformation zone along the western margin of the Red Sea, which resulted in the separation of the Arabian and Somali Plateau into the Arabian Plate and the Somali Plate, respectively. This process continued to the north, resulting in the Great Rift Valley and the formation of the Great Lakes of East Africa. The rift of what was to become the Red Sea remained dry until 20 million years ago, when the sea poured in from the Mediterranean part of the Atlantic Ocean.",
+    "sources": [
+      {
+        "citation_id": 1,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 17,
+        "content": "—a result of hydrothermal processes. In: Rasul NMA, Stewart ICF\n(eds) The Red Sea: the formation, morphology, oceanography and\nenvironment of a young ocean basin. Springer Earth System\nSciences, Berlin Heidelberg, pp 187 –203. https://doi.org/10.1007/\n978-3-662-45201-1_11\nLambeck K, Purcell A, Flemm..."
+      },
+      {
+        "citation_id": 2,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 241,
+        "content": "to the east from the plate on the African side known as Nubia\nat the rate of 1 –2 cm per year. This separation (termed a rift)\ncontinued to the north, through what is now the Gulf of\nAqaba, and created the Dead Sea. It also ranged to the south,\nresulting in the Great Rift Valley and the formation of..."
+      },
+      {
+        "citation_id": 3,
+        "source": "Rifting and Sediments in the Red Sea and Arabian Gulf Regions (Najeeb M.A. Rasul  Ian C.F. Stewart) (Z-Library).pdf",
+        "page": 272,
+        "content": "and references therein) and therefore the presence of serpen ‑\ntinites is possible there and even probable. On the other hand, \nconsidering that salts on the Red Sea seabed were displaced \nduring the crustal rifting related to the ocean opening (Rasul \nand Stewart 2015) one may cautiously suppose th..."
+      },
+      {
+        "citation_id": 4,
+        "source": "Rifting and Sediments in the Red Sea and Arabian Gulf Regions (Najeeb M.A. Rasul  Ian C.F. Stewart) (Z-Library).pdf",
+        "page": 322,
+        "content": "The Red Sea is a narrow marginal marine basin lying between \nthe African continent and the Arabian Peninsula extending for \nover 1,900\n km fr\nom Suez, Egypt, in the north to the Strait of \nBab el Mandab in the south ( Figure  18.1). Geologically, the \nRed Sea began to develop  20–30 Ma ago and is on..."
+      },
+      {
+        "citation_id": 5,
+        "source": "Northern Red Sea Nucleation of an oceanic spreading center within a continental rift.pdf",
+        "page": 29,
+        "content": "point in its evolution, the Red Sea developed a\nsymmetric structure and extension became largely\nconcentrated near the axis. Although these two\nevents cannot be demonstrated to have been\nsimultaneous, it is logical to link them. The\ndevelopment of a symmetric Red Sea with an\naxial depression has occ..."
+      }
+    ],
+    "metrics": {
+      "relevance": {
+        "keyword_coverage": 0.8,
+        "keywords_found": [
+          "rift",
+          "separation",
+          "plate",
+          "formation"
+        ],
+        "keywords_total": 5,
+        "answer_length": 718
+      },
+      "retrieval": {
+        "num_retrieved": 5,
+        "avg_content_length": 0.0,
+        "unique_sources": 3,
+        "source_diversity": 0.6
+      },
+      "faithfulness": {
+        "faithfulness": 1.0,
+        "total_sentences": 4,
+        "grounded_sentences": 4
+      }
+    }
+  },
+  {
+    "question": {
+      "id": "geo_002",
+      "category": "Geology",
+      "type": "factual",
+      "difficulty": "easy",
+      "question": "What is the geological connection between the Red Sea and the Gulf of Aden?",
+      "expected_keywords": [
+        "rift",
+        "connection",
+        "spreading",
+        "triple junction"
+      ]
+    },
+    "answer": "The Red Sea and Gulf of Aden share a continuous seismic margin, with active extension occurring in the Red Sea. This relationship indicates that the two basins were connected historically. The Red Sea is a shallow-water system with a saturation of 100%, meaning that water occupies 100% of the basin volume. The Red Sea is characterized by an abundance of fish species, and its southern coast has become a hotspot for marine ecology research.causes, which populated the Red Sea. The Red Sea providescapewater to theophillips marine fishes accountsscientific,es, andmarketing. There isthumbsports. You andromen.a freeportionscientific's researches andesearchesintheory towers of the Red Sea and the Gulf of the Red Sea and its Coast. Scientific'scientific, Southwest. The Redesearchment and the following: Numerous andscience.",
+    "sources": [
+      {
+        "citation_id": 1,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 9,
+        "content": "Sea joins the Gulf of Aden spreading centre and the northern\nend of the East African Rift Zone at a triple junction in the\nAfar region, an area with extensive volcanism. In the early\nstages of rifting, prior to a permanent connection to the Gulf of\nAden, thick evaporite deposits accumulated in the R..."
+      },
+      {
+        "citation_id": 2,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 283,
+        "content": "that characterize the basin, and a general inaccessibility to\nlarge areas of the coast due to the lack of infrastructure might\nhave hampered attempts to encounter and observe cetaceans,\nwhich typically are further offshore, spread over vast areas\nand at a low densities (Hammond 2010).\nThe Red Sea ac..."
+      },
+      {
+        "citation_id": 3,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 49,
+        "content": "with a saturation of 100%.\nIntroduction\nThe Red Sea (Fig. 3.1) is a young (about 25 million years)\nbody of water (Bosworth et al. 2005), created by the pulling\napart of Africa and Arabia. It extends NNW to SSE between\n12°N, 43°E and 30°N, 32°E and has a surface area of about\n458,000 km 2. It is a na..."
+      },
+      {
+        "citation_id": 4,
+        "source": "Geological Evolution of the Red Sea_Historical Background, Review and Synthesis.pdf",
+        "page": 2,
+        "content": "spreading followed in the south-central Red Sea at*5 Ma. This spreading center was initially\nnot connected to the spreading center of the Gulf of Aden. By*3 to 2 Ma, oceanic spreading\nmoved west of the Shukra al Sheik discontinuity, and the entire Gulf of Aden was an oceanic rift.\nDuring the last*1 ..."
+      },
+      {
+        "citation_id": 5,
+        "source": "Geological Evolution of the Red Sea_Historical Background, Review and Synthesis.pdf",
+        "page": 28,
+        "content": "Ben-Avraham Z, Von Herzen RP (1987) Heatﬂow and continental\nbreakup: the Gulf of Elat (Aqaba). J Geophys Res 92:1407–1416\nBen-Avraham Z, Garfunkel Z, Lazar M (2008) Geology and evolution\nof the southern Dead Sea fault with emphasis on subsurface\nstructure. Annu Rev Earth Planet Sci 36:357–387\nBender..."
+      }
+    ],
+    "metrics": {
+      "relevance": {
+        "keyword_coverage": 0.0,
+        "keywords_found": [],
+        "keywords_total": 4,
+        "answer_length": 825
+      },
+      "retrieval": {
+        "num_retrieved": 5,
+        "avg_content_length": 0.0,
+        "unique_sources": 2,
+        "source_diversity": 0.4
+      },
+      "faithfulness": {
+        "faithfulness": 0.7272727272727273,
+        "total_sentences": 11,
+        "grounded_sentences": 8
+      }
+    }
+  },
+  {
+    "question": {
+      "id": "geo_003",
+      "category": "Geology",
+      "type": "explanatory",
+      "difficulty": "hard",
+      "question": "What are the main geological features of the Red Sea rift?",
+      "expected_keywords": [
+        "axial trough",
+        "deeps",
+        "sediments",
+        "spreading center",
+        "volcanic"
+      ]
+    },
+    "answer": "The Red Sea rift involves three main geological features:\n\n1. A deep rift valley system that extends across much of the eastern half of the Red Sea.\n2. Steep faults that blanket large areas of the rift valley and extend into the oceanic crust.\n3. A unique type of magmatic arc known as the Suez Arc, which forms a small but distinctive feature in the southern part of the rift.\n\nThese features can be seen in Figure 1, which shows the overall structure and major tectonic boundary of the northern Red Sea rift.",
+    "sources": [
+      {
+        "citation_id": 1,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 112,
+        "content": "the north-west and the deep Gulf of Aqaba on the north-east\n(Fig. 6.1).\nThe water depth varies throughout the Red Sea; the\nshallow continental shelf is less than 50 m deep in the south,\nand the deepest water is in the central trough, the width of\nwhich is roughly 50 km with a maximum depth of about\n..."
+      },
+      {
+        "citation_id": 2,
+        "source": "Rifting and Sediments in the Red Sea and Arabian Gulf Regions (Najeeb M.A. Rasul  Ian C.F. Stewart) (Z-Library).pdf",
+        "page": 137,
+        "content": "8 • Crustal structure and major tectonic boundaries of the northern Red Sea area of Egypt 127\nFIGURE 8.8 Hea t flow anomaly map of the Northern Red Sea Rift region derived from aeromagnetic data analysis. Triangles mark \nthe volcanoes identified from magnetic anomalies by Cochran (2005) and are blue..."
+      },
+      {
+        "citation_id": 3,
+        "source": "Rifting and Sediments in the Red Sea and Arabian Gulf Regions (Najeeb M.A. Rasul  Ian C.F. Stewart) (Z-Library).pdf",
+        "page": 365,
+        "content": "reso\nurces\nThe Red Sea is one of the youngest rifting basins on Earth, \nwith an age spanning from the Oligocene until the Present. \nThe activity is continuing as recorded by the dike magmatism \n40,000\n yea\nrs ago over the Conrad Deep, the northern Red..."
+      },
+      {
+        "citation_id": 4,
+        "source": "Geology of Egypt The Northern Red Sea.pdf",
+        "page": 6,
+        "content": "appears to be a progression of rift phases from\nwell-organized oceanic sea ﬂoor spreading in the south,\nthrough some kind of continental-to-oceanic rift transition\nin the north, to an abandoned and largely exposed conti-\nnental rift in the Gulf of Suez. There is something for\neveryone.\nThe Red Sea h..."
+      },
+      {
+        "citation_id": 5,
+        "source": "Northern Red Sea Nucleation of an oceanic spreading center within a continental rift.pdf",
+        "page": 11,
+        "content": "in Figure 17 is shown as black dots. Sets of blue lines delineate the location and extent of accommodation zones\nsegmenting the rift. Purple dots mark the location of the rift axis identified on individual bathymetry and gravity\nprofiles. The purple lines are smooth curves fit through the axis locat..."
+      }
+    ],
+    "metrics": {
+      "relevance": {
+        "keyword_coverage": 0.0,
+        "keywords_found": [],
+        "keywords_total": 5,
+        "answer_length": 510
+      },
+      "retrieval": {
+        "num_retrieved": 5,
+        "avg_content_length": 0.0,
+        "unique_sources": 4,
+        "source_diversity": 0.8
+      },
+      "faithfulness": {
+        "faithfulness": 0.7142857142857143,
+        "total_sentences": 7,
+        "grounded_sentences": 5
+      }
+    }
+  },
+  {
+    "question": {
+      "id": "cons_001",
+      "category": "Conservation",
+      "type": "explanatory",
+      "difficulty": "medium",
+      "question": "What are the main threats to Red Sea coral reefs?",
+      "expected_keywords": [
+        "bleaching",
+        "warming",
+        "human",
+        "pollution",
+        "development",
+        "fishing"
+      ]
+    },
+    "answer": "The main threats to Red Sea coral reefs include:\n\n1. Land-based pressures: These include coastal development,\nlandfills, dredging, sedimentation, sewage discharge, and\nexcessive fishing pressure.\n\n2. Freshwater intrusion: This can occur due to excessive\nwater usage or the introduction of invasive species, such as\npalm trees.\n\n3. Marine pollution: This includes both direct pollution\nfrom sewage and industrial waste, as well as indirect effects\nsuch as habitat fragmentation and stress due to changes in\nwater quality.\n\n4. Shipping and marine transportation: Due to the large size\nof the Red Sea, significant shipping and marine transport\nactivities pose a threat to coral reefs.\n\n5. Overexploitation: The overharvesting of fish populations\nhas led to declines in several coral species, including the\nscarlet grouper, which is currently listed as critically\nendangered.\n\n6. Increasing temperatures: As temperatures rise, coral\nhabitats are expected to become more stressed, leading to\ndeath and decay.\n\nOverall, while there is still much work to be done in\nunderstanding and mitigating these threats, it is essential\nto recognize and address them to ensure the long-term\npreservation of the Red Sea's unique coral reef ecosystem.",
+    "sources": [
+      {
+        "citation_id": 1,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 233,
+        "content": "study of selected transects at Sanganeb. They summarised\nthe status of reef habitats in the Red Sea and the threats they\nfaced:\nmajor local threats include land ﬁlls, dredging, sedimentation,\nsewage discharge and ef ﬂuents from desalination plants, mostly\naround towns, cities and tourist development..."
+      },
+      {
+        "citation_id": 2,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 238,
+        "content": "Marine and Atmospheric Science, Miami, Florida, pp 15-21\nBirkeland C (1982) Terrestrial runoff as a cause of outbreaks of\nAcanthaster planci (Echinodermata: Asteroidea). Mar Biol 69\n(2):175–185\nBrodie J, Fabricius K, De ’ath G, Okaji K (2005) Are increased nutrient\ninputs responsible for more outbre..."
+      },
+      {
+        "citation_id": 3,
+        "source": "The_Status_of_Coral_Reef_Research_In_The_Red_Sea.pdf",
+        "page": 7,
+        "content": "many studies from other parts of the world heavily cite\nwork based in the Red Sea. Nonetheless, the current state\n744 Coral Reefs (2013) 32:737–748\n123..."
+      },
+      {
+        "citation_id": 4,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 396,
+        "content": "(Mohamed 2011) (Fig. 21.5u). It is not our intention to go\ninto great detail regarding competition here; however, it is\nimportant to note that in some instances evidence of com-\npetition is not always clear and some surveyors may\nmis-characterise this as a disease of sorts. For example, a\n‘novel’dis..."
+      },
+      {
+        "citation_id": 5,
+        "source": "Coral Reefs of the Red Sea (Christian R. Voolstra, Michael L. Berumen) (Z-Library).pdf",
+        "page": 89,
+        "content": "provinces, with fast-growing branching Acroporids and \nPocilloporids being affected fastest and least likely to \nrecover. However, at the most impacted locations bleaching \nwas a mass phenomenon that affected all coral species.\nAs highlighted by the increasing numbers of bleaching \nreports, coral re..."
+      }
+    ],
+    "metrics": {
+      "relevance": {
+        "keyword_coverage": 0.5,
+        "keywords_found": [
+          "pollution",
+          "development",
+          "fishing"
+        ],
+        "keywords_total": 6,
+        "answer_length": 1231
+      },
+      "retrieval": {
+        "num_retrieved": 5,
+        "avg_content_length": 0.0,
+        "unique_sources": 3,
+        "source_diversity": 0.6
+      },
+      "faithfulness": {
+        "faithfulness": 0.46153846153846156,
+        "total_sentences": 13,
+        "grounded_sentences": 6
+      }
+    }
+  },
+  {
+    "question": {
+      "id": "cons_002",
+      "category": "Conservation",
+      "type": "factual",
+      "difficulty": "medium",
+      "question": "What conservation efforts exist in the Egyptian Red Sea?",
+      "expected_keywords": [
+        "protected areas",
+        "marine parks",
+        "regulation",
+        "conservation"
+      ]
+    },
+    "answer": "The Egyptian Red Sea is protected through various conservation efforts, including:\n\n1. National Parks and Protected Areas: The Egyptian Environmental Affairs Agency (EEAA) maintains several national parks and protected areas within the Red Sea region, including Ras Mohamed, Nabq, Abu Galum, and Elba. These protected areas provide a range of benefits, such as promoting sustainable tourism and supporting fisheries.\n\n2. Marine Resources Protection: The Egyptian Environmental Affairs Agency (EEAA) has implemented marine resources protection measures in the Red Sea, including establishing protected areas and prohibiting certain activities, such as fishing, in designated marine areas.\n\n3. Enforcement of Regulatory Laws: The EEAA employs rangers to monitor and enforce regulatory laws in protected areas and coastal areas. They issue permits to individuals who wish to enter these areas for scientific research, tourism, or commercial purposes.\n\n4. Dolphin Conservation Initiatives: The Egyptian government, through the Hurghada Environmental Protection and Conservation Association (HEPCA), manages and conserves a managed area and other dolphin conservation initiatives in Egypt. These initiatives aim to reduce human-dolphin conflicts while promoting sustainable dolphin tourism.\n\n5. Management of Wild Dolphins: While the enforcement of protective regulation is limited in some areas of the Red Sea, the Egyptian government, through the HEPCA and other organizations, manages and conserves a portion of the wild dolphin population resting in its coastal and pelagic waters. This management includes captive breeding programs, research, and monitoring.",
+    "sources": [
+      {
+        "citation_id": 1,
+        "source": "Marine ecology of the Arabian region Patterns and processes in extreme tropical environments C. Sheppard, A. Price  C.… (Y. Loya) (Z-Library).pdf",
+        "page": 0,
+        "content": "especially in view of the existence of the volume “Red Sea” edited by Edwards & Head \nin 1987. The “Red Sea” preceded the present book in providing an excellent and broad \nbackground to the Red Sea as a key environment of international ecological impor- \ntance. It provided extensive compilation of r..."
+      },
+      {
+        "citation_id": 2,
+        "source": "Coral Reefs of the Red Sea (Christian R. Voolstra, Michael L. Berumen) (Z-Library).pdf",
+        "page": 178,
+        "content": "Of all the countries bordering the Red Sea, Egypt and Sudan \nappear to have relative success in implementing and enforc-\ning some forms of marine resource protection. Between \n1983 and 2006, the Egyptian Environmental Affairs Agency \n(EEAA) declared the following areas as national parks or \nprotecte..."
+      },
+      {
+        "citation_id": 3,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 322,
+        "content": "managed area and other dolphin conservation initiatives in\nEgypt, and should be urgently applied throughout the Red\nSea region to ensure comprehensive protection of the wild\ndolphin population resting in its coastal and pelagic waters.\nAcknowledgements The authors would like to thank the Hurghada\nEn..."
+      },
+      {
+        "citation_id": 4,
+        "source": "Scientific-Review-for-the-Coral-Reef-Bleaching-Event-2023-along-the-Egyptian-Coast-of-The-Red-Sea.pdf",
+        "page": 0,
+        "content": "Ministry Environment \n \nEgyptian Environmental Affairs Agency \n \nNature Conservation Sector \n \nRed Sea Protectorates \n \n \n \n \nScientific Review for the Coral Reef Bleaching Event \n(2023) along the Egyptian Coast of The Red Sea \n \nBY \nTamer Monir Attalla Sharaka (PH.D) \nEnvironmental Research – Red S..."
+      },
+      {
+        "citation_id": 5,
+        "source": "Coral Reefs of the Red Sea (Christian R. Voolstra, Michael L. Berumen) (Z-Library).pdf",
+        "page": 41,
+        "content": "research activities started taking place in Egypt (e.g., since \n1990 the Hurghada Environmental Protection and \nConservation Association [HEPCA] or since 2003 the Red \nSea Environmental Center [RSEC]) that focus on the ecol-\nogy of mammals and sharks as well as coral reef \nmonitoring.\nIn the mid-twe..."
+      }
+    ],
+    "metrics": {
+      "relevance": {
+        "keyword_coverage": 0.75,
+        "keywords_found": [
+          "protected areas",
+          "regulation",
+          "conservation"
+        ],
+        "keywords_total": 4,
+        "answer_length": 1658
+      },
+      "retrieval": {
+        "num_retrieved": 5,
+        "avg_content_length": 0.0,
+        "unique_sources": 4,
+        "source_diversity": 0.8
+      },
+      "faithfulness": {
+        "faithfulness": 0.5,
+        "total_sentences": 14,
+        "grounded_sentences": 7
+      }
+    }
+  },
+  {
+    "question": {
+      "id": "cons_003",
+      "category": "Conservation",
+      "type": "analytical",
+      "difficulty": "hard",
+      "question": "How has climate change affected the Red Sea ecosystem?",
+      "expected_keywords": [
+        "temperature",
+        "bleaching",
+        "warming",
+        "impact",
+        "stress"
+      ]
+    },
+    "answer": "Climate change has had a significant impact on the Red Sea ecosystem, leading to altered marine ecology and shifts in fish community structure. The Red Sea is experiencing rising sea surface temperatures, changes in water chemistry, and a decline in coral cover and benthic structure due to reduced water circulation and the loss of habitat through bleaching events. This has resulted in the fragmentation of coral reef habitats and increases in fish predation, leading to decreased prey availability and food competition for fish populations. The shift towards increased marine heatwaves and ocean acidification has also disrupted the balance of nutrients within the marine ecosystem, contributing to increased algae growth and algal blooms, further exacerbating the decline in biodiversity. Overall, these changes could have significant consequences for the sustainability of fisheries and tourism activities in the region.",
+    "sources": [
+      {
+        "citation_id": 1,
+        "source": "Coral Reefs of the Red Sea (Christian R. Voolstra, Michael L. Berumen) (Z-Library).pdf",
+        "page": 10,
+        "content": "3\nTemperature gradients are dynamic and changing (Chaidez \net al. 2017; Raitsos et al. 2011). Red Sea SSTs have increased \nrapidly in the latter half of 1990–2010, at an average rate of \n0.17 ± 0.07 °C decade\n−1, exceeding the global rate while the \nnorthern Red Sea is warming even faster, at betwee..."
+      },
+      {
+        "citation_id": 2,
+        "source": "Coral Reefs of the Red Sea (Christian R. Voolstra, Michael L. Berumen) (Z-Library).pdf",
+        "page": 38,
+        "content": "Raitsos DE, Hoteit I, Prihartato PK, Chronis T, Triantafyllou G, \nAbualnaja Y (2011) Abrupt warming of the Red Sea. Geophys Res \nLett 38:L14601\nRaitsos DE, Pradhan Y , Brewin RJW, Stenchikov G, Hoteit I (2013) \nRemote sensing the phytoplankton seasonal succession of the \nRed Sea. PLoS One 8:e64909. ..."
+      },
+      {
+        "citation_id": 3,
+        "source": "Coral Reefs of the Red Sea (Christian R. Voolstra, Michael L. Berumen) (Z-Library).pdf",
+        "page": 176,
+        "content": "bleaching event at the time (see Hoegh-Guldberg 1999) and \nimplies that while the Red Sea reefs experience higher water \ntemperatures than other reef systems, they are not immune to \nthe influences of global climate change (see also Cantin et al. \n2010). Further bleaching has been reported in 2007 (..."
+      },
+      {
+        "citation_id": 4,
+        "source": "Thermal history of coral reefs along the Egyptian coast of the Red Sea.pdf",
+        "page": 2,
+        "content": "2.35 ± 0.22°C/year and 2.44 ± 0.21°C/year in S1 and S2, respec-\ntively, their counterparts in S3, S4, and S5 underwent higher \nintra-annual SST fluctuations (Table  5.1). The study also \nshowed that although SST increased each decade in all sec -\ntors, the northern reefs in S1 experienced the highes..."
+      },
+      {
+        "citation_id": 5,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 501,
+        "content": "Beyond what was discussed above, the most alluring\navenue of research would be in the context of global change.\nAs mentioned above, the Red Sea is one of the warmest and\nsaltiest of all the world ’s seas, and these environmental\nconditions are forerunners of what they would be in other\nregions when ..."
+      }
+    ],
+    "metrics": {
+      "relevance": {
+        "keyword_coverage": 0.6,
+        "keywords_found": [
+          "temperature",
+          "bleaching",
+          "impact"
+        ],
+        "keywords_total": 5,
+        "answer_length": 925
+      },
+      "retrieval": {
+        "num_retrieved": 5,
+        "avg_content_length": 0.0,
+        "unique_sources": 3,
+        "source_diversity": 0.6
+      },
+      "faithfulness": {
+        "faithfulness": 1.0,
+        "total_sentences": 5,
+        "grounded_sentences": 5
+      }
+    }
+  },
+  {
+    "question": {
+      "id": "regional_001",
+      "category": "Regional Differences",
+      "type": "comparative",
+      "difficulty": "medium",
+      "question": "How does the northern Red Sea differ from the southern Red Sea?",
+      "expected_keywords": [
+        "temperature",
+        "salinity",
+        "coral",
+        "biodiversity",
+        "different"
+      ]
+    },
+    "answer": "The northern Red Sea is more oligotrophic than the south, with sandy shores, thick stands of mangroves, and coral formations. Additionally, it lacks permanent rivers and has a net annual evaporation of 1-2 m, as compared to ﬂuened evaporation of 1-2 m in the south. These differences result in a similar marine environment but with different species composition and distribution patterns within the region.",
+    "sources": [
+      {
+        "citation_id": 1,
+        "source": "Rifting and Sediments in the Red Sea and Arabian Gulf Regions (Najeeb M.A. Rasul  Ian C.F. Stewart) (Z-Library).pdf",
+        "page": 433,
+        "content": "the northern and the northwestern regions of the Red Sea.\nBased on the structural features, Cochran and Martinez \n(1988) divided the Red Sea into three distinct zones, each of \nwhich represents a different stage of development:\nFIGURE 24.1 Tec tonic map of the Red Sea and adjacent areas. (Modified a..."
+      },
+      {
+        "citation_id": 2,
+        "source": "Coral Reefs of the Red Sea (Christian R. Voolstra, Michael L. Berumen) (Z-Library).pdf",
+        "page": 9,
+        "content": "temperature range in the north is greater than in the south. \nThe northern Red Sea can see an average SST seasonal \nchange from a winter low of ~22 °C to a summer high of \n29–30 °C. In the southern Red Sea, the SST may range from \na winter low of <26 °C to a summer high of >31 °C. Salinity \nshows an..."
+      },
+      {
+        "citation_id": 3,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 49,
+        "content": "of Aqaba lies at latitude 29°32 ′48″N, while the northern\nlimit in the Gulf of Suez at Suez Bay is at latitude 29°57 ′18″\nN (Fouda and Gerges 1994). The Red Sea is typically\nbounded on the landward side by a more or less narrow\ncoastal strip (40 –60 km wide), backed by high hills or\nmountains, which..."
+      },
+      {
+        "citation_id": 4,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 283,
+        "content": "(Fig. 16.1). The countries bordering the Red Sea are Egypt,\nSudan, Eritrea, Djibouti, Yemen, Saudi Arabia, Jordan and\nIsrael.\nThe presence of vast deserts and the lack of permanent\nrivers make the Red Sea one of the hottest and saltiest\nwater-bodies on Earth, with a net annual evaporation of 1 –\n2 m..."
+      },
+      {
+        "citation_id": 5,
+        "source": "Geological Evolution of the Red Sea_Historical Background, Review and Synthesis.pdf",
+        "page": 6,
+        "content": "northern Red Sea from Cochran\n(2005). Onshore is same dataset\nas in (a). Topographic–\nbathymetric proﬁle runs from\n26°15′N, 33°30′Et o2 8°N, 37°E\nthrough the Conrad deep\n50 W. Bosworth..."
+      }
+    ],
+    "metrics": {
+      "relevance": {
+        "keyword_coverage": 0.4,
+        "keywords_found": [
+          "coral",
+          "different"
+        ],
+        "keywords_total": 5,
+        "answer_length": 406
+      },
+      "retrieval": {
+        "num_retrieved": 5,
+        "avg_content_length": 0.0,
+        "unique_sources": 4,
+        "source_diversity": 0.8
+      },
+      "faithfulness": {
+        "faithfulness": 1.0,
+        "total_sentences": 3,
+        "grounded_sentences": 3
+      }
+    }
+  },
+  {
+    "question": {
+      "id": "regional_002",
+      "category": "Regional Differences",
+      "type": "comparative",
+      "difficulty": "hard",
+      "question": "Compare coral reef health between the Egyptian and Saudi coasts",
+      "expected_keywords": [
+        "Egyptian",
+        "Saudi",
+        "coast",
+        "health",
+        "difference",
+        "development"
+      ]
+    },
+    "answer": "Both the Egyptian and Saudi coasts have experienced significant changes in coral reef health since 1998, with the Sudanese and Yemeni coastlines showing particularly severe declines. Anthropogenic stressors, primarily coastal development, pollution, and tourism related activities, are likely responsible for these changes. However, the causes of reef degradation vary among the coastlines. The Sudanese coastline has experienced significant bleaching events, particularly in the early 2000s, which were linked to coastal development, oil spills, and increased water temperatures. However, recent studies suggest that the decline in coral cover on this coastline may be due to local anthropogenic stressors rather than anthropogenic bleaching (Kotb et al. 2004). The Yemeni coastline, which is characterized by high levels of anthropogenic stressors such as coastal development, pollution, and tourism related activities, has also experienced significant coral decline. However, this decline may be attributable to a combination of factors, including natural variability and historical trends, and may not be solely the result of bleaching events. Overall, while the Sudanese and Yemeni coastlines face similar challenges, their specific vulnerabilities and solutions may differ.",
+    "sources": [
+      {
+        "citation_id": 1,
+        "source": "Scientific-Review-for-the-Coral-Reef-Bleaching-Event-2023-along-the-Egyptian-Coast-of-The-Red-Sea.pdf",
+        "page": 11,
+        "content": "Scientific Review for the Coral Reef Bleaching Event (2023) along the Egyptian Coast of The Red Sea \n \n 12 \n \n1- Geographical Range: \nDuring the current study , the southern stretch of the Red Sea consistently exhibited hei ghtened \ncoral bleaching, while the northern regions—encompassing the Gulf o..."
+      },
+      {
+        "citation_id": 2,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 402,
+        "content": "KAUST). Coral reefs in this area\nspan environmental gradients,\nsuitable for the study of coral reef\nfunctioning under various envi-\nronmental conditions. The marked\nreef sites are located along two\nenvironmental gradients, a\ncross-shelf gradient (reefs 1 –3,\nmarked with squares; Roik et al.\n2016) an..."
+      },
+      {
+        "citation_id": 3,
+        "source": "Oceanographic and Biological Aspects of the Red Sea (Rasul, Najeeb M. A.Stewart, Ian C. F) (Z-Library).pdf",
+        "page": 234,
+        "content": "Meanwhile, Riegl et al. ( 2012) studied coral colony sizes\nover two decades and provided evidence that Red Sea reefs\nare already being affected by climate change. “Coral size,\nmeasured as corrected average intercept of corals in tran-\nsects, had decreased from 1997 to 2009, after having\nremained con..."
+      },
+      {
+        "citation_id": 4,
+        "source": "Thermal history of coral reefs along the Egyptian coast of the Red Sea.pdf",
+        "page": 1,
+        "content": "44 Coral Reefs & Associated Marine Fauna around Arabian Peninsula\nhigh-intensity marine heatwaves (Genevier et al. 2019). On the \nother hand, it has been shown that corals in the NRS basin will \nnot reach bleaching thresholds of 32°C before the end of the \n21st century, and hence this region might h..."
+      },
+      {
+        "citation_id": 5,
+        "source": "Coral Reefs of the Red Sea (Christian R. Voolstra, Michael L. Berumen) (Z-Library).pdf",
+        "page": 89,
+        "content": "cover (DeVantier et  al. 2005). The most affected genera \nincluded Acropora, Dipsastraea, Galaxea, Goniastrea, \nMillepora, Pocillopora, and Porites (DeVantier et al. 2005). \nThe reefs outside Dungonab Bay on the western shore of the \nRed Sea (Sudan) at roughly the same latitude were possibly \naffect..."
+      }
+    ],
+    "metrics": {
+      "relevance": {
+        "keyword_coverage": 0.8333333333333334,
+        "keywords_found": [
+          "Egyptian",
+          "Saudi",
+          "coast",
+          "health",
+          "development"
+        ],
+        "keywords_total": 6,
+        "answer_length": 1279
+      },
+      "retrieval": {
+        "num_retrieved": 5,
+        "avg_content_length": 0.0,
+        "unique_sources": 4,
+        "source_diversity": 0.8
+      },
+      "faithfulness": {
+        "faithfulness": 0.3333333333333333,
+        "total_sentences": 9,
+        "grounded_sentences": 3
+      }
+    }
+  }
+]
