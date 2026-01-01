@@ -1,6 +1,7 @@
 # LangChain core libraries
 langchain>=0.3.28
 langchain-huggingface>=0.1.2
+langchain-core>=0.3.28
 
 # Vector store integration (Chroma)
 langchain-chroma>=0.1.2
@@ -12,14 +13,20 @@ sentence-transformers>=2.2.2
 # Text splitting utilities
 langchain-text-splitters>=0.0.4
 
-# PDF loaders
+# PDF loaders and community integrations
 langchain-community>=0.3.13
 pypdf>=3.12.0
+
+# LLM and generation (Phase III)
+# Note: transformers and torch no longer needed - using Grok API instead
+scikit-learn>=1.3.0
+numpy>=1.24.0
+requests>=2.31.0  # For Grok API calls
 
 # Optional utilities for cleaning and parsing
 python-dotenv>=1.0.0
 
-# (Optional / recommended) accelerate to help embeddings load faster
+# (Optional / recommended) accelerate to help embeddings and models load faster
 accelerate>=0.20.3
 
 # Misc utilities
