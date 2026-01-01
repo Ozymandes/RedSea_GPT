@@ -5,3 +5,7 @@ __pycache__/
 knowledge_base/pdfs/
 knowledge_base/raw_docs/
 *.pdf
+
+# Academic writing (not part of codebase)
+reports/
+
