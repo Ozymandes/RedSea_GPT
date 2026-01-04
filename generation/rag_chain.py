@@ -30,6 +30,8 @@ class RedSeaGPT:
         mmr_lambda: float = 0.5,
         refusal_threshold: float = 0.2,  # Lowered from 0.3 for 70B model
         structured_citations: bool = True,
+        enable_logging: bool = False,  # Phase 4: Logging parameter
+        enable_guardrails: bool = False,  # Phase 4: Guardrails parameter
     ):
         self.vectordb_path = vectordb_path
         self.retrieval_k = retrieval_k
@@ -38,6 +40,30 @@ class RedSeaGPT:
         self.mmr_lambda = mmr_lambda
         self.refusal_threshold = refusal_threshold
         self.structured_citations = structured_citations
+        self.enable_logging = enable_logging
+        self.enable_guardrails = enable_guardrails
+
+        # Phase 4: Initialize logging if enabled
+        if enable_logging:
+            try:
+                from .logging_config import setup_logging
+                from .metrics_tracker import MetricsTracker
+                setup_logging()
+                self._metrics_tracker = MetricsTracker()
+            except ImportError:
+                self._metrics_tracker = None
+        else:
+            self._metrics_tracker = None
+
+        # Phase 4: Initialize guardrails if enabled
+        if enable_guardrails:
+            try:
+                from .guardrails import RequestValidator
+                self.guardrails = RequestValidator()
+            except ImportError:
+                self.guardrails = None
+        else:
+            self.guardrails = None
 
         # Initialize embeddings
         self.embeddings = HuggingFaceEmbeddings(
