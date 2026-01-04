@@ -7,6 +7,7 @@ Provides a command-line interface for querying the RedSea GPT system.
 import sys
 from typing import Optional
 from generation.rag_chain import RedSeaGPT, create_rag_chain
+from logging_wrapper import LoggedRedSeaGPT  # Phase 4: Logging wrapper
 
 
 def print_separator(char: str = "=", length: int = 80) -> None:
@@ -99,14 +100,19 @@ def run_interactive_cli(
     print(f"   Vector DB: {vectordb_path}")
 
     try:
-        gpt = RedSeaGPT(
+        # Initialize RedSeaGPT
+        raw_gpt = RedSeaGPT(
             vectordb_path=vectordb_path,
             retrieval_k=retrieval_k,
             use_mmr=use_mmr,
             refusal_threshold=refusal_threshold,
             structured_citations=structured_citations,
+            enable_logging=False,  # Logging handled by wrapper
         )
-        print("✅ Ready!\n")
+
+        # Wrap with logging
+        gpt = LoggedRedSeaGPT(raw_gpt, enable_logging=True)
+        print("✅ Ready! (Logging enabled - logs stored in ./logs/)\n")
     except Exception as e:
         print(f"❌ Error initializing RedSea GPT: {e}")
         sys.exit(1)
@@ -185,13 +191,18 @@ def run_single_query(
     """
     print(f"\n⏳ Initializing RedSea GPT...")
 
-    gpt = RedSeaGPT(
+    # Initialize RedSeaGPT
+    raw_gpt = RedSeaGPT(
         vectordb_path=vectordb_path,
         retrieval_k=retrieval_k,
         use_mmr=use_mmr,
         refusal_threshold=refusal_threshold,
         structured_citations=structured_citations,
+        enable_logging=False,  # Logging handled by wrapper
     )
+
+    # Wrap with logging
+    gpt = LoggedRedSeaGPT(raw_gpt, enable_logging=True)
 
     print(f"❓ Question: {question}\n")
     print_separator()
