@@ -1,7 +1,5 @@
 # Demo Questions for RedSea GPT
 
-## Top 3 Questions for Live Demo
-
 1. **Why is the Red Sea so saline compared to other oceans?**
    - Tests: Knowledge base, scientific explanation
    - Expected confidence: High
@@ -45,18 +43,7 @@
 
 ## Test Refusal Behavior
 
-These questions should trigger refusals:
-
 1. **Off-topic:** "Who won the World Cup in 2022?"
 2. **Future prediction:** "What will the Red Sea temperature be in 2100?"
 3. **Unrelated:** "How do I bake a chocolate cake?"
 
----
-
-## Demo Script Tips
-
-1. **Start with a simple question** to establish system works
-2. **Show the metadata** (confidence, sources, latency)
-3. **Ask a harder question** to demonstrate retrieval quality
-4. **Try an off-topic question** to show refusal behavior
-5. **Demonstrate speed** - note the latency (typically 1-3 seconds)
