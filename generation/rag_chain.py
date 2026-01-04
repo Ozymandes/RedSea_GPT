@@ -43,28 +43,6 @@ class RedSeaGPT:
         self.enable_logging = enable_logging
         self.enable_guardrails = enable_guardrails
 
-        # Phase 4: Initialize logging if enabled
-        if enable_logging:
-            try:
-                from .logging_config import setup_logging
-                from .metrics_tracker import MetricsTracker
-                setup_logging()
-                self._metrics_tracker = MetricsTracker()
-            except ImportError:
-                self._metrics_tracker = None
-        else:
-            self._metrics_tracker = None
-
-        # Phase 4: Initialize guardrails if enabled
-        if enable_guardrails:
-            try:
-                from .guardrails import RequestValidator
-                self.guardrails = RequestValidator()
-            except ImportError:
-                self.guardrails = None
-        else:
-            self.guardrails = None
-
         # Initialize embeddings
         self.embeddings = HuggingFaceEmbeddings(
             model_name=embedding_model
@@ -533,7 +511,7 @@ class RedSeaGPT:
         # Step 7: Add warning if hallucinations detected
         if hallucination_check["has_hallucination"]:
             warning = (
-                f"\n\n⚠️  Note: This answer may contain information not directly supported by the retrieved documents. "
+                f"\n\n  Note: This answer may contain information not directly supported by the retrieved documents. "
                 f"Grounding rate: {hallucination_check['grounding_rate']:.1%}. "
                 f"Please verify important facts."
             )

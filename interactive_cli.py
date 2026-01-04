@@ -18,7 +18,7 @@ def print_separator(char: str = "=", length: int = 80) -> None:
 def print_welcome_message() -> None:
     """Print welcome message and instructions."""
     print_separator()
-    print("🐠 RedSea GPT - Your Personal Naturalist for the Egyptian Red Sea 🐠")
+    print(" RedSea GPT - Your Personal Naturalist for the Egyptian Red Sea 🐠")
     print_separator()
     print("\nAsk me anything about:")
     print("  • Coral reefs and marine life")
@@ -45,9 +45,9 @@ def print_answer(answer: str, sources: Optional[list] = None, metadata: Optional
     # Print metadata if available
     if metadata:
         if metadata.get('refusal'):
-            print(f"\n⚠️  {metadata.get('confidence', 0):.2f} confidence - REFUSED")
+            print(f"\n  {metadata.get('confidence', 0):.2f} confidence - REFUSED")
 
-    print("\n📝 Answer:")
+    print("\n Answer:")
     print_separator("-")
     print(answer)
     print_separator("-")
@@ -55,14 +55,14 @@ def print_answer(answer: str, sources: Optional[list] = None, metadata: Optional
     # Show confidence and hallucination check
     if metadata and not metadata.get('refusal'):
         confidence = metadata.get('confidence', 0)
-        print(f"\n📊 Confidence: {confidence:.2%}")
+        print(f"\n Confidence: {confidence:.2%}")
 
         hallucination = metadata.get('hallucination_check', {})
         if hallucination.get('has_hallucination'):
-            print(f"⚠️  Grounding: {hallucination['grounding_rate']:.1%} ({hallucination['grounded_sentences']}/{hallucination['total_sentences']} sentences grounded)")
+            print(f"  Grounding: {hallucination['grounding_rate']:.1%} ({hallucination['grounded_sentences']}/{hallucination['total_sentences']} sentences grounded)")
 
     if sources:
-        print("\n📚 Sources:")
+        print("\n Sources:")
         for source in sources:
             cit_id = source.get('citation_id', '?')
             print(f"\n  [{cit_id}] {source['source']}, page {source['page']}")
@@ -92,7 +92,7 @@ def run_interactive_cli(
         refusal_threshold: Confidence threshold for answering (0-1)
         structured_citations: Use [1], [2] citation format
     """
-    print("\n⏳ Initializing RedSea GPT...")
+    print("\n Initializing RedSea GPT...")
     print(f"   Model: Llama 70B (via Grok API)")
     print(f"   Retrieval: k={retrieval_k}, {'MMR' if use_mmr else 'similarity'}")
     print(f"   Citations: {'Structured [1], [2]' if structured_citations else 'Narrative'}")
@@ -112,9 +112,9 @@ def run_interactive_cli(
 
         # Wrap with logging
         gpt = LoggedRedSeaGPT(raw_gpt, enable_logging=True)
-        print("✅ Ready! (Logging enabled - logs stored in ./logs/)\n")
+        print(" Ready! (Logging enabled - logs stored in ./logs/)\n")
     except Exception as e:
-        print(f"❌ Error initializing RedSea GPT: {e}")
+        print(f" Error initializing RedSea GPT: {e}")
         sys.exit(1)
 
     print_welcome_message()
@@ -124,7 +124,7 @@ def run_interactive_cli(
     while True:
         try:
             # Get user input
-            question = input("🤔 Your question: ").strip()
+            question = input(" Your question: ").strip()
 
             # Handle empty input
             if not question:
@@ -132,7 +132,7 @@ def run_interactive_cli(
 
             # Handle commands
             if question.lower() in ["quit", "exit", "q"]:
-                print("\n👋 Thanks for using RedSea GPT! Goodbye!")
+                print("\n Thanks for using RedSea GPT! Goodbye!")
                 print_separator()
                 break
 
@@ -147,7 +147,7 @@ def run_interactive_cli(
 
             # Process the question
             conversation_count += 1
-            print(f"\n⏳ Thinking... (Question #{conversation_count})")
+            print(f"\n Thinking... (Question #{conversation_count})")
 
             result = gpt.query(question, return_source_docs=True)
             metadata = {
@@ -161,11 +161,11 @@ def run_interactive_cli(
             print_answer(result["answer"], sources, metadata)
 
         except KeyboardInterrupt:
-            print("\n\n👋 Interrupted. Goodbye!")
+            print("\n\n Interrupted. Goodbye!")
             print_separator()
             break
         except Exception as e:
-            print(f"\n❌ Error: {e}\n")
+            print(f"\n Error: {e}\n")
 
 
 def run_single_query(
@@ -204,7 +204,7 @@ def run_single_query(
     # Wrap with logging
     gpt = LoggedRedSeaGPT(raw_gpt, enable_logging=True)
 
-    print(f"❓ Question: {question}\n")
+    print(f" Question: {question}\n")
     print_separator()
 
     result = gpt.query(question, return_source_docs=True)
