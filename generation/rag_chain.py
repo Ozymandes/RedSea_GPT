@@ -24,7 +24,7 @@ class RedSeaGPT:
         vectordb_path: str = "chroma_redsea",
         embedding_model: str = "sentence-transformers/all-mpnet-base-v2",
         llm_config: Optional[Dict[str, Any]] = None,
-        retrieval_k: int = 5,
+        retrieval_k: int = 7,
         prompt_variant: str = "structured",
         use_mmr: bool = True,
         mmr_lambda: float = 0.5,
@@ -434,11 +434,14 @@ class RedSeaGPT:
 
         answer_str = str(answer)
 
-        # Step 5: Check if LLM admitted it doesn't have information
-        # This catches cases where retrieval confidence is high but context doesn't answer the question
+        # Step 5: Check if the LLM refused (either via explicit patterns OR natural refusal language).
+        # The new prompt produces natural, conversational refusals ("I'm sorry, but I can't provide...",
+        # "that term is not covered in the available sources"), which we must detect so the eval
+        # flags them correctly. We KEEP the model's natural wording (it reads better than a canned
+        # message) but set refusal=True.
         answer_lower = answer_str.lower()
 
-        # Strong refusal indicators - if any of these appear, refuse immediately
+        # Strong refusal indicators - explicit admissions the context can't answer.
         # These patterns indicate the LLM explicitly admits it can't answer from the context
         strong_refusal_patterns = [
             "no direct information in the provided context",
@@ -452,8 +455,34 @@ class RedSeaGPT:
             "insufficient information to answer",
         ]
 
+        # Natural refusal phrases - covers the model's conversational refusals so they are
+        # detected even when they don't match the canned patterns above. Kept in sync with
+        # evaluation/metrics_v2.py REFUSUAL_PHRASES.
+        natural_refusal_phrases = (
+            "can't provide",
+            "cannot provide",
+            "unable to provide",
+            "i'm unable to",
+            "i am unable to",
+            "i can't answer",
+            "i cannot answer",
+            "not covered in the available",
+            "not covered in the provided",
+            "does not appear",
+            "does not appear explicitly",
+            "isn't covered",
+            "is not covered",
+            "not explicitly mentioned",
+            "outside the scope",
+            "outside my scope",
+        )
+
         # Check for any strong refusal pattern
         has_strong_refusal = any(pattern in answer_lower for pattern in strong_refusal_patterns)
+        # Natural refusal: only counts if it appears in the FIRST ~25% of the answer (a real
+        # answer may mention a limit later, but a refusal leads with it).
+        first_part = answer_lower[: max(200, len(answer_lower) // 4)]
+        has_natural_refusal = any(p in first_part for p in natural_refusal_phrases)
 
         # Secondary check: admission of inability + speculative language
         # Catches patterns like "cannot predict" or "cannot be predicted"
@@ -464,6 +493,22 @@ class RedSeaGPT:
             "no way to predict",
         ]
         has_speculative_refusal = any(pattern in answer_lower for pattern in speculative_refusal_patterns)
+
+        # If a NATURAL refusal is detected, trust the model's wording but flag it as a refusal.
+        # (We do NOT overwrite with the canned message - the model's natural phrasing reads better.)
+        if has_natural_refusal:
+            if return_source_docs:
+                return {
+                    "answer": answer_str,
+                    "sources": self._format_sources_list(source_docs),
+                    "question": question,
+                    "confidence": avg_relevance,
+                    "refusal": True,
+                    "retrieval_method": "MMR" if self.use_mmr else "similarity",
+                    "reason": "Natural refusal detected in generated answer",
+                }
+            else:
+                return answer_str
 
         # If either strong refusal OR speculative refusal is detected, refuse to answer
         if has_strong_refusal or has_speculative_refusal:
