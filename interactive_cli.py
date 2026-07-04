@@ -7,7 +7,8 @@ Provides a command-line interface for querying the RedSea GPT system.
 import sys
 from typing import Optional
 from generation.rag_chain import RedSeaGPT, create_rag_chain
-from logging_wrapper import LoggedRedSeaGPT  # Phase 4: Logging wrapper
+from generation.llm_config import describe_active_provider
+from logging_wrapper import LoggedRedSeaGPT  # Logging wrapper
 
 
 def print_separator(char: str = "=", length: int = 80) -> None:
@@ -92,8 +93,13 @@ def run_interactive_cli(
         refusal_threshold: Confidence threshold for answering (0-1)
         structured_citations: Use [1], [2] citation format
     """
+    provider_info = describe_active_provider()
     print("\n Initializing RedSea GPT...")
-    print(f"   Model: Llama 70B (via Grok API)")
+    if provider_info.get("configured"):
+        print(f"   Provider: {provider_info['provider']} | Model: {provider_info['model']}")
+        print(f"   Endpoint: {provider_info['base_url']}")
+    else:
+        print(f"   Provider: not configured ({provider_info.get('error', 'see .env.example')})")
     print(f"   Retrieval: k={retrieval_k}, {'MMR' if use_mmr else 'similarity'}")
     print(f"   Citations: {'Structured [1], [2]' if structured_citations else 'Narrative'}")
     print(f"   Refusal threshold: {refusal_threshold}")
