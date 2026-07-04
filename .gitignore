@@ -1,11 +1,46 @@
-venv/
-__pycache__/
+# --- Secrets (NEVER commit) ---
 .env
-*.pyc
-knowledge_base/pdfs/
-knowledge_base/raw_docs/
-*.pdf
+.env.*
+.env.local
+**/.env
+**/.env.*
+*.pem
+*.key
 
-# Academic writing (not part of codebase)
-reports/
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
 
+# --- Virtual environments ---
+venv/
+.venv/
+env/
+ENV/
+
+# --- Logs (regenerable, may contain queries) ---
+logs/
+*.log
+
+# --- Vector DB artifacts (regenerable from Knowledge_Base via Ingest) ---
+# Uncomment the next line if you do NOT want to ship a prebuilt index:
+#chroma_redsea/
+
+# --- Large local artifacts / caches ---
+.cache/
+*.sqlite3-journal
+
+# --- OS / editor junk ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# --- Corpus PDFs (copyright; not redistributed) ---
+Knowledge_Base/*.pdf
