@@ -14,12 +14,16 @@ __all__ = [
     "create_rag_prompt",
     "create_rag_chain",
     "RedSeaGPT",
+    "RedSeaAgent",
 ]
 
 
 def __getattr__(name):
-    # Lazy import for the heavy RAG chain (needs chromadb / embeddings).
+    # Lazy import for the heavy RAG classes (need chromadb / embeddings / langgraph).
     if name in ("create_rag_chain", "RedSeaGPT"):
         from .rag_chain import create_rag_chain, RedSeaGPT
         return {"create_rag_chain": create_rag_chain, "RedSeaGPT": RedSeaGPT}[name]
+    if name == "RedSeaAgent":
+        from .agent import RedSeaAgent
+        return RedSeaAgent
     raise AttributeError(f"module 'generation' has no attribute {name!r}")
