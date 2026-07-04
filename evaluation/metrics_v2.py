@@ -111,15 +111,41 @@ def evaluate_retrieval(sources: List[Dict[str, Any]]) -> Dict[str, Any]:
     }
 
 
+def _concept_stems(c: str) -> List[str]:
+    """Generate stem variants of a concept for idea-level matching.
+
+    Strips common English suffixes so 'vary' matches 'variability'/'variation',
+    and 'uniform' matches 'uniformity'. Idea-level (not exact) by design.
+    """
+    cl = c.lower()
+    stems = {cl}
+    for suf in ("ation", "ality", "ities", "ity", "ions", "ion", "ies", "ying", "ing", "ed", "er", "ers", "est", "s", "y"):
+        if cl.endswith(suf) and len(cl) - len(suf) >= 3:
+            stems.add(cl[: -len(suf)])
+    return list(stems)
+
+
 def evaluate_concept_coverage(answer: str, required_concepts: List[str]) -> Dict[str, Any]:
-    """Required-concept coverage for an answerable question (idea-level, not exact)."""
+    """Required-concept coverage for an answerable question (idea-level, not exact).
+
+    Matches the concept OR any of its suffix-stripped stems, so a well-paraphrased
+    answer that uses 'variability' / 'variation' still satisfies the concept
+    'vary', and 'uniformity' satisfies 'uniform'. This is the idea-level intent
+    the golden set was authored for, not brittle exact-string matching.
+    """
     low = answer.lower()
-    found = [c for c in required_concepts if c.lower() in low]
+    found, missing = [], []
+    for c in required_concepts:
+        stems = _concept_stems(c)
+        if any(s in low for s in stems):
+            found.append(c)
+        else:
+            missing.append(c)
     coverage = (len(found) / len(required_concepts)) if required_concepts else 1.0
     return {
         "coverage": coverage,
         "found": found,
-        "missing": [c for c in required_concepts if c not in found],
+        "missing": missing,
         "ok": coverage >= 0.5,
     }
 

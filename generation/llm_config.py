@@ -296,6 +296,23 @@ class UniversalLLM(BaseLLM):
 
         for prompt in prompts:
             req["payload"]["messages"] = [{"role": "user", "content": prompt}]
+            text = self._post_with_retry(requests, req)
+            generations.append([Generation(text=text)])
+
+        return LLMResult(generations=generations)
+
+    def _post_with_retry(self, requests, req: Dict[str, Any]) -> str:
+        """POST with bounded exponential backoff on transient errors.
+
+        Retries on network errors, timeouts, and 429/5xx (gateway hiccups),
+        which are common behind Cloudflare-fronted providers like OptiLLM.
+        Never includes headers in error messages (they carry the key).
+        """
+        import time as _time
+        max_attempts = 4
+        backoff = 1.5
+        last_exc: Optional[Exception] = None
+        for attempt in range(1, max_attempts + 1):
             try:
                 resp = requests.post(
                     req["url"],
@@ -304,11 +321,26 @@ class UniversalLLM(BaseLLM):
                     timeout=self.timeout,
                 )
             except requests.exceptions.RequestException as exc:
-                # Never include headers (which carry the key).
+                last_exc = exc
+                if attempt < max_attempts:
+                    _time.sleep(backoff ** attempt)
+                    continue
                 raise RuntimeError(
                     f"Network error calling provider '{self.provider}' at "
-                    f"{self.base_url}: {exc.__class__.__name__}"
+                    f"{self.base_url} after {max_attempts} attempts: "
+                    f"{exc.__class__.__name__}"
                 ) from exc
+
+            # Transient server errors -> retry with backoff
+            if resp.status_code == 429 or resp.status_code >= 500:
+                last_exc = RuntimeError(f"HTTP {resp.status_code}")
+                if attempt < max_attempts:
+                    _time.sleep(backoff ** attempt)
+                    continue
+                raise RuntimeError(
+                    f"Provider '{self.provider}' returned HTTP {resp.status_code} "
+                    f"after {max_attempts} attempts: {_redact(resp.text)[:400]}"
+                )
 
             if resp.status_code >= 400:
                 raise RuntimeError(
@@ -317,15 +349,16 @@ class UniversalLLM(BaseLLM):
                 )
 
             try:
-                text = self._extract_text(resp.json())
+                return self._extract_text(resp.json())
             except Exception:  # noqa: BLE001
                 raise RuntimeError(
                     f"Unexpected response shape from '{self.provider}': "
                     f"{_redact(resp.text)[:400]}"
                 )
-            generations.append([Generation(text=text)])
-
-        return LLMResult(generations=generations)
+        # Should not reach here, but fail safe.
+        raise RuntimeError(
+            f"Exhausted retries calling '{self.provider}': {last_exc}"
+        )
 
 
 # ---------------------------------------------------------------------------
