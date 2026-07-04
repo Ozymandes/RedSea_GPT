@@ -1,0 +1,17 @@
+{
+  "run_name": "agent",
+  "timestamp": "2026-07-04T20:15:27Z",
+  "provider": {
+    "provider": "optillm",
+    "protocol": "anthropic_messages",
+    "base_url": "https://optollm.optomatica.com/v1",
+    "model": "gpt-4o-mini",
+    "configured": true
+  },
+  "config": {
+    "retrieval_k": 5,
+    "system": "agentic_C-RAG",
+    "strict_verify": false
+  },
+  "golden_set_size": 38
+}

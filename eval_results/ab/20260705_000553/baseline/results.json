@@ -1,0 +1,3583 @@
+[
+  {
+    "id": "geo_001",
+    "category": "Geology",
+    "group": "geology",
+    "question": "How did the Red Sea form geologically?",
+    "expected_behavior": "answer",
+    "actually_refused": false,
+    "passed": true,
+    "latency_ms": 12392.3,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 3,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [
+          "rift",
+          "tectonic"
+        ],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [
+          2,
+          4
+        ],
+        "num_distinct": 2,
+        "min_required": 1,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [
+          2,
+          4
+        ],
+        "supported": [
+          2,
+          4
+        ],
+        "unsupported": [],
+        "ok": true
+      },
+      "faithfulness": {
+        "faithfulness": 0.75,
+        "grounded": 6,
+        "total": 8,
+        "ok": true,
+        "evidence": [
+          {
+            "sentence": "The Red Sea formed through geological processes related to the rifting of the Earth's crust.",
+            "token_overlap": 0.769,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "This rifting began in the late stage of the tectonic evolution of the region and is primarily characterized by the exten",
+            "token_overlap": 0.7,
+            "ngram_overlap": 0.125,
+            "grounded": true
+          },
+          {
+            "sentence": "Over millions of years, this stretching has created a narrow axial trough, where the deepest parts of the sea exist, rea",
+            "token_overlap": 0.621,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "As the rifting continued, oceanic seafloor spreading became evident, particularly in the southern Red Sea, estimated to ",
+            "token_overlap": 0.696,
+            "ngram_overlap": 0.095,
+            "grounded": true
+          },
+          {
+            "sentence": "This process involves the formation of new oceanic crust as magma rises to the surface and solidifies [4].",
+            "token_overlap": 0.706,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "Meanwhile, the northern part of the Red Sea has been subject to a debate regarding whether it is still largely composed ",
+            "token_overlap": 0.848,
+            "ngram_overlap": 0.118,
+            "grounded": true
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": false,
+        "expected_refusal": false,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "The Red Sea formed through geological processes related to the rifting of the Earth's crust. This rifting began in the late stage of the tectonic evolution of the region and is primarily characterized by the extension and thinning of the continental crust. Over millions of years, this stretching has created a narrow axial trough, where the deepest parts of the sea exist, reaching depths greater than 1,000 meters in some areas [4].\n\nAs the rifting continued, oceanic seafloor spreading became evident, particularly in the southern Red Sea, estimated to have begun around five million years ago. Th",
+    "num_sources": 5
+  },
+  {
+    "id": "geo_002",
+    "category": "Geology",
+    "group": "geology",
+    "question": "What makes the Red Sea geologically different from a normal mature ocean basin?",
+    "expected_behavior": "answer",
+    "actually_refused": false,
+    "passed": true,
+    "latency_ms": 15124.0,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 4,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [
+          "rift",
+          "young"
+        ],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [
+          1,
+          3
+        ],
+        "num_distinct": 2,
+        "min_required": 1,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [
+          1,
+          3
+        ],
+        "supported": [
+          1,
+          3
+        ],
+        "unsupported": [],
+        "ok": true
+      },
+      "faithfulness": {
+        "faithfulness": 0.6,
+        "grounded": 6,
+        "total": 10,
+        "ok": true,
+        "evidence": [
+          {
+            "sentence": "The Red Sea is geologically distinct from a mature ocean basin primarily due to its ongoing rifting process and structur",
+            "token_overlap": 0.762,
+            "ngram_overlap": 0.056,
+            "grounded": true
+          },
+          {
+            "sentence": "Unlike established ocean basins, which typically exhibit stable and uniform characteristics, the Red Sea is still in a t",
+            "token_overlap": 0.56,
+            "ngram_overlap": 0.043,
+            "grounded": false
+          },
+          {
+            "sentence": "This transition is characterized by two key processes: rifting and sea-floor spreading.",
+            "token_overlap": 0.692,
+            "ngram_overlap": 0.1,
+            "grounded": true
+          },
+          {
+            "sentence": "Rifting is the process where tectonic plates diverge, causing the crust to stretch and thin.",
+            "token_overlap": 0.571,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "In the southern Red Sea, true oceanic sea-floor spreading has been occurring for about 5 million years, indicating the b",
+            "token_overlap": 0.696,
+            "ngram_overlap": 0.087,
+            "grounded": true
+          },
+          {
+            "sentence": "In contrast, the northern region continues to undergo rifting with indications of only incipient oceanic crust developme",
+            "token_overlap": 0.737,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": false,
+        "expected_refusal": false,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "The Red Sea is geologically distinct from a mature ocean basin primarily due to its ongoing rifting process and structural features. Unlike established ocean basins, which typically exhibit stable and uniform characteristics, the Red Sea is still in a transitional stage, evolving toward a full oceanic state.\n\nThis transition is characterized by two key processes: rifting and sea-floor spreading. Rifting is the process where tectonic plates diverge, causing the crust to stretch and thin. In the southern Red Sea, true oceanic sea-floor spreading has been occurring for about 5 million years, indi",
+    "num_sources": 5
+  },
+  {
+    "id": "geo_003",
+    "category": "Geology",
+    "group": "geology",
+    "question": "How is the Red Sea connected to seafloor spreading and rifting?",
+    "expected_behavior": "answer",
+    "actually_refused": false,
+    "passed": true,
+    "latency_ms": 12191.5,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 4,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [
+          "spreading",
+          "rift"
+        ],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [
+          3,
+          4,
+          5
+        ],
+        "num_distinct": 3,
+        "min_required": 1,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [
+          3,
+          4,
+          5
+        ],
+        "supported": [
+          3,
+          4,
+          5
+        ],
+        "unsupported": [],
+        "ok": true
+      },
+      "faithfulness": {
+        "faithfulness": 0.636,
+        "grounded": 7,
+        "total": 11,
+        "ok": true,
+        "evidence": [
+          {
+            "sentence": "The Red Sea is a fascinating example of seafloor spreading and continental rifting, processes that involve the movement ",
+            "token_overlap": 0.5,
+            "ngram_overlap": 0.04,
+            "grounded": false
+          },
+          {
+            "sentence": "The rifting began several million years ago, where the continental lithosphere (the rigid outer layer of the Earth) star",
+            "token_overlap": 0.421,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "This process is marked by the formation of new oceanic crust as the continents slowly move apart.",
+            "token_overlap": 0.75,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "In the Red Sea, the rifting initiated at a location that has since developed into an active seafloor spreading center.",
+            "token_overlap": 0.842,
+            "ngram_overlap": 0.118,
+            "grounded": true
+          },
+          {
+            "sentence": "As the tectonic plates shift, magma from below the Earth's crust rises to fill the gaps created by the separating plates",
+            "token_overlap": 0.353,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "This leads to the creation of new oceanic crust.",
+            "token_overlap": 0.778,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": false,
+        "expected_refusal": false,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "The Red Sea is a fascinating example of seafloor spreading and continental rifting, processes that involve the movement and splitting of tectonic plates beneath the Earth’s surface. The rifting began several million years ago, where the continental lithosphere (the rigid outer layer of the Earth) started to break apart. This process is marked by the formation of new oceanic crust as the continents slowly move apart.\n\nIn the Red Sea, the rifting initiated at a location that has since developed into an active seafloor spreading center. As the tectonic plates shift, magma from below the Earth's c",
+    "num_sources": 5
+  },
+  {
+    "id": "geo_004",
+    "category": "Geology",
+    "group": "geology",
+    "question": "What is the geological relationship between the Red Sea and the Gulf of Aden?",
+    "expected_behavior": "answer",
+    "actually_refused": false,
+    "passed": true,
+    "latency_ms": 12382.5,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 3,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [
+          "rift"
+        ],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [
+          3,
+          4
+        ],
+        "num_distinct": 2,
+        "min_required": 1,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [
+          3,
+          4
+        ],
+        "supported": [
+          3,
+          4
+        ],
+        "unsupported": [],
+        "ok": true
+      },
+      "faithfulness": {
+        "faithfulness": 0.75,
+        "grounded": 6,
+        "total": 8,
+        "ok": true,
+        "evidence": [
+          {
+            "sentence": "The geological relationship between the Red Sea and the Gulf of Aden is primarily defined by a process known as rifting.",
+            "token_overlap": 0.684,
+            "ngram_overlap": 0.111,
+            "grounded": true
+          },
+          {
+            "sentence": "The Red Sea, which is approximately 25 million years old, formed through the pulling apart of the African and Arabian te",
+            "token_overlap": 0.7,
+            "ngram_overlap": 0.053,
+            "grounded": true
+          },
+          {
+            "sentence": "This rifting has created a narrow, elongated body of water characterized by various geophysical features.",
+            "token_overlap": 0.667,
+            "ngram_overlap": 0.25,
+            "grounded": true
+          },
+          {
+            "sentence": "To the south, the Red Sea connects to the Indian Ocean through the Strait of Bab el Mandab, which is near the Gulf of Ad",
+            "token_overlap": 0.947,
+            "ngram_overlap": 0.364,
+            "grounded": true
+          },
+          {
+            "sentence": "This region exhibits significant tectonic activity related to the spreading of oceanic crust.",
+            "token_overlap": 0.692,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "The Gulf of Aden represents a continuation of this rift system, showing similarities in geological characteristics, such",
+            "token_overlap": 0.567,
+            "ngram_overlap": 0.054,
+            "grounded": false
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": false,
+        "expected_refusal": false,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "The geological relationship between the Red Sea and the Gulf of Aden is primarily defined by a process known as rifting. The Red Sea, which is approximately 25 million years old, formed through the pulling apart of the African and Arabian tectonic plates. This rifting has created a narrow, elongated body of water characterized by various geophysical features.\n\nTo the south, the Red Sea connects to the Indian Ocean through the Strait of Bab el Mandab, which is near the Gulf of Aden. This region exhibits significant tectonic activity related to the spreading of oceanic crust. The Gulf of Aden re",
+    "num_sources": 5
+  },
+  {
+    "id": "ocean_001",
+    "category": "Oceanography",
+    "group": "oceanography",
+    "question": "Why is the Red Sea so much saltier than other seas?",
+    "expected_behavior": "answer",
+    "actually_refused": false,
+    "passed": true,
+    "latency_ms": 10958.4,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 3,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 0.5,
+        "found": [
+          "evaporation"
+        ],
+        "missing": [
+          "exchange"
+        ],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [
+          1,
+          3,
+          5
+        ],
+        "num_distinct": 3,
+        "min_required": 1,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [
+          1,
+          3,
+          5
+        ],
+        "supported": [
+          1,
+          3,
+          5
+        ],
+        "unsupported": [],
+        "ok": true
+      },
+      "faithfulness": {
+        "faithfulness": 0.889,
+        "grounded": 8,
+        "total": 9,
+        "ok": true,
+        "evidence": [
+          {
+            "sentence": "The Red Sea is much saltier than other seas due primarily to high evaporation rates and limited freshwater input.",
+            "token_overlap": 0.684,
+            "ngram_overlap": 0.062,
+            "grounded": true
+          },
+          {
+            "sentence": "Surrounding the Red Sea are arid regions, which contribute to intense evaporation, especially in summer.",
+            "token_overlap": 0.8,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "This process increases the salinity of the water by concentrating the salts that remain as water vapor is lost to the at",
+            "token_overlap": 0.684,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "Additionally, the geography of the Red Sea plays a significant role.",
+            "token_overlap": 0.5,
+            "ngram_overlap": 0.125,
+            "grounded": false
+          },
+          {
+            "sentence": "It is a relatively young body of water sandwiched between Africa and Arabia, which has created conditions favorable for ",
+            "token_overlap": 0.81,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "The rifting process that formed the Red Sea allowed for saline water to be pushed upward from the mantle, further elevat",
+            "token_overlap": 0.667,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": false,
+        "expected_refusal": false,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "The Red Sea is much saltier than other seas due primarily to high evaporation rates and limited freshwater input. Surrounding the Red Sea are arid regions, which contribute to intense evaporation, especially in summer. This process increases the salinity of the water by concentrating the salts that remain as water vapor is lost to the atmosphere [1].\n\nAdditionally, the geography of the Red Sea plays a significant role. It is a relatively young body of water sandwiched between Africa and Arabia, which has created conditions favorable for salt accumulation. The rifting process that formed the Re",
+    "num_sources": 5
+  },
+  {
+    "id": "ocean_002",
+    "category": "Oceanography",
+    "group": "oceanography",
+    "question": "What is the typical salinity of the Red Sea?",
+    "expected_behavior": "answer",
+    "actually_refused": false,
+    "passed": true,
+    "latency_ms": 11829.3,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 2,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [
+          "salinity",
+          "40"
+        ],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [
+          1,
+          3,
+          4
+        ],
+        "num_distinct": 3,
+        "min_required": 1,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [
+          1,
+          3,
+          4
+        ],
+        "supported": [
+          1,
+          3,
+          4
+        ],
+        "unsupported": [],
+        "ok": true
+      },
+      "faithfulness": {
+        "faithfulness": 1.0,
+        "grounded": 3,
+        "total": 3,
+        "ok": true,
+        "evidence": [
+          {
+            "sentence": "The typical salinity of the Red Sea is around 40.6 practical salinity units (psu) at depths greater than 200 meters, whe",
+            "token_overlap": 0.706,
+            "ngram_overlap": 0.086,
+            "grounded": true
+          },
+          {
+            "sentence": "In the northern Red Sea, salinity can exceed 40 psu, while in the southern region, it tends to be lower, influenced by t",
+            "token_overlap": 0.641,
+            "ngram_overlap": 0.095,
+            "grounded": true
+          },
+          {
+            "sentence": "The overall high salinity conditions are particularly pronounced due to the surrounding arid climate and minimal freshwa",
+            "token_overlap": 0.667,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": false,
+        "expected_refusal": false,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "The typical salinity of the Red Sea is around 40.6 practical salinity units (psu) at depths greater than 200 meters, where it becomes remarkably homogeneous, except for areas influenced by hot brines emerging from the sea floor. \n\nIn the northern Red Sea, salinity can exceed 40 psu, while in the southern region, it tends to be lower, influenced by the inflow of less saline waters from the Gulf of Aden and other factors such as evaporation rates and freshwater inputs [1][4]. The overall high salinity conditions are particularly pronounced due to the surrounding arid climate and minimal freshwat",
+    "num_sources": 5
+  },
+  {
+    "id": "ocean_003",
+    "category": "Oceanography",
+    "group": "oceanography",
+    "question": "How does the Red Sea's water circulation work, and how does evaporation drive it?",
+    "expected_behavior": "answer",
+    "actually_refused": false,
+    "passed": true,
+    "latency_ms": 10744.5,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 3,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [
+          "evaporation",
+          "circulation"
+        ],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [
+          1,
+          2,
+          4,
+          5
+        ],
+        "num_distinct": 4,
+        "min_required": 1,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [
+          1,
+          2,
+          4,
+          5
+        ],
+        "supported": [
+          1,
+          2,
+          4,
+          5
+        ],
+        "unsupported": [],
+        "ok": true
+      },
+      "faithfulness": {
+        "faithfulness": 0.833,
+        "grounded": 10,
+        "total": 12,
+        "ok": true,
+        "evidence": [
+          {
+            "sentence": "The circulation of the Red Sea is primarily influenced by two factors: buoyancy loss from high evaporation rates and the",
+            "token_overlap": 0.773,
+            "ngram_overlap": 0.143,
+            "grounded": true
+          },
+          {
+            "sentence": "The Red Sea experiences a significant fresh water deficit due to strong evaporation, which exceeds the freshwater input ",
+            "token_overlap": 0.864,
+            "ngram_overlap": 0.05,
+            "grounded": true
+          },
+          {
+            "sentence": "This evaporation rate is estimated to be around 2.06 meters per year on average [1].",
+            "token_overlap": 0.688,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "When water evaporates, it leaves behind the salts, increasing the salinity of the remaining water.",
+            "token_overlap": 0.417,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "This process of evaporation and the resultant higher salinity contributes to buoyancy loss in the surface water.",
+            "token_overlap": 0.75,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "Buoyancy loss, in turn, affects the water circulation patterns in the sea.",
+            "token_overlap": 0.7,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": false,
+        "expected_refusal": false,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "The circulation of the Red Sea is primarily influenced by two factors: buoyancy loss from high evaporation rates and the interaction with wind forces. \n\nThe Red Sea experiences a significant fresh water deficit due to strong evaporation, which exceeds the freshwater input from precipitation and river runoff. This evaporation rate is estimated to be around 2.06 meters per year on average [1]. When water evaporates, it leaves behind the salts, increasing the salinity of the remaining water. This process of evaporation and the resultant higher salinity contributes to buoyancy loss in the surface ",
+    "num_sources": 5
+  },
+  {
+    "id": "ocean_004",
+    "category": "Oceanography",
+    "group": "oceanography",
+    "question": "What are the main water-exchange processes between the Red Sea and the open ocean?",
+    "expected_behavior": "answer",
+    "actually_refused": false,
+    "passed": true,
+    "latency_ms": 13352.8,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 4,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [
+          "exchange",
+          "strait"
+        ],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [
+          4,
+          5
+        ],
+        "num_distinct": 2,
+        "min_required": 1,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [
+          4,
+          5
+        ],
+        "supported": [
+          4,
+          5
+        ],
+        "unsupported": [],
+        "ok": true
+      },
+      "faithfulness": {
+        "faithfulness": 0.6,
+        "grounded": 6,
+        "total": 10,
+        "ok": true,
+        "evidence": [
+          {
+            "sentence": "The main water-exchange processes between the Red Sea and the open ocean primarily occur through its connection with the",
+            "token_overlap": 0.792,
+            "ngram_overlap": 0.192,
+            "grounded": true
+          },
+          {
+            "sentence": "This exchange is influenced by various factors, including salinity, temperature, and density differences between the wat",
+            "token_overlap": 0.526,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "One key aspect is the formation of two distinct water masses within the Red Sea: the Red Sea Deep Water (RSDW) and the R",
+            "token_overlap": 0.737,
+            "ngram_overlap": 0.08,
+            "grounded": true
+          },
+          {
+            "sentence": "The RSDW forms in the Gulf of Suez during winter when water with high salinity sinks to the bottom, entraining surroundi",
+            "token_overlap": 0.857,
+            "ngram_overlap": 0.143,
+            "grounded": true
+          },
+          {
+            "sentence": "This denser water can then flow out of the Red Sea, contributing to the exchange.",
+            "token_overlap": 0.786,
+            "ngram_overlap": 0.083,
+            "grounded": true
+          },
+          {
+            "sentence": "Articulating the deeper mechanics, the overall water exchange is also driven by thermohaline circulation, which is essen",
+            "token_overlap": 0.52,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": false,
+        "expected_refusal": false,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "The main water-exchange processes between the Red Sea and the open ocean primarily occur through its connection with the Indian Ocean at the Strait of Bab el Mandeb. This exchange is influenced by various factors, including salinity, temperature, and density differences between the waters of both regions.\n\nOne key aspect is the formation of two distinct water masses within the Red Sea: the Red Sea Deep Water (RSDW) and the Red Sea Outflow Water (RSOW). The RSDW forms in the Gulf of Suez during winter when water with high salinity sinks to the bottom, entraining surrounding ambient water [4]. T",
+    "num_sources": 5
+  },
+  {
+    "id": "coral_001",
+    "category": "Coral Biology",
+    "group": "coral_heat",
+    "question": "Why are some Red Sea corals unusually tolerant of high temperatures?",
+    "expected_behavior": "answer",
+    "actually_refused": false,
+    "passed": true,
+    "latency_ms": 13475.2,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 3,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [
+          "tolerance",
+          "adaptation"
+        ],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [
+          1,
+          2,
+          4
+        ],
+        "num_distinct": 3,
+        "min_required": 1,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [
+          1,
+          2,
+          4
+        ],
+        "supported": [
+          1,
+          2,
+          4
+        ],
+        "unsupported": [],
+        "ok": true
+      },
+      "faithfulness": {
+        "faithfulness": 0.7,
+        "grounded": 7,
+        "total": 10,
+        "ok": true,
+        "evidence": [
+          {
+            "sentence": "Some Red Sea corals display unusual tolerance to high temperatures due to specific adaptations that have evolved in resp",
+            "token_overlap": 0.7,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "One key factor is their ability to adapt to local conditions, which results in varying temperature tolerance thresholds ",
+            "token_overlap": 0.739,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "This adaptability is a crucial mechanism that allows them to survive in one of the hottest seas on Earth, where they dev",
+            "token_overlap": 0.741,
+            "ngram_overlap": 0.25,
+            "grounded": true
+          },
+          {
+            "sentence": "Additionally, the genetic diversity and morphology of the corals influence how they respond to heat stress.",
+            "token_overlap": 0.6,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "For example, different coral species have distinct genetic makeups and physical structures that can affect their resilie",
+            "token_overlap": 0.667,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "This genetic variation plays a significant role in determining whether a specific coral can withstand temperature increa",
+            "token_overlap": 0.474,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": false,
+        "expected_refusal": false,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "Some Red Sea corals display unusual tolerance to high temperatures due to specific adaptations that have evolved in response to their environment. One key factor is their ability to adapt to local conditions, which results in varying temperature tolerance thresholds across different coral species and locations. This adaptability is a crucial mechanism that allows them to survive in one of the hottest seas on Earth, where they developed thermal stress tolerance mechanisms [1].\n\nAdditionally, the genetic diversity and morphology of the corals influence how they respond to heat stress. For exampl",
+    "num_sources": 5
+  },
+  {
+    "id": "coral_002",
+    "category": "Coral Biology",
+    "group": "coral_heat",
+    "question": "How do Red Sea corals respond to thermal stress, and what cellular mechanisms are involved?",
+    "expected_behavior": "answer",
+    "actually_refused": false,
+    "passed": true,
+    "latency_ms": 11771.4,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 3,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [
+          "stress"
+        ],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "num_distinct": 5,
+        "min_required": 1,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "supported": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "unsupported": [],
+        "ok": true
+      },
+      "faithfulness": {
+        "faithfulness": 0.1,
+        "grounded": 1,
+        "total": 10,
+        "ok": false,
+        "evidence": [
+          {
+            "sentence": "Red Sea corals exhibit unique responses to thermal stress, largely involving cellular mechanisms that help them cope wit",
+            "token_overlap": 0.4,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "When corals experience thermal stress, they can initiate apoptosis, which is a form of programmed cell death.",
+            "token_overlap": 0.529,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "This process helps manage and reduce damage within the coral tissues, allowing them to prioritize survival under stress ",
+            "token_overlap": 0.474,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "High similarities in gene expression during stress indicate that these cellular responses in corals are akin to those se",
+            "token_overlap": 0.533,
+            "ngram_overlap": 0.033,
+            "grounded": false
+          },
+          {
+            "sentence": "Additionally, the interaction between corals and their endosymbionts (algae living within coral tissues) plays a critica",
+            "token_overlap": 0.524,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "Under high-temperature conditions, corals can alter the biochemical pathways that dictate how both the coral and its sym",
+            "token_overlap": 0.591,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": false,
+        "expected_refusal": false,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "Red Sea corals exhibit unique responses to thermal stress, largely involving cellular mechanisms that help them cope with elevated temperatures. When corals experience thermal stress, they can initiate apoptosis, which is a form of programmed cell death. This process helps manage and reduce damage within the coral tissues, allowing them to prioritize survival under stress conditions. High similarities in gene expression during stress indicate that these cellular responses in corals are akin to those seen in higher animals, revealing an advanced level of complexity in their adaptive mechanisms ",
+    "num_sources": 5
+  },
+  {
+    "id": "coral_003",
+    "category": "Coral Biology",
+    "group": "coral_heat",
+    "question": "What role do symbiotic algae play in coral health and bleaching?",
+    "expected_behavior": "answer",
+    "actually_refused": false,
+    "passed": true,
+    "latency_ms": 12721.3,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 3,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 0.5,
+        "found": [
+          "bleaching"
+        ],
+        "missing": [
+          "symbiont"
+        ],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [
+          3,
+          4,
+          5
+        ],
+        "num_distinct": 3,
+        "min_required": 1,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [
+          3,
+          4,
+          5
+        ],
+        "supported": [
+          3,
+          4,
+          5
+        ],
+        "unsupported": [],
+        "ok": true
+      },
+      "faithfulness": {
+        "faithfulness": 0.875,
+        "grounded": 7,
+        "total": 8,
+        "ok": true,
+        "evidence": [
+          {
+            "sentence": "Symbiotic algae, known as zooxanthellae, are crucial to coral health.",
+            "token_overlap": 0.8,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "These microscopic organisms reside within coral tissues, providing essential nutrients through photosynthesis—a process ",
+            "token_overlap": 0.6,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "In return, corals supply carbon dioxide and ammonium, creating a mutually beneficial relationship [3].",
+            "token_overlap": 0.643,
+            "ngram_overlap": 0.091,
+            "grounded": true
+          },
+          {
+            "sentence": "This symbiosis not only supplies corals with the energy they require for growth and reproduction, but it also contribute",
+            "token_overlap": 0.609,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "When coral faces environmental stress, such as prolonged heat or sudden changes in light and nutrient levels, the balanc",
+            "token_overlap": 0.769,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "Corals may expel the zooxanthellae, leading to a phenomenon called coral bleaching.",
+            "token_overlap": 0.833,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": false,
+        "expected_refusal": false,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "Symbiotic algae, known as zooxanthellae, are crucial to coral health. These microscopic organisms reside within coral tissues, providing essential nutrients through photosynthesis—a process where they convert sunlight into energy. In return, corals supply carbon dioxide and ammonium, creating a mutually beneficial relationship [3]. This symbiosis not only supplies corals with the energy they require for growth and reproduction, but it also contributes to their vibrant colors.\n\nWhen coral faces environmental stress, such as prolonged heat or sudden changes in light and nutrient levels, the bala",
+    "num_sources": 5
+  },
+  {
+    "id": "coral_004",
+    "category": "Coral Biology",
+    "group": "coral_heat",
+    "question": "What did the 2023 bleaching event along the Egyptian Red Sea coast reveal about coral vulnerability?",
+    "expected_behavior": "answer",
+    "actually_refused": false,
+    "passed": true,
+    "latency_ms": 71875.7,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 1,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [
+          "bleaching",
+          "2023"
+        ],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "num_distinct": 4,
+        "min_required": 1,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "supported": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "unsupported": [],
+        "ok": true
+      },
+      "faithfulness": {
+        "faithfulness": 0.25,
+        "grounded": 2,
+        "total": 8,
+        "ok": false,
+        "evidence": [
+          {
+            "sentence": "The 2023 coral bleaching event along the Egyptian Red Sea coast highlighted significant vulnerability among various cora",
+            "token_overlap": 0.75,
+            "ngram_overlap": 0.133,
+            "grounded": true
+          },
+          {
+            "sentence": "The bleaching intensity was uniform across different environments, whether inshore or offshore and regardless of depth, ",
+            "token_overlap": 0.593,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "Particularly vulnerable species included Montipora, Porites, Stylophora, Pocillopora, Acropora, and Millepora, which suf",
+            "token_overlap": 0.789,
+            "ngram_overlap": 0.25,
+            "grounded": true
+          },
+          {
+            "sentence": "This indicates that specific coral taxa are more sensitive to environmental changes, such as increased sea surface tempe",
+            "token_overlap": 0.533,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "Further, the occurrence and severity of these bleaching events reflect the mounting pressures of climate change on coral",
+            "token_overlap": 0.588,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "Persistent high temperatures can exceed the thermal tolerances of corals, leading to the expulsion of symbiotic algae, w",
+            "token_overlap": 0.409,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": false,
+        "expected_refusal": false,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "The 2023 coral bleaching event along the Egyptian Red Sea coast highlighted significant vulnerability among various coral species. The bleaching intensity was uniform across different environments, whether inshore or offshore and regardless of depth, suggesting that all sites are equally affected by the stressors causing bleaching [1]. \n\nParticularly vulnerable species included Montipora, Porites, Stylophora, Pocillopora, Acropora, and Millepora, which suffered marked impacts during this event [1]. This indicates that specific coral taxa are more sensitive to environmental changes, such as inc",
+    "num_sources": 5
+  },
+  {
+    "id": "bio_001",
+    "category": "Biodiversity",
+    "group": "biodiversity",
+    "question": "What does endemism mean in the Red Sea context, and why is it notable there?",
+    "expected_behavior": "answer",
+    "actually_refused": false,
+    "passed": true,
+    "latency_ms": 15662.4,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 4,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [
+          "endemic"
+        ],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [
+          4,
+          5
+        ],
+        "num_distinct": 2,
+        "min_required": 1,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [
+          4,
+          5
+        ],
+        "supported": [
+          4,
+          5
+        ],
+        "unsupported": [],
+        "ok": true
+      },
+      "faithfulness": {
+        "faithfulness": 0.625,
+        "grounded": 5,
+        "total": 8,
+        "ok": true,
+        "evidence": [
+          {
+            "sentence": "Endemism in the context of the Red Sea refers to species that are unique to this region and not found anywhere else in t",
+            "token_overlap": 0.619,
+            "ngram_overlap": 0.045,
+            "grounded": true
+          },
+          {
+            "sentence": "It is a significant aspect of biodiversity and ecology, indicating a level of biological specialization.",
+            "token_overlap": 0.462,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "In the Red Sea, endemism is particularly notable due to the semi-isolation of the basin, which has allowed for the evolu",
+            "token_overlap": 0.656,
+            "ngram_overlap": 0.114,
+            "grounded": true
+          },
+          {
+            "sentence": "The Red Sea has a relatively high level of endemism compared to other regions, largely because it is a young ocean forme",
+            "token_overlap": 0.724,
+            "ngram_overlap": 0.034,
+            "grounded": true
+          },
+          {
+            "sentence": "This geological history has influenced its marine ecosystems, allowing certain species to thrive that might not survive ",
+            "token_overlap": 0.368,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "Current research suggests that there may still be undiscovered endemic species, potentially raising the recorded levels ",
+            "token_overlap": 0.625,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": false,
+        "expected_refusal": false,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "Endemism in the context of the Red Sea refers to species that are unique to this region and not found anywhere else in the world. It is a significant aspect of biodiversity and ecology, indicating a level of biological specialization. In the Red Sea, endemism is particularly notable due to the semi-isolation of the basin, which has allowed for the evolution of distinct marine life forms that have adapted to the specific environmental conditions present there [4]. \n\nThe Red Sea has a relatively high level of endemism compared to other regions, largely because it is a young ocean formed from the",
+    "num_sources": 5
+  },
+  {
+    "id": "bio_002",
+    "category": "Biodiversity",
+    "group": "biodiversity",
+    "question": "Why does the Red Sea support such distinctive marine biodiversity?",
+    "expected_behavior": "answer",
+    "actually_refused": false,
+    "passed": true,
+    "latency_ms": 18747.3,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 2,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [
+          "diversity"
+        ],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [
+          1,
+          3,
+          4
+        ],
+        "num_distinct": 3,
+        "min_required": 1,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [
+          1,
+          3,
+          4
+        ],
+        "supported": [
+          1,
+          3,
+          4
+        ],
+        "unsupported": [],
+        "ok": true
+      },
+      "faithfulness": {
+        "faithfulness": 0.636,
+        "grounded": 7,
+        "total": 11,
+        "ok": true,
+        "evidence": [
+          {
+            "sentence": "The distinctive marine biodiversity of the Red Sea can be attributed to several interrelated factors that operate in thi",
+            "token_overlap": 0.6,
+            "ngram_overlap": 0.056,
+            "grounded": true
+          },
+          {
+            "sentence": "First, the region exhibits high levels of endemism, meaning that many species are found only in the Red Sea and nowhere ",
+            "token_overlap": 0.857,
+            "ngram_overlap": 0.158,
+            "grounded": true
+          },
+          {
+            "sentence": "This is likely due to the geographical isolation and historical changes in sea levels that have allowed for the developm",
+            "token_overlap": 0.731,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "The separation from adjacent ecosystems can lead to specialized adaptations, fostering diverse life forms.",
+            "token_overlap": 0.286,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "Second, the Red Sea's environmental gradients play a crucial role in shaping its ecosystems.",
+            "token_overlap": 0.786,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "Variability in primary productivity, temperature, salinity, and turbidity affects different habitats across the sea.",
+            "token_overlap": 0.5,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": false,
+        "expected_refusal": false,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "The distinctive marine biodiversity of the Red Sea can be attributed to several interrelated factors that operate in this unique environment. \n\nFirst, the region exhibits high levels of endemism, meaning that many species are found only in the Red Sea and nowhere else. This is likely due to the geographical isolation and historical changes in sea levels that have allowed for the development of unique evolutionary paths for these organisms [1]. The separation from adjacent ecosystems can lead to specialized adaptations, fostering diverse life forms.\n\nSecond, the Red Sea's environmental gradient",
+    "num_sources": 5
+  },
+  {
+    "id": "bio_003",
+    "category": "Biodiversity",
+    "group": "biodiversity",
+    "question": "Are Red Sea reef communities uniform along the entire Egyptian coast, or do they vary?",
+    "expected_behavior": "answer",
+    "actually_refused": false,
+    "passed": false,
+    "latency_ms": 10789.4,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 4,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 0.0,
+        "found": [],
+        "missing": [
+          "vary"
+        ],
+        "ok": false
+      },
+      "citation_presence": {
+        "citation_ids": [
+          1,
+          5
+        ],
+        "num_distinct": 2,
+        "min_required": 1,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [
+          1,
+          5
+        ],
+        "supported": [
+          1,
+          5
+        ],
+        "unsupported": [],
+        "ok": true
+      },
+      "faithfulness": {
+        "faithfulness": 0.667,
+        "grounded": 4,
+        "total": 6,
+        "ok": true,
+        "evidence": [
+          {
+            "sentence": "The reef communities along the Egyptian Red Sea coast are not uniform; they exhibit significant variability.",
+            "token_overlap": 0.733,
+            "ngram_overlap": 0.154,
+            "grounded": true
+          },
+          {
+            "sentence": "This variation is influenced by geographical and environmental factors, such as depth, exposure to currents, and habitat",
+            "token_overlap": 0.571,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "For instance, the northern regions, particularly the Gulf of Aqaba, support a rich diversity of coral species due to fav",
+            "token_overlap": 0.59,
+            "ngram_overlap": 0.044,
+            "grounded": false
+          },
+          {
+            "sentence": "Additionally, the shallow Gulf of Suez only harbors corals at its southern end, further illustrating the latitudinal dif",
+            "token_overlap": 0.85,
+            "ngram_overlap": 0.167,
+            "grounded": true
+          },
+          {
+            "sentence": "Research has shown that coastal fringing reefs display distinct gradients in species composition and diversity, which ar",
+            "token_overlap": 0.69,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "Therefore, the interplay of ecological factors explains the differing coral reef structures across the Egyptian Red Sea.",
+            "token_overlap": 0.733,
+            "ngram_overlap": 0.071,
+            "grounded": true
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": false,
+        "expected_refusal": false,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": true,
+        "reason": "Very low faithfulness (17%) AND missing required concepts.",
+        "ok": false
+      }
+    },
+    "answer_excerpt": "The reef communities along the Egyptian Red Sea coast are not uniform; they exhibit significant variability. This variation is influenced by geographical and environmental factors, such as depth, exposure to currents, and habitat types available across different locations.\n\nFor instance, the northern regions, particularly the Gulf of Aqaba, support a rich diversity of coral species due to favorable conditions like clearer water and stable temperatures, whereas the southern parts of the Red Sea have more turbid waters, leading to a decline in coral diversity [1][5]. Additionally, the shallow Gu",
+    "num_sources": 5
+  },
+  {
+    "id": "bio_004",
+    "category": "Biodiversity",
+    "group": "biodiversity",
+    "question": "What types of coral reefs occur in the Red Sea?",
+    "expected_behavior": "answer",
+    "actually_refused": false,
+    "passed": true,
+    "latency_ms": 10048.8,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 3,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [
+          "reef"
+        ],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [
+          2,
+          3
+        ],
+        "num_distinct": 2,
+        "min_required": 1,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [
+          2,
+          3
+        ],
+        "supported": [
+          2,
+          3
+        ],
+        "unsupported": [],
+        "ok": true
+      },
+      "faithfulness": {
+        "faithfulness": 0.714,
+        "grounded": 5,
+        "total": 7,
+        "ok": true,
+        "evidence": [
+          {
+            "sentence": "In the Red Sea, the predominant type of coral reef is the fringing reef.",
+            "token_overlap": 0.909,
+            "ngram_overlap": 0.182,
+            "grounded": true
+          },
+          {
+            "sentence": "These reefs are characterized by their close proximity to the shoreline and typically develop on steep slopes.",
+            "token_overlap": 0.765,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "They often feature a wide lagoon that separates the reef from the land.",
+            "token_overlap": 0.667,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "The coral communities along these reefs exhibit some variation depending on geographic location, particularly from north",
+            "token_overlap": 0.63,
+            "ngram_overlap": 0.04,
+            "grounded": true
+          },
+          {
+            "sentence": "In certain areas, especially where the topography allows, other types of reefs can form, such as barrier reefs, which ar",
+            "token_overlap": 0.621,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "Although fringing reefs dominate, the varied topography also influences the development of coral reefs, causing certain ",
+            "token_overlap": 0.464,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": false,
+        "expected_refusal": false,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "In the Red Sea, the predominant type of coral reef is the fringing reef. These reefs are characterized by their close proximity to the shoreline and typically develop on steep slopes. They often feature a wide lagoon that separates the reef from the land. The coral communities along these reefs exhibit some variation depending on geographic location, particularly from north to south and across different habitats available within the ecosystem [2][3].\n\nIn certain areas, especially where the topography allows, other types of reefs can form, such as barrier reefs, which are found further offshore",
+    "num_sources": 5
+  },
+  {
+    "id": "cons_001",
+    "category": "Conservation",
+    "group": "conservation",
+    "question": "What are the main threats to Egyptian Red Sea coral reefs?",
+    "expected_behavior": "answer",
+    "actually_refused": false,
+    "passed": true,
+    "latency_ms": 11047.6,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 3,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [
+          "threat"
+        ],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [
+          1,
+          2
+        ],
+        "num_distinct": 2,
+        "min_required": 1,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [
+          1,
+          2
+        ],
+        "supported": [
+          1,
+          2
+        ],
+        "unsupported": [],
+        "ok": true
+      },
+      "faithfulness": {
+        "faithfulness": 0.5,
+        "grounded": 5,
+        "total": 10,
+        "ok": false,
+        "evidence": [
+          {
+            "sentence": "The coral reefs of the Egyptian Red Sea face multiple significant threats.",
+            "token_overlap": 0.818,
+            "ngram_overlap": 0.111,
+            "grounded": true
+          },
+          {
+            "sentence": "Primarily, local human activities pose severe risks, including landfills, dredging, and sedimentation, which can smother",
+            "token_overlap": 0.263,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "Sewage discharge and effluents from desalination plants further contribute to pollution, compromising water quality and ",
+            "token_overlap": 0.7,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "Tourism has introduced additional pressures, with direct damage arising from activities such as boat anchoring and physi",
+            "token_overlap": 0.429,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "These interactions can lead to physical harm to the delicate coral structures [2].",
+            "token_overlap": 0.417,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "The fish populations within these reefs are also declining due to overfishing and increased demand for both food and orn",
+            "token_overlap": 0.8,
+            "ngram_overlap": 0.056,
+            "grounded": true
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": false,
+        "expected_refusal": false,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "The coral reefs of the Egyptian Red Sea face multiple significant threats. Primarily, local human activities pose severe risks, including landfills, dredging, and sedimentation, which can smother corals and disrupt their habitat. Sewage discharge and effluents from desalination plants further contribute to pollution, compromising water quality and the health of reef ecosystems [2].\n\nTourism has introduced additional pressures, with direct damage arising from activities such as boat anchoring and physical contact from snorkelers or divers. These interactions can lead to physical harm to the del",
+    "num_sources": 5
+  },
+  {
+    "id": "cons_002",
+    "category": "Conservation",
+    "group": "conservation",
+    "question": "How does tourism affect Red Sea coral reef ecosystems?",
+    "expected_behavior": "answer",
+    "actually_refused": false,
+    "passed": true,
+    "latency_ms": 11647.7,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 3,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [
+          "tourism"
+        ],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [
+          5
+        ],
+        "num_distinct": 1,
+        "min_required": 1,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [
+          5
+        ],
+        "supported": [
+          5
+        ],
+        "unsupported": [],
+        "ok": true
+      },
+      "faithfulness": {
+        "faithfulness": 0.125,
+        "grounded": 1,
+        "total": 8,
+        "ok": false,
+        "evidence": [
+          {
+            "sentence": "Tourism in the Red Sea has complex effects on coral reef ecosystems, primarily through physical and ecological impacts.",
+            "token_overlap": 0.722,
+            "ngram_overlap": 0.067,
+            "grounded": true
+          },
+          {
+            "sentence": "The first major concern is physical damage.",
+            "token_overlap": 0.571,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "Areas frequented by tourists often experience direct harm from boat anchors, snorkeling, and diving activities, which ca",
+            "token_overlap": 0.4,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "Additionally, high levels of human activity contribute to environmental stressors such as increased sedimentation and po",
+            "token_overlap": 0.562,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "Sediment can smother corals, reducing their ability to access sunlight for photosynthesis, which is vital for their surv",
+            "token_overlap": 0.353,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "Furthermore, sewage discharge and effluents from nearby development can introduce harmful nutrients into the water, lead",
+            "token_overlap": 0.526,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": false,
+        "expected_refusal": false,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "Tourism in the Red Sea has complex effects on coral reef ecosystems, primarily through physical and ecological impacts. The first major concern is physical damage. Areas frequented by tourists often experience direct harm from boat anchors, snorkeling, and diving activities, which can break corals and disturb the fragile reef structure [5]. \n\nAdditionally, high levels of human activity contribute to environmental stressors such as increased sedimentation and pollution. Sediment can smother corals, reducing their ability to access sunlight for photosynthesis, which is vital for their survival [",
+    "num_sources": 5
+  },
+  {
+    "id": "cons_003",
+    "category": "Conservation",
+    "group": "conservation",
+    "question": "What conservation strategies are relevant for Red Sea reefs?",
+    "expected_behavior": "answer",
+    "actually_refused": true,
+    "passed": false,
+    "latency_ms": 9995.2,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 3,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [
+          "conservation"
+        ],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [],
+        "num_distinct": 0,
+        "min_required": 1,
+        "ok": false
+      },
+      "citation_support": {
+        "cited": [],
+        "supported": [],
+        "unsupported": [],
+        "ok": false
+      },
+      "faithfulness": {
+        "faithfulness": 0.333,
+        "grounded": 1,
+        "total": 3,
+        "ok": false,
+        "evidence": [
+          {
+            "sentence": "The context provided does not specify particular conservation strategies relevant for Red Sea reefs.",
+            "token_overlap": 0.5,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "It mentions the need for management strategies and highlights the effectiveness of established Marine Protected Areas (M",
+            "token_overlap": 0.667,
+            "ngram_overlap": 0.174,
+            "grounded": true
+          },
+          {
+            "sentence": "Therefore, I cannot answer your question from the available sources.",
+            "token_overlap": 0.3,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": true,
+        "expected_refusal": false,
+        "correct": false,
+        "ok": false,
+        "serious_failure": true
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "The context provided does not specify particular conservation strategies relevant for Red Sea reefs. It mentions the need for management strategies and highlights the effectiveness of established Marine Protected Areas (MPAs) in Egypt, but does not detail specific strategies themselves. Therefore, I cannot answer your question from the available sources.",
+    "num_sources": 5
+  },
+  {
+    "id": "cons_004",
+    "category": "Conservation",
+    "group": "conservation",
+    "question": "How has climate change affected the Red Sea ecosystem so far?",
+    "expected_behavior": "answer",
+    "actually_refused": false,
+    "passed": true,
+    "latency_ms": 14230.4,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 3,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [
+          "climate",
+          "warming"
+        ],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [
+          1,
+          3,
+          5
+        ],
+        "num_distinct": 3,
+        "min_required": 1,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [
+          1,
+          3,
+          5
+        ],
+        "supported": [
+          1,
+          3,
+          5
+        ],
+        "unsupported": [],
+        "ok": true
+      },
+      "faithfulness": {
+        "faithfulness": 0.778,
+        "grounded": 7,
+        "total": 9,
+        "ok": true,
+        "evidence": [
+          {
+            "sentence": "Climate change has significantly impacted the Red Sea ecosystem, primarily through rising sea surface temperatures (SST)",
+            "token_overlap": 0.737,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "Over the last few decades, the Red Sea has experienced rapid warming, especially in its northern regions, where SST has ",
+            "token_overlap": 0.742,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "This rate is notably higher than the global average, making the northern Red Sea one of the fastest-warming sea areas in",
+            "token_overlap": 0.905,
+            "ngram_overlap": 0.318,
+            "grounded": true
+          },
+          {
+            "sentence": "The progressive rise in temperature can lead to coral bleaching, a phenomenon where corals expel the symbiotic algae liv",
+            "token_overlap": 0.538,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "Bleaching weakens corals and can result in large-scale coral loss, which has already been observed in areas of the Red S",
+            "token_overlap": 0.833,
+            "ngram_overlap": 0.065,
+            "grounded": true
+          },
+          {
+            "sentence": "Such disturbances not only affect coral health but also disrupt the associated fish communities and the broader marine e",
+            "token_overlap": 0.613,
+            "ngram_overlap": 0.031,
+            "grounded": true
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": false,
+        "expected_refusal": false,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "Climate change has significantly impacted the Red Sea ecosystem, primarily through rising sea surface temperatures (SST) and changes in salinity. Over the last few decades, the Red Sea has experienced rapid warming, especially in its northern regions, where SST has increased at a rate of approximately 0.40 to 0.45 °C per decade. This rate is notably higher than the global average, making the northern Red Sea one of the fastest-warming sea areas in the world [1]. \n\nThe progressive rise in temperature can lead to coral bleaching, a phenomenon where corals expel the symbiotic algae living within ",
+    "num_sources": 5
+  },
+  {
+    "id": "synth_001",
+    "category": "Synthesis",
+    "group": "synthesis",
+    "question": "How do the Red Sea's geology and oceanography together shape its marine life?",
+    "expected_behavior": "answer",
+    "actually_refused": false,
+    "passed": true,
+    "latency_ms": 12443.1,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 3,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 0.5,
+        "found": [
+          "salinity"
+        ],
+        "missing": [
+          "rift"
+        ],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "num_distinct": 4,
+        "min_required": 1,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "supported": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "unsupported": [],
+        "ok": true
+      },
+      "faithfulness": {
+        "faithfulness": 0.25,
+        "grounded": 3,
+        "total": 12,
+        "ok": false,
+        "evidence": [
+          {
+            "sentence": "The geology and oceanography of the Red Sea interact intricately to create a unique environment that shapes its marine l",
+            "token_overlap": 0.526,
+            "ngram_overlap": 0.059,
+            "grounded": false
+          },
+          {
+            "sentence": "Key geological features include varying shelf widths and complex tectonic activity that contribute to diverse habitats.",
+            "token_overlap": 0.688,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "For example, the northern Red Sea has a narrower continental shelf, while the southern region features a broader shelf t",
+            "token_overlap": 0.714,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "The depth variation, which can reach up to 3,000 meters in some areas, also influences the types of species that can thr",
+            "token_overlap": 0.565,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "Oceanographically, the Red Sea experiences seasonal and climatic variations, which in turn affect water temperature and ",
+            "token_overlap": 0.529,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "For instance, the salinity averages around 40.6 per mille, making it one of the saltier bodies of water globally [1].",
+            "token_overlap": 0.368,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": false,
+        "expected_refusal": false,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "The geology and oceanography of the Red Sea interact intricately to create a unique environment that shapes its marine life. Key geological features include varying shelf widths and complex tectonic activity that contribute to diverse habitats. For example, the northern Red Sea has a narrower continental shelf, while the southern region features a broader shelf that supports different marine ecosystems. The depth variation, which can reach up to 3,000 meters in some areas, also influences the types of species that can thrive there [5].\n\nOceanographically, the Red Sea experiences seasonal and c",
+    "num_sources": 5
+  },
+  {
+    "id": "synth_002",
+    "category": "Synthesis",
+    "group": "synthesis",
+    "question": "Why might the Red Sea matter for understanding climate-resilient coral reefs worldwide?",
+    "expected_behavior": "answer",
+    "actually_refused": false,
+    "passed": true,
+    "latency_ms": 12752.3,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 4,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [
+          "tolerance"
+        ],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [
+          1,
+          3,
+          4
+        ],
+        "num_distinct": 3,
+        "min_required": 1,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [
+          1,
+          3,
+          4
+        ],
+        "supported": [
+          1,
+          3,
+          4
+        ],
+        "unsupported": [],
+        "ok": true
+      },
+      "faithfulness": {
+        "faithfulness": 0.75,
+        "grounded": 6,
+        "total": 8,
+        "ok": true,
+        "evidence": [
+          {
+            "sentence": "The Red Sea is significant for understanding climate-resilient coral reefs due to its extreme environmental conditions, ",
+            "token_overlap": 0.87,
+            "ngram_overlap": 0.05,
+            "grounded": true
+          },
+          {
+            "sentence": "These conditions create a unique ecosystem that challenges corals in ways that many other reefs do not experience.",
+            "token_overlap": 0.529,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "For instance, Red Sea corals can tolerate temperatures often exceeding 32 °C in the summer, which are close to their the",
+            "token_overlap": 0.821,
+            "ngram_overlap": 0.025,
+            "grounded": true
+          },
+          {
+            "sentence": "Research indicates that Red Sea corals are regionally adapted to these extreme circumstances and display traits that cou",
+            "token_overlap": 0.774,
+            "ngram_overlap": 0.152,
+            "grounded": true
+          },
+          {
+            "sentence": "Studying these corals can provide insights into how reef ecosystems might acclimate or adapt to climate change, making t",
+            "token_overlap": 0.719,
+            "ngram_overlap": 0.033,
+            "grounded": true
+          },
+          {
+            "sentence": "Furthermore, as the warming rate of seawater is increasing, particularly in the northern Red Sea, corals may encounter c",
+            "token_overlap": 0.923,
+            "ngram_overlap": 0.292,
+            "grounded": true
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": false,
+        "expected_refusal": false,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "The Red Sea is significant for understanding climate-resilient coral reefs due to its extreme environmental conditions, such as high temperatures and salinity. These conditions create a unique ecosystem that challenges corals in ways that many other reefs do not experience. For instance, Red Sea corals can tolerate temperatures often exceeding 32 °C in the summer, which are close to their thermal limits and thus could help scientists investigate the potential responses of coral reefs to rising global temperatures and marine heatwaves [1][4].\n\nResearch indicates that Red Sea corals are regional",
+    "num_sources": 5
+  },
+  {
+    "id": "synth_003",
+    "category": "Synthesis",
+    "group": "synthesis",
+    "question": "How do high salinity, high temperature, and geographic isolation interact to shape Red Sea ecology?",
+    "expected_behavior": "answer",
+    "actually_refused": false,
+    "passed": true,
+    "latency_ms": 15107.3,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 4,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [
+          "salinity",
+          "isolation"
+        ],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [
+          1,
+          2,
+          5
+        ],
+        "num_distinct": 3,
+        "min_required": 1,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [
+          1,
+          2,
+          5
+        ],
+        "supported": [
+          1,
+          2,
+          5
+        ],
+        "unsupported": [],
+        "ok": true
+      },
+      "faithfulness": {
+        "faithfulness": 0.4,
+        "grounded": 6,
+        "total": 15,
+        "ok": false,
+        "evidence": [
+          {
+            "sentence": "High salinity, high temperature, and geographic isolation are crucial factors that shape the ecology of the Red Sea, imp",
+            "token_overlap": 0.619,
+            "ngram_overlap": 0.048,
+            "grounded": true
+          },
+          {
+            "sentence": "High Salinity:** The Red Sea experiences high salinity, often ranging from 35 to 41 parts per thousand (ppt) [2].",
+            "token_overlap": 0.647,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "This characteristic is partly due to the surrounding arid lands and high evaporation rates.",
+            "token_overlap": 0.714,
+            "ngram_overlap": 0.455,
+            "grounded": true
+          },
+          {
+            "sentence": "Elevated salinity can affect osmoregulation in marine organisms—essentially how they manage water and salt balance.",
+            "token_overlap": 0.25,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "Many marine species, including corals, struggle to thrive in such conditions, as salinity levels above about 40 ppt are ",
+            "token_overlap": 0.704,
+            "ngram_overlap": 0.125,
+            "grounded": true
+          },
+          {
+            "sentence": "This limitation influences the types of species that can inhabit these waters, contributing to a unique yet specialized ",
+            "token_overlap": 0.474,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": false,
+        "expected_refusal": false,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "High salinity, high temperature, and geographic isolation are crucial factors that shape the ecology of the Red Sea, impacting species richness and community dynamics.\n\n**1. High Salinity:** The Red Sea experiences high salinity, often ranging from 35 to 41 parts per thousand (ppt) [2]. This characteristic is partly due to the surrounding arid lands and high evaporation rates. Elevated salinity can affect osmoregulation in marine organisms—essentially how they manage water and salt balance. Many marine species, including corals, struggle to thrive in such conditions, as salinity levels above a",
+    "num_sources": 5
+  },
+  {
+    "id": "off_001",
+    "category": "Off-topic",
+    "group": "off_topic",
+    "question": "What are the best hotels to stay at in Hurghada?",
+    "expected_behavior": "refuse",
+    "actually_refused": true,
+    "passed": true,
+    "latency_ms": 9193.7,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 3,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [],
+        "num_distinct": 0,
+        "min_required": 0,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [],
+        "supported": [],
+        "unsupported": [],
+        "ok": false
+      },
+      "faithfulness": {
+        "faithfulness": 0.0,
+        "grounded": 0,
+        "total": 1,
+        "ok": false,
+        "evidence": [
+          {
+            "sentence": "I cannot answer that question from the available sources.",
+            "token_overlap": 0.333,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": true,
+        "expected_refusal": true,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "I cannot answer that question from the available sources.",
+    "num_sources": 5
+  },
+  {
+    "id": "off_002",
+    "category": "Off-topic",
+    "group": "off_topic",
+    "question": "Where can I book the cheapest diving trip in Sharm El-Sheikh?",
+    "expected_behavior": "refuse",
+    "actually_refused": true,
+    "passed": true,
+    "latency_ms": 8908.2,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 3,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [],
+        "num_distinct": 0,
+        "min_required": 0,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [],
+        "supported": [],
+        "unsupported": [],
+        "ok": false
+      },
+      "faithfulness": {
+        "faithfulness": 0.0,
+        "grounded": 0,
+        "total": 1,
+        "ok": false,
+        "evidence": [
+          {
+            "sentence": "I cannot answer from the available sources.",
+            "token_overlap": 0.429,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": true,
+        "expected_refusal": true,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "I cannot answer from the available sources.",
+    "num_sources": 5
+  },
+  {
+    "id": "off_003",
+    "category": "Off-topic",
+    "group": "off_topic",
+    "question": "Who won the 2022 FIFA World Cup final?",
+    "expected_behavior": "refuse",
+    "actually_refused": true,
+    "passed": true,
+    "latency_ms": 8276.4,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 2,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [],
+        "num_distinct": 0,
+        "min_required": 0,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [],
+        "supported": [],
+        "unsupported": [],
+        "ok": false
+      },
+      "faithfulness": {
+        "faithfulness": 0.0,
+        "grounded": 0,
+        "total": 3,
+        "ok": false,
+        "evidence": [
+          {
+            "sentence": "I apologize, but I don't have sufficient information in my knowledge base to provide a confident answer to your question",
+            "token_overlap": 0.227,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "The retrieved documents have an average relevance score of 0.12, which is below my threshold of 0.2..",
+            "token_overlap": 0.412,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "This could mean:\n• Your question is outside the scope of my Red Sea knowledge base\n• The specific information isn't cove",
+            "token_overlap": 0.182,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": true,
+        "expected_refusal": true,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "I apologize, but I don't have sufficient information in my knowledge base to provide a confident answer to your question about the Red Sea. The retrieved documents have an average relevance score of 0.12, which is below my threshold of 0.2..\n\nThis could mean:\n• Your question is outside the scope of my Red Sea knowledge base\n• The specific information isn't covered in the research papers I've studied\n• You might try rephrasing your question\n\nI'm designed to be accurate and will only answer when I have reliable information from the Red Sea scientific literature.",
+    "num_sources": 5
+  },
+  {
+    "id": "off_004",
+    "category": "Off-topic",
+    "group": "off_topic",
+    "question": "Write me a Python function that sorts a list of numbers.",
+    "expected_behavior": "refuse",
+    "actually_refused": false,
+    "passed": false,
+    "latency_ms": 9635.7,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 2,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [],
+        "num_distinct": 0,
+        "min_required": 0,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [],
+        "supported": [],
+        "unsupported": [],
+        "ok": false
+      },
+      "faithfulness": {
+        "faithfulness": 0.0,
+        "grounded": 0,
+        "total": 2,
+        "ok": false,
+        "evidence": [
+          {
+            "sentence": "I'm unable to assist with that.",
+            "token_overlap": 0.0,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "My expertise is focused on the natural science of the Egyptian Red Sea, and your request falls outside that context.",
+            "token_overlap": 0.0,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": false,
+        "expected_refusal": true,
+        "correct": false,
+        "ok": false,
+        "serious_failure": true
+      },
+      "hallucination": {
+        "severe_hallucination": true,
+        "reason": "Answered a off_topic question that should have been refused.",
+        "ok": false
+      }
+    },
+    "answer_excerpt": "I'm unable to assist with that. My expertise is focused on the natural science of the Egyptian Red Sea, and your request falls outside that context.",
+    "num_sources": 5
+  },
+  {
+    "id": "unsup_001",
+    "category": "Unsupported",
+    "group": "unsupported",
+    "question": "What will the Red Sea surface temperature be in the year 2100?",
+    "expected_behavior": "refuse",
+    "actually_refused": true,
+    "passed": true,
+    "latency_ms": 6216.5,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 5,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [],
+        "num_distinct": 0,
+        "min_required": 0,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [],
+        "supported": [],
+        "unsupported": [],
+        "ok": false
+      },
+      "faithfulness": {
+        "faithfulness": 0.0,
+        "grounded": 0,
+        "total": 4,
+        "ok": false,
+        "evidence": [
+          {
+            "sentence": "I apologize, but I don't have sufficient information to answer your question about future.",
+            "token_overlap": 0.154,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "While I found relevant documents, they discuss coral rather than future specifically.",
+            "token_overlap": 0.0,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "The available research papers focus on coral, but don't contain the specific information about future that you're asking",
+            "token_overlap": 0.176,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "You might try:\n• Asking about coral instead\n• Rephrasing your question to focus on what's available in the research\n\nI'm",
+            "token_overlap": 0.194,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": true,
+        "expected_refusal": true,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "I apologize, but I don't have sufficient information to answer your question about future. While I found relevant documents, they discuss coral rather than future specifically.\n\nThe available research papers focus on coral, but don't contain the specific information about future that you're asking about.\n\nYou might try:\n• Asking about coral instead\n• Rephrasing your question to focus on what's available in the research\n\nI'm designed to be accurate and will only answer when I have reliable information from the Red Sea scientific literature.",
+    "num_sources": 5
+  },
+  {
+    "id": "unsup_002",
+    "category": "Unsupported",
+    "group": "unsupported",
+    "question": "What are today's tide times for the port of Safaga?",
+    "expected_behavior": "refuse",
+    "actually_refused": true,
+    "passed": true,
+    "latency_ms": 11088.8,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 1,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [],
+        "num_distinct": 0,
+        "min_required": 0,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [],
+        "supported": [],
+        "unsupported": [],
+        "ok": false
+      },
+      "faithfulness": {
+        "faithfulness": 0.0,
+        "grounded": 0,
+        "total": 1,
+        "ok": false,
+        "evidence": [
+          {
+            "sentence": "I cannot answer from the available sources.",
+            "token_overlap": 0.429,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": true,
+        "expected_refusal": true,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "I cannot answer from the available sources.",
+    "num_sources": 5
+  },
+  {
+    "id": "unsup_003",
+    "category": "Unsupported",
+    "group": "unsupported",
+    "question": "Which species of shark attacked tourists in the Red Sea last month?",
+    "expected_behavior": "refuse",
+    "actually_refused": true,
+    "passed": true,
+    "latency_ms": 6649.9,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 2,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [],
+        "num_distinct": 0,
+        "min_required": 0,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [],
+        "supported": [],
+        "unsupported": [],
+        "ok": false
+      },
+      "faithfulness": {
+        "faithfulness": 0.0,
+        "grounded": 0,
+        "total": 1,
+        "ok": false,
+        "evidence": [
+          {
+            "sentence": "I cannot answer from the available sources.",
+            "token_overlap": 0.571,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": true,
+        "expected_refusal": true,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "I cannot answer from the available sources.",
+    "num_sources": 5
+  },
+  {
+    "id": "unsup_004",
+    "category": "Unsupported",
+    "group": "unsupported",
+    "question": "Using only the RedSea GPT corpus, describe the coral reefs of the Mediterranean Sea.",
+    "expected_behavior": "refuse",
+    "actually_refused": true,
+    "passed": true,
+    "latency_ms": 9172.1,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 2,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [],
+        "num_distinct": 0,
+        "min_required": 0,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [],
+        "supported": [],
+        "unsupported": [],
+        "ok": false
+      },
+      "faithfulness": {
+        "faithfulness": 0.0,
+        "grounded": 0,
+        "total": 1,
+        "ok": false,
+        "evidence": [
+          {
+            "sentence": "I cannot answer that question from the available sources, as there is no information about the coral reefs of the Medite",
+            "token_overlap": 0.522,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": true,
+        "expected_refusal": true,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "I cannot answer that question from the available sources, as there is no information about the coral reefs of the Mediterranean Sea in the context provided.",
+    "num_sources": 5
+  },
+  {
+    "id": "trap_001",
+    "category": "Adversarial",
+    "group": "hallucination_trap",
+    "question": "What is 'Calcium Carbonate Resin' and what role does it play in Red Sea coral skeletons?",
+    "expected_behavior": "refuse",
+    "actually_refused": true,
+    "passed": true,
+    "latency_ms": 8138.3,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 4,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [],
+        "num_distinct": 0,
+        "min_required": 0,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [],
+        "supported": [],
+        "unsupported": [],
+        "ok": false
+      },
+      "faithfulness": {
+        "faithfulness": 0.0,
+        "grounded": 0,
+        "total": 1,
+        "ok": false,
+        "evidence": [
+          {
+            "sentence": "I cannot answer that question from the available sources.",
+            "token_overlap": 0.444,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": true,
+        "expected_refusal": true,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "I cannot answer that question from the available sources.",
+    "num_sources": 5
+  },
+  {
+    "id": "trap_002",
+    "category": "Adversarial",
+    "group": "hallucination_trap",
+    "question": "List five fish species from the corpus that are not actually mentioned anywhere in the sources.",
+    "expected_behavior": "refuse",
+    "actually_refused": true,
+    "passed": true,
+    "latency_ms": 9335.0,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 2,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [],
+        "num_distinct": 0,
+        "min_required": 0,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [],
+        "supported": [],
+        "unsupported": [],
+        "ok": false
+      },
+      "faithfulness": {
+        "faithfulness": 0.0,
+        "grounded": 0,
+        "total": 1,
+        "ok": false,
+        "evidence": [
+          {
+            "sentence": "I cannot answer that question from the available sources, as there are no mentions of any fish species that are not incl",
+            "token_overlap": 0.409,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": true,
+        "expected_refusal": true,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "I cannot answer that question from the available sources, as there are no mentions of any fish species that are not included in the corpus.",
+    "num_sources": 5
+  },
+  {
+    "id": "trap_003",
+    "category": "Adversarial",
+    "group": "hallucination_trap",
+    "question": "Explain the function of the 'Red Sea thermohaline amplifier gene' in coral heat tolerance.",
+    "expected_behavior": "refuse",
+    "actually_refused": true,
+    "passed": true,
+    "latency_ms": 10190.7,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 3,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [],
+        "num_distinct": 0,
+        "min_required": 0,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [],
+        "supported": [],
+        "unsupported": [],
+        "ok": false
+      },
+      "faithfulness": {
+        "faithfulness": 0.0,
+        "grounded": 0,
+        "total": 1,
+        "ok": false,
+        "evidence": [
+          {
+            "sentence": "I cannot answer from the available sources.",
+            "token_overlap": 0.429,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": true,
+        "expected_refusal": true,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "I cannot answer from the available sources.",
+    "num_sources": 5
+  },
+  {
+    "id": "trap_004",
+    "category": "Adversarial",
+    "group": "hallucination_trap",
+    "question": "Describe the 'Hurghada Deep' hydrothermal brine pool reportedly discovered in 2019.",
+    "expected_behavior": "refuse",
+    "actually_refused": true,
+    "passed": true,
+    "latency_ms": 12596.1,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 2,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [],
+        "num_distinct": 0,
+        "min_required": 0,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [],
+        "supported": [],
+        "unsupported": [],
+        "ok": false
+      },
+      "faithfulness": {
+        "faithfulness": 0.0,
+        "grounded": 0,
+        "total": 1,
+        "ok": false,
+        "evidence": [
+          {
+            "sentence": "I cannot answer about the 'Hurghada Deep' hydrothermal brine pool or any discoveries from 2019, as the available sources",
+            "token_overlap": 0.304,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": true,
+        "expected_refusal": true,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "I cannot answer about the 'Hurghada Deep' hydrothermal brine pool or any discoveries from 2019, as the available sources do not provide that information.",
+    "num_sources": 5
+  },
+  {
+    "id": "cit_001",
+    "category": "Citation Integrity",
+    "group": "citation_integrity",
+    "question": "What is the average salinity of the Red Sea, and which source reports it?",
+    "expected_behavior": "answer",
+    "actually_refused": false,
+    "passed": true,
+    "latency_ms": 9148.8,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 3,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 0.5,
+        "found": [
+          "salinity"
+        ],
+        "missing": [
+          "40"
+        ],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [
+          3
+        ],
+        "num_distinct": 1,
+        "min_required": 1,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [
+          3
+        ],
+        "supported": [
+          3
+        ],
+        "unsupported": [],
+        "ok": true
+      },
+      "faithfulness": {
+        "faithfulness": 1.0,
+        "grounded": 3,
+        "total": 3,
+        "ok": true,
+        "evidence": [
+          {
+            "sentence": "The average salinity of the Red Sea varies regionally, but at Bab el Mandeb it averages about 37 practical salinity unit",
+            "token_overlap": 0.704,
+            "ngram_overlap": 0.094,
+            "grounded": true
+          },
+          {
+            "sentence": "This increase in salinity toward the north is due to high evaporation rates that occur throughout the year, which are mo",
+            "token_overlap": 0.708,
+            "ngram_overlap": 0.125,
+            "grounded": true
+          },
+          {
+            "sentence": "This information is reported in the source titled \"Oceanographic and Biological Aspects of the Red Sea\" [3].",
+            "token_overlap": 0.625,
+            "ngram_overlap": 0.071,
+            "grounded": true
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": false,
+        "expected_refusal": false,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "The average salinity of the Red Sea varies regionally, but at Bab el Mandeb it averages about 37 practical salinity units (‰), while the northern Red Sea has a higher average salinity around 41 ‰. This increase in salinity toward the north is due to high evaporation rates that occur throughout the year, which are more pronounced in the warmer months [3]. \n\nThis information is reported in the source titled \"Oceanographic and Biological Aspects of the Red Sea\" [3].",
+    "num_sources": 5
+  },
+  {
+    "id": "cit_002",
+    "category": "Citation Integrity",
+    "group": "citation_integrity",
+    "question": "How was the Red Sea formed? Cite the geological source(s) you used.",
+    "expected_behavior": "answer",
+    "actually_refused": false,
+    "passed": true,
+    "latency_ms": 12252.5,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 2,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [
+          "rift"
+        ],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "num_distinct": 4,
+        "min_required": 1,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "supported": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "unsupported": [],
+        "ok": true
+      },
+      "faithfulness": {
+        "faithfulness": 0.7,
+        "grounded": 7,
+        "total": 10,
+        "ok": true,
+        "evidence": [
+          {
+            "sentence": "The Red Sea was formed as a result of tectonic processes that involved the rifting, or pulling apart, of the African and",
+            "token_overlap": 0.81,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "This rifting began approximately 20 million years ago during the Miocene epoch when the area that would become the Red S",
+            "token_overlap": 0.682,
+            "ngram_overlap": 0.095,
+            "grounded": true
+          },
+          {
+            "sentence": "As the plates moved apart, a basin was created, which eventually filled with seawater from the Mediterranean Sea, leadin",
+            "token_overlap": 0.63,
+            "ngram_overlap": 0.036,
+            "grounded": true
+          },
+          {
+            "sentence": "The geological process involves several key stages:\n\n1.",
+            "token_overlap": 0.25,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "**Rifting**: The movement of the tectonic plates caused stretching and thinning of the continental crust, which created ",
+            "token_overlap": 0.765,
+            "ngram_overlap": 0.235,
+            "grounded": true
+          },
+          {
+            "sentence": "Over time, this rift expanded, leading to the development of a narrow ocean basin [2][4].",
+            "token_overlap": 0.688,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": false,
+        "expected_refusal": false,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "The Red Sea was formed as a result of tectonic processes that involved the rifting, or pulling apart, of the African and Arabian tectonic plates. This rifting began approximately 20 million years ago during the Miocene epoch when the area that would become the Red Sea was initially dry. As the plates moved apart, a basin was created, which eventually filled with seawater from the Mediterranean Sea, leading to the establishment of the Red Sea we know today [2][5].\n\nThe geological process involves several key stages:\n\n1. **Rifting**: The movement of the tectonic plates caused stretching and thin",
+    "num_sources": 5
+  },
+  {
+    "id": "cit_003",
+    "category": "Citation Integrity",
+    "group": "citation_integrity",
+    "question": "Explain one documented mechanism behind Red Sea coral heat tolerance, with a citation.",
+    "expected_behavior": "answer",
+    "actually_refused": false,
+    "passed": true,
+    "latency_ms": 10419.6,
+    "metrics": {
+      "retrieval": {
+        "num_retrieved": 5,
+        "with_source_metadata": 5,
+        "with_page_metadata": 5,
+        "unique_sources": 3,
+        "ok": true
+      },
+      "concept_coverage": {
+        "coverage": 1.0,
+        "found": [
+          "tolerance"
+        ],
+        "missing": [],
+        "ok": true
+      },
+      "citation_presence": {
+        "citation_ids": [
+          2,
+          5
+        ],
+        "num_distinct": 2,
+        "min_required": 1,
+        "ok": true
+      },
+      "citation_support": {
+        "cited": [
+          2,
+          5
+        ],
+        "supported": [
+          2,
+          5
+        ],
+        "unsupported": [],
+        "ok": true
+      },
+      "faithfulness": {
+        "faithfulness": 0.429,
+        "grounded": 3,
+        "total": 7,
+        "ok": false,
+        "evidence": [
+          {
+            "sentence": "One documented mechanism behind the heat tolerance of Red Sea corals involves the regulation of thermal stress-induced a",
+            "token_overlap": 0.571,
+            "ngram_overlap": 0.1,
+            "grounded": false
+          },
+          {
+            "sentence": "Research indicates that certain Red Sea coral species, such as *Stylophora pistillata*, have adapted their cellular resp",
+            "token_overlap": 0.567,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "Specifically, these corals exhibit similarities in gene expression and function to higher animals, which may contribute ",
+            "token_overlap": 0.667,
+            "ngram_overlap": 0.083,
+            "grounded": true
+          },
+          {
+            "sentence": "Under thermal stress, corals can initiate apoptosis as a protective mechanism.",
+            "token_overlap": 0.727,
+            "ngram_overlap": 0.0,
+            "grounded": true
+          },
+          {
+            "sentence": "Normally, when temperatures rise too high, corals expel the symbiotic algae (zooxanthellae) living within their tissues,",
+            "token_overlap": 0.474,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          },
+          {
+            "sentence": "However, the Red Sea corals possess regulatory pathways that help them control this process better, allowing them to sur",
+            "token_overlap": 0.545,
+            "ngram_overlap": 0.0,
+            "grounded": false
+          }
+        ]
+      },
+      "refusal_correctness": {
+        "actually_refused": false,
+        "expected_refusal": false,
+        "correct": true,
+        "ok": true,
+        "serious_failure": false
+      },
+      "hallucination": {
+        "severe_hallucination": false,
+        "reason": "",
+        "ok": true
+      }
+    },
+    "answer_excerpt": "One documented mechanism behind the heat tolerance of Red Sea corals involves the regulation of thermal stress-induced apoptosis, or programmed cell death. Research indicates that certain Red Sea coral species, such as *Stylophora pistillata*, have adapted their cellular responses to withstand higher temperatures without undergoing the bleaching that typically occurs at lower thresholds. Specifically, these corals exhibit similarities in gene expression and function to higher animals, which may contribute to their unique ability to manage and survive thermal stress [2].\n\nUnder thermal stress, ",
+    "num_sources": 5
+  }
+]

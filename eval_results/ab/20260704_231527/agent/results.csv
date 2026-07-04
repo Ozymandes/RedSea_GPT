@@ -1,0 +1,39 @@
+id,category,group,expected_behavior,actually_refused,passed,latency_ms,num_sources,concept_coverage,faithfulness,citations_present,citations_supported,severe_hallucination
+geo_001,Geology,geology,answer,False,True,17762.2,5,1.0,0.625,2,2,False
+geo_002,Geology,geology,answer,False,True,35021.8,5,0.5,0.625,2,2,False
+geo_003,Geology,geology,answer,False,True,14545.6,5,1.0,0.9,4,4,False
+geo_004,Geology,geology,answer,False,True,14189.9,5,1.0,0.833,1,1,False
+ocean_001,Oceanography,oceanography,answer,False,True,16341.3,5,0.5,0.429,2,2,False
+ocean_002,Oceanography,oceanography,answer,False,True,14158.2,5,1.0,1.0,3,3,False
+ocean_003,Oceanography,oceanography,answer,False,True,14591.8,5,1.0,0.6,2,2,False
+ocean_004,Oceanography,oceanography,answer,False,True,14154.5,5,1.0,0.889,3,3,False
+coral_001,Coral Biology,coral_heat,answer,False,True,20646.6,5,1.0,1.0,4,4,False
+coral_002,Coral Biology,coral_heat,answer,False,True,13786.1,5,1.0,0.625,2,2,False
+coral_003,Coral Biology,coral_heat,answer,False,True,14553.0,5,0.5,1.0,3,3,False
+coral_004,Coral Biology,coral_heat,answer,False,True,11970.9,5,1.0,0.429,2,2,False
+bio_001,Biodiversity,biodiversity,answer,False,True,13930.2,5,1.0,0.333,3,3,False
+bio_002,Biodiversity,biodiversity,answer,False,True,17331.6,5,1.0,0.714,2,2,False
+bio_003,Biodiversity,biodiversity,answer,False,True,12826.9,5,1.0,0.667,2,2,False
+bio_004,Biodiversity,biodiversity,answer,False,True,17911.7,5,1.0,0.833,2,2,False
+cons_001,Conservation,conservation,answer,False,True,12851.4,5,1.0,0.5,4,4,False
+cons_002,Conservation,conservation,answer,False,True,28156.5,7,1.0,0.6,2,2,False
+cons_003,Conservation,conservation,answer,False,True,24754.8,9,1.0,0.6,4,4,False
+cons_004,Conservation,conservation,answer,False,True,17786.4,5,1.0,0.8,4,4,False
+synth_001,Synthesis,synthesis,answer,False,True,16274.1,5,1.0,0.8,3,3,False
+synth_002,Synthesis,synthesis,answer,False,False,15422.6,5,0.0,1.0,4,4,True
+synth_003,Synthesis,synthesis,answer,False,True,14999.3,5,1.0,0.818,5,5,False
+off_001,Off-topic,off_topic,refuse,False,False,3710.6,0,1.0,0.0,0,0,True
+off_002,Off-topic,off_topic,refuse,False,False,4702.3,0,1.0,0.0,0,0,True
+off_003,Off-topic,off_topic,refuse,False,False,4187.9,0,1.0,0.0,0,0,True
+off_004,Off-topic,off_topic,refuse,True,True,5672.0,0,1.0,0.0,0,0,False
+unsup_001,Unsupported,unsupported,refuse,False,False,4065.8,0,1.0,0.0,0,0,True
+unsup_002,Unsupported,unsupported,refuse,True,True,4355.3,0,1.0,0.0,0,0,False
+unsup_003,Unsupported,unsupported,refuse,False,False,13998.5,0,1.0,0.0,0,0,True
+unsup_004,Unsupported,unsupported,refuse,False,False,3526.3,0,1.0,0.0,0,0,True
+trap_001,Adversarial,hallucination_trap,refuse,True,True,11404.8,5,1.0,0.0,0,0,False
+trap_002,Adversarial,hallucination_trap,refuse,True,True,4727.3,0,1.0,0.0,0,0,False
+trap_003,Adversarial,hallucination_trap,refuse,False,False,4703.8,0,1.0,0.0,0,0,True
+trap_004,Adversarial,hallucination_trap,refuse,True,True,10675.6,5,1.0,0.0,0,0,False
+cit_001,Citation Integrity,citation_integrity,answer,False,True,11600.8,5,1.0,0.6,2,2,False
+cit_002,Citation Integrity,citation_integrity,answer,False,True,13550.8,5,1.0,0.625,4,4,False
+cit_003,Citation Integrity,citation_integrity,answer,False,True,12996.2,5,1.0,0.8,1,1,False

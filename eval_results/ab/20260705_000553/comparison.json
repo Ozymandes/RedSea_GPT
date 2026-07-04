@@ -1,0 +1,406 @@
+{
+  "headline": {
+    "baseline_pass_rate": 0.9211,
+    "agent_pass_rate": 0.9211,
+    "pass_rate_delta": 0.0,
+    "baseline_severe_hallucinations": 2,
+    "agent_severe_hallucinations": 1,
+    "baseline_faithfulness": 0.6112,
+    "agent_faithfulness": 0.6778,
+    "baseline_refusal_accuracy": 0.9167,
+    "agent_refusal_accuracy": 0.9167,
+    "baseline_latency_mean_ms": 12960.9,
+    "agent_latency_mean_ms": 17118.3
+  },
+  "paired": {
+    "both_pass": 33,
+    "both_fail": 1,
+    "agent_only_pass": 2,
+    "baseline_only_pass": 2,
+    "discordant_pairs": 4,
+    "sign_test_pvalue": 1.0,
+    "low_power_caveat": true
+  },
+  "per_question": [
+    {
+      "id": "geo_001",
+      "group": "geology",
+      "question": "How did the Red Sea form geologically?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 12392.3,
+      "agent_latency_ms": 11126.6
+    },
+    {
+      "id": "geo_002",
+      "group": "geology",
+      "question": "What makes the Red Sea geologically different from a normal mature ocean basin?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 15124.0,
+      "agent_latency_ms": 17695.3
+    },
+    {
+      "id": "geo_003",
+      "group": "geology",
+      "question": "How is the Red Sea connected to seafloor spreading and rifting?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 12191.5,
+      "agent_latency_ms": 18602.4
+    },
+    {
+      "id": "geo_004",
+      "group": "geology",
+      "question": "What is the geological relationship between the Red Sea and the Gulf of Aden?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 12382.5,
+      "agent_latency_ms": 16501.8
+    },
+    {
+      "id": "ocean_001",
+      "group": "oceanography",
+      "question": "Why is the Red Sea so much saltier than other seas?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 10958.4,
+      "agent_latency_ms": 13832.5
+    },
+    {
+      "id": "ocean_002",
+      "group": "oceanography",
+      "question": "What is the typical salinity of the Red Sea?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 11829.3,
+      "agent_latency_ms": 12876.4
+    },
+    {
+      "id": "ocean_003",
+      "group": "oceanography",
+      "question": "How does the Red Sea's water circulation work, and how does evaporation drive it?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 10744.5,
+      "agent_latency_ms": 19612.7
+    },
+    {
+      "id": "ocean_004",
+      "group": "oceanography",
+      "question": "What are the main water-exchange processes between the Red Sea and the open ocean?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 13352.8,
+      "agent_latency_ms": 16784.8
+    },
+    {
+      "id": "coral_001",
+      "group": "coral_heat",
+      "question": "Why are some Red Sea corals unusually tolerant of high temperatures?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 13475.2,
+      "agent_latency_ms": 12078.1
+    },
+    {
+      "id": "coral_002",
+      "group": "coral_heat",
+      "question": "How do Red Sea corals respond to thermal stress, and what cellular mechanisms are involved?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 11771.4,
+      "agent_latency_ms": 26511.5
+    },
+    {
+      "id": "coral_003",
+      "group": "coral_heat",
+      "question": "What role do symbiotic algae play in coral health and bleaching?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 12721.3,
+      "agent_latency_ms": 14725.7
+    },
+    {
+      "id": "coral_004",
+      "group": "coral_heat",
+      "question": "What did the 2023 bleaching event along the Egyptian Red Sea coast reveal about coral vulnerability?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 71875.7,
+      "agent_latency_ms": 14505.0
+    },
+    {
+      "id": "bio_001",
+      "group": "biodiversity",
+      "question": "What does endemism mean in the Red Sea context, and why is it notable there?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 15662.4,
+      "agent_latency_ms": 15231.5
+    },
+    {
+      "id": "bio_002",
+      "group": "biodiversity",
+      "question": "Why does the Red Sea support such distinctive marine biodiversity?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 18747.3,
+      "agent_latency_ms": 17996.6
+    },
+    {
+      "id": "bio_003",
+      "group": "biodiversity",
+      "question": "Are Red Sea reef communities uniform along the entire Egyptian coast, or do they vary?",
+      "baseline_passed": false,
+      "agent_passed": true,
+      "verdict": "agent_win",
+      "baseline_latency_ms": 10789.4,
+      "agent_latency_ms": 16788.4
+    },
+    {
+      "id": "bio_004",
+      "group": "biodiversity",
+      "question": "What types of coral reefs occur in the Red Sea?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 10048.8,
+      "agent_latency_ms": 18670.0
+    },
+    {
+      "id": "cons_001",
+      "group": "conservation",
+      "question": "What are the main threats to Egyptian Red Sea coral reefs?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 11047.6,
+      "agent_latency_ms": 15829.9
+    },
+    {
+      "id": "cons_002",
+      "group": "conservation",
+      "question": "How does tourism affect Red Sea coral reef ecosystems?",
+      "baseline_passed": true,
+      "agent_passed": false,
+      "verdict": "baseline_win",
+      "baseline_latency_ms": 11647.7,
+      "agent_latency_ms": 5076.0
+    },
+    {
+      "id": "cons_003",
+      "group": "conservation",
+      "question": "What conservation strategies are relevant for Red Sea reefs?",
+      "baseline_passed": false,
+      "agent_passed": false,
+      "verdict": "tie_fail",
+      "baseline_latency_ms": 9995.2,
+      "agent_latency_ms": 16203.4
+    },
+    {
+      "id": "cons_004",
+      "group": "conservation",
+      "question": "How has climate change affected the Red Sea ecosystem so far?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 14230.4,
+      "agent_latency_ms": 14802.5
+    },
+    {
+      "id": "synth_001",
+      "group": "synthesis",
+      "question": "How do the Red Sea's geology and oceanography together shape its marine life?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 12443.1,
+      "agent_latency_ms": 17848.5
+    },
+    {
+      "id": "synth_002",
+      "group": "synthesis",
+      "question": "Why might the Red Sea matter for understanding climate-resilient coral reefs worldwide?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 12752.3,
+      "agent_latency_ms": 115600.8
+    },
+    {
+      "id": "synth_003",
+      "group": "synthesis",
+      "question": "How do high salinity, high temperature, and geographic isolation interact to shape Red Sea ecology?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 15107.3,
+      "agent_latency_ms": 34433.0
+    },
+    {
+      "id": "off_001",
+      "group": "off_topic",
+      "question": "What are the best hotels to stay at in Hurghada?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 9193.7,
+      "agent_latency_ms": 4557.2
+    },
+    {
+      "id": "off_002",
+      "group": "off_topic",
+      "question": "Where can I book the cheapest diving trip in Sharm El-Sheikh?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 8908.2,
+      "agent_latency_ms": 4287.1
+    },
+    {
+      "id": "off_003",
+      "group": "off_topic",
+      "question": "Who won the 2022 FIFA World Cup final?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 8276.4,
+      "agent_latency_ms": 4028.6
+    },
+    {
+      "id": "off_004",
+      "group": "off_topic",
+      "question": "Write me a Python function that sorts a list of numbers.",
+      "baseline_passed": false,
+      "agent_passed": true,
+      "verdict": "agent_win",
+      "baseline_latency_ms": 9635.7,
+      "agent_latency_ms": 5307.8
+    },
+    {
+      "id": "unsup_001",
+      "group": "unsupported",
+      "question": "What will the Red Sea surface temperature be in the year 2100?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 6216.5,
+      "agent_latency_ms": 20988.9
+    },
+    {
+      "id": "unsup_002",
+      "group": "unsupported",
+      "question": "What are today's tide times for the port of Safaga?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 11088.8,
+      "agent_latency_ms": 7014.0
+    },
+    {
+      "id": "unsup_003",
+      "group": "unsupported",
+      "question": "Which species of shark attacked tourists in the Red Sea last month?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 6649.9,
+      "agent_latency_ms": 4733.9
+    },
+    {
+      "id": "unsup_004",
+      "group": "unsupported",
+      "question": "Using only the RedSea GPT corpus, describe the coral reefs of the Mediterranean Sea.",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 9172.1,
+      "agent_latency_ms": 8381.8
+    },
+    {
+      "id": "trap_001",
+      "group": "hallucination_trap",
+      "question": "What is 'Calcium Carbonate Resin' and what role does it play in Red Sea coral skeletons?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 8138.3,
+      "agent_latency_ms": 17733.4
+    },
+    {
+      "id": "trap_002",
+      "group": "hallucination_trap",
+      "question": "List five fish species from the corpus that are not actually mentioned anywhere in the sources.",
+      "baseline_passed": true,
+      "agent_passed": false,
+      "verdict": "baseline_win",
+      "baseline_latency_ms": 9335.0,
+      "agent_latency_ms": 6692.2
+    },
+    {
+      "id": "trap_003",
+      "group": "hallucination_trap",
+      "question": "Explain the function of the 'Red Sea thermohaline amplifier gene' in coral heat tolerance.",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 10190.7,
+      "agent_latency_ms": 5980.6
+    },
+    {
+      "id": "trap_004",
+      "group": "hallucination_trap",
+      "question": "Describe the 'Hurghada Deep' hydrothermal brine pool reportedly discovered in 2019.",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 12596.1,
+      "agent_latency_ms": 34912.6
+    },
+    {
+      "id": "cit_001",
+      "group": "citation_integrity",
+      "question": "What is the average salinity of the Red Sea, and which source reports it?",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 9148.8,
+      "agent_latency_ms": 14511.9
+    },
+    {
+      "id": "cit_002",
+      "group": "citation_integrity",
+      "question": "How was the Red Sea formed? Cite the geological source(s) you used.",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 12252.5,
+      "agent_latency_ms": 13736.5
+    },
+    {
+      "id": "cit_003",
+      "group": "citation_integrity",
+      "question": "Explain one documented mechanism behind Red Sea coral heat tolerance, with a citation.",
+      "baseline_passed": true,
+      "agent_passed": true,
+      "verdict": "tie_pass",
+      "baseline_latency_ms": 10419.6,
+      "agent_latency_ms": 14295.5
+    }
+  ]
+}

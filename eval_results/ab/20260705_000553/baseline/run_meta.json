@@ -1,0 +1,16 @@
+{
+  "run_name": "baseline",
+  "timestamp": "2026-07-04T21:05:53Z",
+  "provider": {
+    "provider": "optillm",
+    "protocol": "anthropic_messages",
+    "base_url": "https://optollm.optomatica.com/v1",
+    "model": "gpt-4o-mini",
+    "configured": true
+  },
+  "config": {
+    "retrieval_k": 5,
+    "system": "baseline_RAG"
+  },
+  "golden_set_size": 38
+}
