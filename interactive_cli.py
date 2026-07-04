@@ -11,6 +11,17 @@ from generation.llm_config import describe_active_provider
 from logging_wrapper import LoggedRedSeaGPT  # Logging wrapper
 
 
+def _build_engine(agent: bool, **kwargs):
+    """Build either the baseline RAG or the agentic CRAG engine.
+
+    Both expose the same ``.query(question, return_source_docs=True)`` contract.
+    """
+    if agent:
+        from generation.agent import RedSeaAgent
+        return RedSeaAgent(**kwargs)
+    return RedSeaGPT(**kwargs)
+
+
 def print_separator(char: str = "=", length: int = 80) -> None:
     """Print a separator line."""
     print(char * length)
@@ -81,6 +92,7 @@ def run_interactive_cli(
     use_mmr: bool = True,
     refusal_threshold: float = 0.2,
     structured_citations: bool = True,
+    agent: bool = False,
 ) -> None:
     """
     Run the interactive CLI.
@@ -106,17 +118,18 @@ def run_interactive_cli(
     print(f"   Vector DB: {vectordb_path}")
 
     try:
-        # Initialize RedSeaGPT
-        raw_gpt = RedSeaGPT(
+        # Initialize the engine (baseline RAG or agentic CRAG)
+        raw_gpt = _build_engine(
+            agent=agent,
             vectordb_path=vectordb_path,
             retrieval_k=retrieval_k,
-            use_mmr=use_mmr,
-            refusal_threshold=refusal_threshold,
-            structured_citations=structured_citations,
-            enable_logging=False,  # Logging handled by wrapper
+            **({"use_mmr": use_mmr, "refusal_threshold": refusal_threshold,
+                "structured_citations": structured_citations} if not agent else {}),
         )
 
-        # Wrap with logging
+        mode = "agentic CRAG (LangGraph)" if agent else "baseline RAG"
+        print(f"   Engine: {mode}")
+        # Wrap with logging (works for both since they share the .query contract)
         gpt = LoggedRedSeaGPT(raw_gpt, enable_logging=True)
         print(" Ready! (Logging enabled - logs stored in ./logs/)\n")
     except Exception as e:
@@ -182,6 +195,7 @@ def run_single_query(
     use_mmr: bool = True,
     refusal_threshold: float = 0.2,
     structured_citations: bool = True,
+    agent: bool = False,
 ) -> None:
     """
     Run a single query and print the result.
@@ -197,14 +211,13 @@ def run_single_query(
     """
     print(f"\n⏳ Initializing RedSea GPT...")
 
-    # Initialize RedSeaGPT
-    raw_gpt = RedSeaGPT(
+    # Initialize the engine
+    raw_gpt = _build_engine(
+        agent=agent,
         vectordb_path=vectordb_path,
         retrieval_k=retrieval_k,
-        use_mmr=use_mmr,
-        refusal_threshold=refusal_threshold,
-        structured_citations=structured_citations,
-        enable_logging=False,  # Logging handled by wrapper
+        **({"use_mmr": use_mmr, "refusal_threshold": refusal_threshold,
+            "structured_citations": structured_citations} if not agent else {}),
     )
 
     # Wrap with logging
@@ -271,6 +284,12 @@ def main():
         action="store_true",
         help="Use narrative citations instead of [1], [2] format",
     )
+    parser.add_argument(
+        "--agent",
+        action="store_true",
+        help="Use the agentic LangGraph CRAG pipeline (hybrid retrieval + query "
+             "rewriting + document grading + self-correction) instead of baseline RAG",
+    )
 
     args = parser.parse_args()
 
@@ -283,6 +302,7 @@ def main():
             use_mmr=not args.no_mmr,
             refusal_threshold=args.refusal_threshold,
             structured_citations=not args.no_structured_citations,
+            agent=args.agent,
         )
     else:
         run_interactive_cli(
@@ -292,6 +312,7 @@ def main():
             use_mmr=not args.no_mmr,
             refusal_threshold=args.refusal_threshold,
             structured_citations=not args.no_structured_citations,
+            agent=args.agent,
         )
 
 

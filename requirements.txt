@@ -7,9 +7,12 @@ langchain-core>=0.3.28
 langchain-community>=0.3.13
 langchain-text-splitters>=0.0.4
 
+# --- Orchestration: self-reflective RAG agent (CRAG graph) ---
+langgraph>=0.2.0                       # StateGraph for the agentic RAG pipeline
+
 # --- Embeddings & vector store ---
 langchain-huggingface>=0.1.2
-sentence-transformers>=2.2.2          # all-mpnet-base-v2 embedder
+sentence-transformers>=2.2.2          # all-mpnet-base-v2 embedder + bge-reranker cross-encoder
 chromadb>=0.4.0                       # persistent vector store
 langchain-chroma>=0.1.2
 
@@ -19,6 +22,7 @@ pypdf>=3.12.0
 # --- Numerics & retrieval utilities ---
 numpy>=1.24.0
 scikit-learn>=1.3.0                   # cosine similarity for MMR
+rank-bm25>=0.2.2                      # sparse retrieval for hybrid (dense+BM25) fusion
 
 # --- LLM transport (OptiLLM / Groq / OpenAI-compatible HTTP clients) ---
 requests>=2.31.0
