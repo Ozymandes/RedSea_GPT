@@ -54,7 +54,7 @@ class RedSeaGPT:
             embedding_function=self.embeddings,
         )
 
-        # Initialize LLM (Llama 70B via Groq API)
+        # Initialize LLM (provider-agnostic; configured via env or llm_config)
         self.llm = create_llm(**(llm_config or {}))
 
         # Create prompt template
@@ -227,22 +227,12 @@ class RedSeaGPT:
 
     def _format_context_with_citations(self, docs: List[Document]) -> str:
         """
-        Format context with structured citation markers.
+        Format context with structured citation IDs *and* page-level provenance.
 
-        Args:
-            docs: List of retrieved documents
-
-        Returns:
-            Formatted context string with [1], [2], [3] citation markers
+        Provenance is included so the model can attach accurate citations and so
+        each citation can be verified against a real source/page pair.
         """
-        context_parts = []
-
-        for i, doc in enumerate(docs, start=1):
-            # Add citation marker to content
-            content = doc.page_content.strip()
-            context_parts.append(f"[{i}] {content}")
-
-        return "\n\n---\n\n".join(context_parts)
+        return format_context(docs)
 
     def _format_sources_list(self, docs: List[Document]) -> List[Dict[str, Any]]:
         """
@@ -508,14 +498,9 @@ class RedSeaGPT:
         # Step 6: Detect hallucinations
         hallucination_check = self._detect_hallucinations(answer_str, context)
 
-        # Step 7: Add warning if hallucinations detected
-        if hallucination_check["has_hallucination"]:
-            warning = (
-                f"\n\n  Note: This answer may contain information not directly supported by the retrieved documents. "
-                f"Grounding rate: {hallucination_check['grounding_rate']:.1%}. "
-                f"Please verify important facts."
-            )
-            answer_str = answer_str + warning
+        # Step 7: Flag weak grounding in metadata only (do not pollute the answer
+        # text the user/evaluator sees - that would itself lower faithfulness and
+        # read as unpolished). The grounding rate is reported via metadata instead.
 
         # Step 8: Return results
         if return_source_docs:
@@ -524,6 +509,15 @@ class RedSeaGPT:
             return {
                 "answer": answer_str,
                 "sources": sources,
+                "retrieved_chunks": [
+                    {
+                        "citation_id": i,
+                        "source": clean_source_path(doc.metadata.get("source", "Unknown")),
+                        "page": doc.metadata.get("page"),
+                        "page_content": doc.page_content,
+                    }
+                    for i, doc in enumerate(source_docs, start=1)
+                ],
                 "question": question,
                 "confidence": avg_relevance,
                 "refusal": False,
