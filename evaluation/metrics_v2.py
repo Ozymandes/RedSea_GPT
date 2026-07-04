@@ -24,6 +24,7 @@ the eval artifact so the judge is fully auditable.
 
 from __future__ import annotations
 
+import json
 import re
 from typing import Any, Dict, List
 
@@ -235,6 +236,127 @@ def evaluate_hallucination(
             reason = f"Very low faithfulness ({faith['faithfulness']:.0%}) AND missing required concepts."
 
     return {"severe_hallucination": severe, "reason": reason, "ok": not severe}
+
+
+# ---------------------------------------------------------------------------
+# LLM-based faithfulness (claim extraction + batched entailment)
+# ---------------------------------------------------------------------------
+# A dependency-light reimplementation of the RAGAS faithfulness idea (no RAGAS/
+# DeepEval import): decompose the answer into atomic claims, then ask one LLM
+# call to judge each claim as supported / contradicted / unsupported against the
+# retrieved context. The n-gram heuristic above is cheap and conservative; this
+# metric is sharper and explainable, and returns the per-claim verdicts so a
+# reviewer can audit exactly which claims were flagged.
+# ---------------------------------------------------------------------------
+_EXTRACT_CLAIMS_PROMPT = """You decompose an answer into atomic, self-contained claims for a grounding check.
+Given a question and an answer, break the answer into the smallest set of factual claims. Rules:
+- One verifiable fact per claim. Split compound sentences.
+- Resolve pronouns to concrete entities (use the question).
+- Do NOT add information not in the answer; do NOT use prior knowledge.
+- Ignore stylistic/greeting/meta phrases.
+
+Question: {question}
+Answer: {answer}
+
+Return ONLY a JSON object: {{"claims": ["...", "..."]}}. If no factual claims, return {{"claims": []}}."""
+
+_JUDGE_CLAIMS_PROMPT = """You are a strict grounding judge. Decide whether each claim is supported by the CONTEXT (only the context, never your own knowledge).
+
+Verdicts:
+- "supported"    - directly inferable from the context (small rounding ok)
+- "contradicted" - the context directly asserts the opposite
+- "unsupported"  - neither; the claim is absent from the context
+
+CONTEXT:
+\"\"\"{context}\"\"\"
+
+CLAIMS:
+{claims_json}
+
+Return ONLY a JSON object: {{"verdicts": [{{"claim": "...", "verdict": "supported|contradicted|unsupported", "evidence": "<short context quote or empty>"}}]}} — one verdict per claim, in order."""
+
+_CLAIM_CREDIT = {"supported": 1.0, "unsupported": 0.0, "contradicted": 0.0}
+
+
+def _extract_claims(llm, question: str, answer: str) -> List[str]:
+    if not answer.strip():
+        return []
+    try:
+        out = llm.invoke(_EXTRACT_CLAIMS_PROMPT.format(question=question, answer=answer[:2500]))
+        raw = getattr(out, "content", out)
+        if isinstance(raw, dict) and "content" in raw:
+            raw = raw["content"]
+        m = re.search(r"\{.*\}", str(raw), re.DOTALL)
+        if not m:
+            return []
+        parsed = _json_loads_lenient(m.group(0))
+        return [str(c).strip() for c in (parsed or {}).get("claims", []) if str(c).strip()]
+    except Exception:  # noqa: BLE001
+        return []
+
+
+def _judge_claims(llm, claims: List[str], context: str) -> List[Dict[str, str]]:
+    if not claims:
+        return []
+    try:
+        out = llm.invoke(_JUDGE_CLAIMS_PROMPT.format(
+            context=context[:5000], claims_json=json.dumps(claims, ensure_ascii=False)))
+        raw = getattr(out, "content", out)
+        if isinstance(raw, dict) and "content" in raw:
+            raw = raw["content"]
+        m = re.search(r"\{.*\}", str(raw), re.DOTALL)
+        if not m:
+            return []
+        parsed = _json_loads_lenient(m.group(0)) or {}
+        return parsed.get("verdicts", [])
+    except Exception:  # noqa: BLE001
+        return []
+
+
+def _json_loads_lenient(s: str):
+    import json as _j
+    s = s.strip()
+    try:
+        return _j.loads(s)
+    except Exception:
+        # strip markdown fences + repair trailing commas
+        s2 = re.sub(r"^```(?:json)?\s*|\s*```$", "", s, flags=re.MULTILINE)
+        s2 = re.sub(r",\s*([}\]])", r"\1", s2)
+        try:
+            return _j.loads(s2)
+        except Exception:
+            return None
+
+
+def evaluate_faithfulness_llm(llm, question: str, answer: str, context: str) -> Dict[str, Any]:
+    """Claim-level faithfulness via LLM entailment (RAGAS-style, dependency-free).
+
+    Returns a 0-1 score plus the full per-claim verdicts for audit. Falls back to
+    a None score (never silently 1.0) if the judge cannot be parsed.
+    """
+    if not answer.strip():
+        return {"faithfulness": 0.0, "claims": [], "verdicts": [], "ok": False, "method": "llm"}
+    claims = _extract_claims(llm, question, answer)
+    if not claims:
+        return {"faithfulness": None, "claims": [], "verdicts": [], "ok": False,
+                "reason": "no claims extracted", "method": "llm"}
+    verdicts = _judge_claims(llm, claims, context)
+    if not verdicts or len(verdicts) != len(claims):
+        return {"faithfulness": None, "claims": claims, "verdicts": verdicts, "ok": False,
+                "reason": "judge verdict count mismatch (possible truncation)", "method": "llm"}
+    credits = [_CLAIM_CREDIT.get(v.get("verdict", "unsupported"), 0.0) for v in verdicts]
+    score = sum(credits) / len(credits) if credits else 0.0
+    n_sup = sum(1 for v in verdicts if v.get("verdict") == "supported")
+    n_uns = sum(1 for v in verdicts if v.get("verdict") == "unsupported")
+    n_con = sum(1 for v in verdicts if v.get("verdict") == "contradicted")
+    return {
+        "faithfulness": round(score, 4),
+        "n_claims": len(claims),
+        "supported": n_sup, "unsupported": n_uns, "contradicted": n_con,
+        "verdicts": verdicts[:8],
+        "ok": score >= 0.7,
+        "method": "llm_claim_entailment",
+    }
 
 
 # ---------------------------------------------------------------------------
