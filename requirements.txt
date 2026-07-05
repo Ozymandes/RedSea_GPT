@@ -34,3 +34,8 @@ pytest>=7.0.0                         # test suite
 
 # --- Optional: faster embedding model loading (uncomment if needed) ---
 # accelerate>=0.20.3
+
+# --- Web demo (api/ + web/) ---
+fastapi>=0.115
+uvicorn[standard]>=0.30
+starlette>=0.46
