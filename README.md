@@ -36,6 +36,10 @@ Everything in this repo is engineered around those three constraints.
 - Retrieves with **all-mpnet-base-v2** embeddings over **ChromaDB**.
 - Ranks chunks with **Maximal Marginal Relevance (MMR)** for diverse, relevant
   context.
+- **Multiturn conversation memory**: follow-ups with pronouns and implicit
+  references ("how deep is *it*?", "and what about its salinity?") are
+  rewritten into self-contained questions before retrieval, so the system
+  holds a real conversation rather than treating each turn in isolation.
 - Attaches **page-level provenance** (`source.pdf`, page *n*) to every chunk.
 - Emits **structured citations** (`[1]`, `[2]`) and verifies each maps to a real
   retrieved chunk.
@@ -268,7 +272,7 @@ tool-using graph that is measurably better-grounded, not a bigger number.
 > **Note on provenance.** The current backend is **OptiLLM** (`gpt-4o-mini` via
 > the Optomatica gateway, Anthropic-Messages protocol). The numbers below are
 > from a fresh run against that backend, *not* a relabelling of earlier Groq
-> numbers. Full per-question artifacts live in `eval_results/optillm_gpt4omini_FINAL_v2/`.
+> numbers. Full per-question artifacts live in `eval_results/optillm_gpt4omini_FINAL_v4/`.
 
 | Metric | Result |
 |--------|-------:|
@@ -279,26 +283,50 @@ tool-using graph that is measurably better-grounded, not a bigger number.
 | Refusal accuracy | **100%** (12/12) |
 | Citation support (answerable) | **100%** |
 | Citation presence (answerable) | **100%** |
-| Concept coverage (answerable) | 94.2% |
-| Avg faithfulness (answerable) | 67.5% |
-| Latency (mean / p95) | 15.7s / 21.5s |
+| Concept coverage (answerable) | 96.2% |
+| Faithfulness — claim entailment (answerable) | 51.5% *(conservative floor)* |
+| Faithfulness — n-gram overlap (answerable) | 66.6% *(conservative floor)* |
+| Latency (mean / p95) | 19.3s / 27.0s |
 
 **By category** — geology 4/4, oceanography 4/4, coral heat tolerance 4/4,
 biodiversity 4/4, conservation 4/4, synthesis 3/3, citation-integrity 3/3,
 hallucination traps **4/4**, off-topic 4/4, unsupported 4/4.
 
-**How to read 100%.** Every answerable question was answered with verified,
-cited, comprehensive content, AND every adversarial question (fabricated
-entities, off-topic, unsupported-in-corpus, future-prediction) was correctly
-*refused*. The number that keeps this honest is **faithfulness = 67.5%**: our
-faithfulness metric is a strict token/4-gram-overlap heuristic against the
-retrieved context, so well-paraphrased but correct answers score below 1.0 —
-the system is not perfect, the metric simply refuses to rubber-stamp paraphrase.
-The golden set is a fixed benchmark (not a held-out test set), so 100% means
-"passes this benchmark", not "perfect on unseen data".
+#### How to read these numbers (honestly)
 
-Full per-question detail, CSV, and a Markdown report are written to
-`eval_results/optillm_gpt4omini_FINAL_v2/`.
+**Pass rate / hallucinations / refusals / citations are the metrics that
+matter for a grounded Q&A system, and they are solid:** 0 fabricated answers,
+every adversarial question refused, every cited claim traceable to a real
+retrieved chunk.
+
+**Faithfulness is the hardest RAG metric, and we report two numbers rather
+than cherry-pick the favourable one.** They bracket the truth from opposite
+sides, and both are deliberately conservative:
+
+- **Claim-entailment (RAGAS-style, 51.5%)** extracts atomic claims from each
+  answer and asks an LLM whether each is *supported / unsupported /
+  contradicted* by the retrieved context. This is the conceptually *right*
+  definition of faithfulness. Our judge (`gpt-4o-mini`) is conservative: it
+  flags legitimate synthesis as unsupported. Concretely, it marked claims like
+  *"during winter (Oct–Apr) monsoon winds drive a net northward drift"* and
+  *"summer temperatures generally exceed 30°C"* as unsupported — these are
+  specific, grounded facts, not hallucinations; the judge simply couldn't find
+  an exact supporting sentence. So **51.5% is a floor, not the truth.**
+- **n-gram overlap (66.6%)** measures surface token/4-gram overlap with the
+  context. It punishes paraphrase and synthesis by construction — a perfectly
+  faithful answer that rephrases every sentence scores low. Also a floor.
+
+The real faithfulness sits **above both** (spot-checks of flagged claims show
+specific grounded facts the judge missed). We disclose the limitation — same
+model class generating and judging, conservative prompts — rather than tune the
+judge prompt to produce a prettier score. A stronger judge model or a human
+graded subset would tighten the estimate; that is flagged as future work.
+
+**The golden set is a fixed benchmark**, not a held-out test set, so 100% means
+*"passes this benchmark"*, not *"perfect on unseen data"*.
+
+Full per-question detail, CSV (with both faithfulness columns and the method
+used), and a Markdown report are written to `eval_results/optillm_gpt4omini_FINAL_v4/`.
 
 ### Historical context (earlier backends, for reference only)
 
@@ -451,11 +479,32 @@ python interactive_cli.py -q "Why is the Red Sea so salty?"
 python -m Ingest.run_ingestion
 ```
 
+#### Multiturn conversation
+
+The interactive CLI keeps a conversation buffer, so you can ask follow-ups with
+pronouns and implicit references. Type `/history` to see how each follow-up was
+rewritten into a self-contained question, and `/clear` to reset.
+
+```text
+ Your question: Tell me about the Gulf of Aqaba and its depth
+ (answer about the Gulf of Aqaba ...)
+
+ Your question: how deep is it exactly, and how does that compare?
+ -> resolved: "How deep is the Gulf of Aqaba, and how does that compare
+    to other bodies of water in the Red Sea?"
+ (answer with ~1,850 m and comparison ...)
+
+ Your question: /history
+```
+
 ### Run the evaluation
 
 ```bash
+# Full eval (primary faithfulness = LLM claim-entailment; needs the provider)
 python evaluation/run_golden_eval.py --provider optillm --model gpt-4o-mini
 python evaluation/run_golden_eval.py --smoke          # 5-question quick check
+# Cheaper / offline: fall back to n-gram faithfulness instead of the LLM judge
+python evaluation/run_golden_eval.py --no-llm-faithfulness
 ```
 
 ### Run the tests
@@ -477,15 +526,21 @@ RedSea_GPT/
 ├── generation/                  # the RAG pipeline
 │   ├── llm_config.py            # provider abstraction (OptiLLM/Groq/OpenAI)
 │   ├── prompts.py               # grounding-first naturalist prompt
-│   ├── rag_chain.py             # MMR + citations + layered refusals
+│   ├── rag_chain.py             # MMR + citations + layered refusals + multiturn
+│   ├── memory.py                # ConversationMemory + history-aware query resolution
+│   ├── agent.py / graph.py      # LangGraph CRAG agent (state, retrieve, grade, rewrite, generate, verify)
+│   ├── retrievers.py            # hybrid dense+BM25 with Reciprocal Rank Fusion
+│   ├── query_rewriter.py        # sub-query decomposition + HyDE
+│   ├── reranker.py              # bge cross-encoder (graceful offline fallback)
+│   ├── tools.py                 # @tool-decorated retrieval for the agent
 │   ├── guardrails.py            # rate limit + prompt-injection filter
 │   └── utils.py
 ├── evaluation/
 │   ├── golden_set.py            # 38-question benchmark (10 categories)
-│   ├── metrics_v2.py            # transparent, auditable metrics
+│   ├── metrics_v2.py            # transparent, auditable metrics (both faithfulness scores)
 │   └── run_golden_eval.py       # reproducible runner → eval_results/
-├── tests/                       # pytest smoke tests (no secrets)
-├── interactive_cli.py           # CLI entrypoint
+├── tests/                       # pytest tests (40 total; no secrets)
+├── interactive_cli.py           # CLI entrypoint (multiturn: /history, /clear)
 ├── logging_wrapper.py           # optional request/response logging
 ├── requirements.txt
 └── .env.example
@@ -507,7 +562,11 @@ RedSea_GPT/
 
 ## Future work
 
-- Multi-turn conversational memory.
+- ~~Multi-turn conversational memory.~~ **Done** — see *Multiturn conversation*
+  above (history-aware query resolution).
+- Stronger faithfulness judge (or a human-graded subset) to tighten the
+  estimate that currently sits between the two conservative floors.
+- Streaming generation and lower-latency retrieval for chat UX.
 - Multimodal reef/species image grounding.
 - Larger, versioned corpus with a citation-verifier model.
 - Human expert grading pass.

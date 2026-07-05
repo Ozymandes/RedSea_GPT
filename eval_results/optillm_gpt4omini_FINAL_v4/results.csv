@@ -1,0 +1,39 @@
+id,category,group,expected_behavior,actually_refused,passed,latency_ms,num_sources,concept_coverage,faithfulness_claim_entailment,faithfulness_ngram,faithfulness_method,citations_present,citations_supported,severe_hallucination
+geo_001,Geology,geology,answer,False,True,27645.2,7,1.0,0.6667,0.667,llm_claim_entailment,4,4,False
+geo_002,Geology,geology,answer,False,True,22962.6,7,1.0,0.7273,0.611,llm_claim_entailment,5,5,False
+geo_003,Geology,geology,answer,False,True,21580.3,7,1.0,0.45,0.875,llm_claim_entailment,6,6,False
+geo_004,Geology,geology,answer,False,True,19259.3,7,1.0,0.3,0.714,llm_claim_entailment,3,3,False
+ocean_001,Oceanography,oceanography,answer,False,True,19906.3,7,0.5,0.619,0.667,llm_claim_entailment,6,6,False
+ocean_002,Oceanography,oceanography,answer,False,True,18145.7,7,1.0,0.6667,0.8,llm_claim_entailment,3,3,False
+ocean_003,Oceanography,oceanography,answer,False,True,25198.7,7,1.0,0.4545,0.81,llm_claim_entailment,5,5,False
+ocean_004,Oceanography,oceanography,answer,False,True,25848.4,7,1.0,0.16,0.938,llm_claim_entailment,5,5,False
+coral_001,Coral Biology,coral_heat,answer,False,True,23642.4,7,1.0,0.5,0.714,llm_claim_entailment,6,6,False
+coral_002,Coral Biology,coral_heat,answer,False,True,23380.3,7,1.0,0.4138,0.235,llm_claim_entailment,5,5,False
+coral_003,Coral Biology,coral_heat,answer,False,True,20315.1,7,0.5,0.8846,0.5,llm_claim_entailment,3,3,False
+coral_004,Coral Biology,coral_heat,answer,False,True,23762.3,7,1.0,0.619,0.857,llm_claim_entailment,4,4,False
+bio_001,Biodiversity,biodiversity,answer,False,True,17597.0,7,1.0,0.2778,0.692,llm_claim_entailment,3,3,False
+bio_002,Biodiversity,biodiversity,answer,False,True,17069.6,7,1.0,0.2917,0.5,llm_claim_entailment,4,4,False
+bio_003,Biodiversity,biodiversity,answer,False,True,16717.2,7,1.0,0.6923,0.769,llm_claim_entailment,5,5,False
+bio_004,Biodiversity,biodiversity,answer,False,True,15274.6,7,1.0,0.5,0.917,llm_claim_entailment,4,4,False
+cons_001,Conservation,conservation,answer,False,True,17407.8,7,1.0,0.4444,0.526,llm_claim_entailment,4,4,False
+cons_002,Conservation,conservation,answer,False,True,16617.7,7,1.0,0.4,0.467,llm_claim_entailment,3,3,False
+cons_003,Conservation,conservation,answer,False,True,26984.6,7,1.0,0.4545,0.583,llm_claim_entailment,5,5,False
+cons_004,Conservation,conservation,answer,False,True,20602.6,7,1.0,0.7692,0.833,llm_claim_entailment,5,5,False
+synth_001,Synthesis,synthesis,answer,False,True,20742.3,7,1.0,0.3636,0.435,llm_claim_entailment,5,5,False
+synth_002,Synthesis,synthesis,answer,False,True,19108.2,7,1.0,0.72,0.824,llm_claim_entailment,5,5,False
+synth_003,Synthesis,synthesis,answer,False,True,29522.6,7,1.0,0.25,0.476,llm_claim_entailment,5,5,False
+off_001,Off-topic,off_topic,refuse,True,True,16001.7,7,1.0,0.0,0.0,ngram_fallback_on_llm_failure,0,0,False
+off_002,Off-topic,off_topic,refuse,True,True,13854.6,7,1.0,0.0,0.0,ngram_fallback_on_llm_failure,0,0,False
+off_003,Off-topic,off_topic,refuse,True,True,11883.0,7,1.0,0.0,0.0,ngram_fallback_on_llm_failure,0,0,False
+off_004,Off-topic,off_topic,refuse,True,True,15682.0,7,1.0,0.0,0.0,ngram_fallback_on_llm_failure,0,0,False
+unsup_001,Unsupported,unsupported,refuse,True,True,19220.9,7,1.0,0.0,0.0,ngram_fallback_on_llm_failure,0,0,False
+unsup_002,Unsupported,unsupported,refuse,True,True,17918.8,7,1.0,0.0,0.0,ngram_fallback_on_llm_failure,0,0,False
+unsup_003,Unsupported,unsupported,refuse,True,True,12017.2,7,1.0,1.0,1.0,ngram_fallback_on_llm_failure,0,0,False
+unsup_004,Unsupported,unsupported,refuse,True,True,16377.5,7,1.0,0.0,0.0,ngram_fallback_on_llm_failure,0,0,False
+trap_001,Adversarial,hallucination_trap,refuse,True,True,23174.5,7,1.0,0.0,0.0,ngram_fallback_on_llm_failure,0,0,False
+trap_002,Adversarial,hallucination_trap,refuse,True,True,12470.4,7,1.0,0.0,0.0,llm_claim_entailment,0,0,False
+trap_003,Adversarial,hallucination_trap,refuse,True,True,15898.6,7,1.0,0.0,0.0,ngram_fallback_on_llm_failure,0,0,False
+trap_004,Adversarial,hallucination_trap,refuse,True,True,15990.6,7,1.0,0.0,0.0,ngram_fallback_on_llm_failure,0,0,False
+cit_001,Citation Integrity,citation_integrity,answer,False,True,15747.1,7,1.0,0.7778,0.8,llm_claim_entailment,2,2,False
+cit_002,Citation Integrity,citation_integrity,answer,False,True,18858.4,7,1.0,0.7222,0.714,llm_claim_entailment,7,7,False
+cit_003,Citation Integrity,citation_integrity,answer,False,True,17197.9,7,1.0,0.2727,0.4,llm_claim_entailment,1,1,False

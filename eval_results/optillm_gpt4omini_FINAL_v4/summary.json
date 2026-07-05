@@ -5,8 +5,12 @@
   "severe_hallucinations": 0,
   "answerable": {
     "count": 26,
-    "avg_concept_coverage": 0.9423,
-    "avg_faithfulness": 0.6747,
+    "avg_concept_coverage": 0.9615,
+    "avg_faithfulness": 0.5153,
+    "avg_faithfulness_ngram": 0.6663,
+    "faithfulness_methods": {
+      "llm_claim_entailment": 26
+    },
     "citation_coverage": 1.0,
     "citation_presence_rate": 1.0
   },
@@ -16,10 +20,10 @@
     "refusal_accuracy": 1.0
   },
   "latency_ms": {
-    "mean": 15724.4,
-    "median": 15420.8,
-    "p95": 21503.2,
-    "max": 22768.1
+    "mean": 19252.2,
+    "median": 18502.1,
+    "p95": 26984.6,
+    "max": 29522.6
   },
   "by_group": {
     "geology": {
