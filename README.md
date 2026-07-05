@@ -515,6 +515,60 @@ pytest -q
 
 ---
 
+## Web demo
+
+An interactive React + FastAPI app sits on top of the pipeline: grounded
+answers with inline `[n]` citation chips, a reasoning trace panel, multiturn
+memory, and a two-tone switch (Educational vs Expert) that keeps the same
+specifics but adapts the vocabulary to the audience.
+
+### Run locally
+
+```bash
+# Terminal 1 — API (loads the vector store, serves /api and the built UI)
+uvicorn api.main:app --reload --port 8787
+
+# Terminal 2 — frontend (Vite dev server; proxies /api to :8787)
+cd web && npm install && npm run dev
+# open http://localhost:5173
+```
+
+### Deploy
+
+The demo deploys as two services (a static frontend on Vercel, the FastAPI
+backend on Railway). Vercel's Hobby tier cannot run the backend itself — its
+serverless functions cap at 10s (queries here take ~15-20s), the 1.1GB
+reranker exceeds the 250MB bundle limit, and ChromaDB needs a persistent
+filesystem. The split below is the standard modern pattern and gets the best
+of both: a cold-start-free frontend and a persistent backend process.
+
+**Backend (Railway, GitHub-connected):**
+
+1. New project → deploy from the `Ozymandes/RedSea_GPT` repo. Railway detects
+   the `Dockerfile` and builds the multi-stage image.
+2. Set environment variables in Railway's dashboard (never in the repo):
+   `LLM_PROVIDER=optillm`, `OPTO_LLM_API_KEY=<your-key>`,
+   `OPTO_LLM_BASE_URL=https://optollm.optomatica.com/v1`,
+   `OPTO_LLM_MODEL=gpt-4o-mini`, and `REDSEA_DEV_ORIGINS=<your-vercel-url>`
+   (the CORS allow-list, comma-separated).
+3. Railway exposes a URL like `https://redsea-gpt.up.railway.app`. Hit
+   `/api/health` to confirm.
+
+**Frontend (Vercel, GitHub-connected):**
+
+1. New project → import `Ozymandes/RedSea_GPT`. Vercel reads `vercel.json`:
+   it builds `web/` and rewrites `/api/*` to the Railway backend.
+2. Set one environment variable in Vercel: `RAILWAY_BACKEND_URL` = your
+   Railway URL (e.g. `https://redsea-gpt.up.railway.app`).
+3. Deploy. Visit the Vercel URL.
+
+The backend image ships **baseline RAG** by default (`REDSEA_ENGINE=baseline`),
+which does not load the 1.1GB reranker at boot — keeping the container small
+enough for a free/trial tier. The agentic CRAG path is available by setting
+`REDSEA_ENGINE=agent`; it then lazily downloads the reranker on first request.
+
+---
+
 ## Project structure
 
 ```

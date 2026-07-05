@@ -1,0 +1,33 @@
+# Keep the Docker build context lean. Image stays small, build stays fast.
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+/home/yasee/redsea_venv/
+
+# Local dev artifacts
+.git/
+.gitignore
+.preview/
+.skills/
+*.md
+!README.md
+.DS_Store
+
+# Node — rebuilt inside the image
+web/node_modules/
+web/dist/
+
+# Secrets — NEVER bake into the image
+.env
+.env.*
+!.env.example
+
+# Eval artifacts (large, not needed to serve the demo)
+eval_results/
+reports/
+
+# OS clutter
+Thumbs.db
