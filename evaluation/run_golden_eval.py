@@ -57,6 +57,7 @@ from evaluation.metrics_v2 import (
     evaluate_citation_support,
     evaluate_concept_coverage,
     evaluate_faithfulness,
+    evaluate_faithfulness_llm,
     evaluate_hallucination,
     evaluate_refusal_correctness,
     evaluate_retrieval,
@@ -79,8 +80,14 @@ def _p95(values: List[float]) -> float:
     return s[idx]
 
 
-def score_one(question: Dict[str, Any], result: Dict[str, Any], latency_ms: float) -> Dict[str, Any]:
-    """Compute all metrics for a single question. Pure function -> auditable."""
+def score_one(question, result, latency_ms, faithfulness_llm=None):
+    """Compute all metrics for a single question. Pure function -> auditable.
+
+    Faithfulness headline uses LLM claim-entailment (RAGAS-style) when an LLM is
+    available, because n-gram overlap structurally punishes the paraphrase and
+    synthesis that good answers need. The n-gram score is kept as a clearly-
+    labelled conservative surface-overlap signal.
+    """
     answer = result.get("answer", "") or ""
     sources = result.get("sources", []) or []
     # Use the FULL retrieved chunk text (the actual context the model saw),
@@ -92,9 +99,30 @@ def score_one(question: Dict[str, Any], result: Dict[str, Any], latency_ms: floa
     correctness = evaluate_concept_coverage(answer, question.get("required_concepts", []))
     cit_presence = evaluate_citation_presence(answer, question.get("min_citations", 1))
     cit_support = evaluate_citation_support(answer, sources)
-    faith = evaluate_faithfulness(answer, context)
+    faith_ngram = evaluate_faithfulness(answer, context)
     refusal = evaluate_refusal_correctness(answer, question["expected_behavior"])
-    halluc = evaluate_hallucination(question, answer, sources)
+    halluc = evaluate_hallucination(
+        question, answer, sources,
+        faithfulness=faith_ngram,
+        concept_coverage=correctness,
+        full_context=context,
+    )
+
+    # Primary faithfulness: LLM claim-entailment (meaningful). Fallback to the
+    # n-gram score ONLY when no judge LLM is available, clearly flagged.
+    if faithfulness_llm is not None:
+        faith_llm = evaluate_faithfulness_llm(faithfulness_llm, question["question"], answer, context)
+        if faith_llm.get("faithfulness") is not None:
+            faith = faith_llm
+            faith_method = "llm_claim_entailment"
+        else:
+            # Judge LLM failed to return a usable verdict - fail open with the
+            # n-gram signal but flag the fallback explicitly.
+            faith = faith_ngram
+            faith_method = "ngram_fallback_on_llm_failure"
+    else:
+        faith = faith_ngram
+        faith_method = "ngram_overlap"
 
     # Overall pass logic (deliberately strict):
     #   - refusal questions pass iff correctly refused.
@@ -123,6 +151,8 @@ def score_one(question: Dict[str, Any], result: Dict[str, Any], latency_ms: floa
             "citation_presence": cit_presence,
             "citation_support": cit_support,
             "faithfulness": faith,
+            "faithfulness_ngram": faith_ngram,
+            "faithfulness_method": faith_method,
             "refusal_correctness": refusal,
             "hallucination": halluc,
         },
@@ -136,6 +166,7 @@ def run(
     questions: List[Dict[str, Any]],
     use_judge: bool = False,
     judge_llm=None,
+    faithfulness_llm=None,
 ) -> List[Dict[str, Any]]:
     results: List[Dict[str, Any]] = []
     n = len(questions)
@@ -144,7 +175,7 @@ def run(
         try:
             out = gpt.query(q["question"], return_source_docs=True)
             latency = (time.perf_counter() - t0) * 1000.0
-            scored = score_one(q, out, latency)
+            scored = score_one(q, out, latency, faithfulness_llm=faithfulness_llm)
             status = "REFUSE-OK" if scored["actually_refused"] and q["expected_behavior"] == "refuse" else (
                 "PASS" if scored["passed"] else "FAIL"
             )
@@ -181,7 +212,20 @@ def summarize(results: List[Dict[str, Any]]) -> Dict[str, Any]:
 
     # metrics that only make sense on answerable questions
     coverages = [r["metrics"]["concept_coverage"]["coverage"] for r in ans if "metrics" in r and "concept_coverage" in r.get("metrics", {})]
-    faiths = [r["metrics"]["faithfulness"]["faithfulness"] for r in ans if "metrics" in r and "faithfulness" in r.get("metrics", {})]
+    # Headline faithfulness: claim-level entailment when available (drops None
+    # verdicts from any LLM-judge failures rather than treating them as 0).
+    faiths = [r["metrics"]["faithfulness"]["faithfulness"] for r in ans
+              if "metrics" in r and "faithfulness" in r.get("metrics", {})
+              and r["metrics"]["faithfulness"].get("faithfulness") is not None]
+    faiths_ngram = [r["metrics"]["faithfulness_ngram"]["faithfulness"] for r in ans
+                    if "metrics" in r and "faithfulness_ngram" in r.get("metrics", {})
+                    and r["metrics"]["faithfulness_ngram"].get("faithfulness") is not None]
+    # method breakdown for transparency
+    faith_methods = {}
+    for r in ans:
+        m = r.get("metrics", {}).get("faithfulness_method")
+        if m:
+            faith_methods[m] = faith_methods.get(m, 0) + 1
     cit_ok = [r["metrics"]["citation_support"]["ok"] for r in ans if "metrics" in r and "citation_support" in r.get("metrics", {})]
     cit_present = [r["metrics"]["citation_presence"]["num_distinct"] > 0 for r in ans if "metrics" in r and "citation_presence" in r.get("metrics", {})]
 
@@ -206,6 +250,8 @@ def summarize(results: List[Dict[str, Any]]) -> Dict[str, Any]:
             "count": len(ans),
             "avg_concept_coverage": round(statistics.mean(coverages), 4) if coverages else 0.0,
             "avg_faithfulness": round(statistics.mean(faiths), 4) if faiths else 0.0,
+            "avg_faithfulness_ngram": round(statistics.mean(faiths_ngram), 4) if faiths_ngram else 0.0,
+            "faithfulness_methods": faith_methods,
             "citation_coverage": round(sum(cit_ok) / len(cit_ok), 4) if cit_ok else 0.0,
             "citation_presence_rate": round(sum(cit_present) / len(cit_present), 4) if cit_present else 0.0,
         },
@@ -236,7 +282,8 @@ def write_artifacts(out_dir: Path, results: List[Dict[str, Any]], summary: Dict[
 
     # flat CSV
     cols = ["id", "category", "group", "expected_behavior", "actually_refused", "passed",
-            "latency_ms", "num_sources", "concept_coverage", "faithfulness",
+            "latency_ms", "num_sources", "concept_coverage",
+            "faithfulness_claim_entailment", "faithfulness_ngram", "faithfulness_method",
             "citations_present", "citations_supported", "severe_hallucination"]
     with (out_dir / "results.csv").open("w", encoding="utf-8", newline="") as f:
         w = csv.writer(f)
@@ -249,6 +296,8 @@ def write_artifacts(out_dir: Path, results: List[Dict[str, Any]], summary: Dict[
                 r.get("latency_ms"), r.get("num_sources"),
                 m.get("concept_coverage", {}).get("coverage", ""),
                 m.get("faithfulness", {}).get("faithfulness", ""),
+                m.get("faithfulness_ngram", {}).get("faithfulness", ""),
+                m.get("faithfulness_method", ""),
                 m.get("citation_presence", {}).get("num_distinct", 0),
                 len(m.get("citation_support", {}).get("supported", [])),
                 m.get("hallucination", {}).get("severe_hallucination", ""),
@@ -274,7 +323,11 @@ def write_artifacts(out_dir: Path, results: List[Dict[str, Any]], summary: Dict[
     rep.append(f"- Severe hallucinations: **{summary['severe_hallucinations']}**")
     a = summary["answerable"]
     rep.append(f"- Avg concept coverage (answerable): **{a['avg_concept_coverage']:.1%}**")
-    rep.append(f"- Avg faithfulness (answerable): **{a['avg_faithfulness']:.1%}**")
+    rep.append(f"- Avg faithfulness — claim entailment (answerable): **{a['avg_faithfulness']:.1%}**")
+    rep.append(f"- Avg faithfulness — n-gram overlap (answerable, conservative): {a.get('avg_faithfulness_ngram', 0):.1%}")
+    if a.get('faithfulness_methods'):
+        methods = ", ".join(f"{k}={v}" for k, v in sorted(a['faithfulness_methods'].items()))
+        rep.append(f"- Faithfulness methods used: {methods}")
     rep.append(f"- Citation support (answerable): **{a['citation_coverage']:.1%}**")
     rf = summary["refusals"]
     rep.append(f"- Refusal accuracy: **{rf['refusal_accuracy']:.1%}** ({rf['correct']}/{rf['count']})")
@@ -313,6 +366,8 @@ def main():
     ap.add_argument("--refusal-threshold", type=float, default=0.2)
     ap.add_argument("--run-name", default=None, help="Output folder name under eval_results/")
     ap.add_argument("--judge", action="store_true", help="Enable LLM-as-judge for clarity (writes judge.jsonl)")
+    ap.add_argument("--no-llm-faithfulness", action="store_true",
+                    help="Use n-gram faithfulness instead of LLM claim-entailment (offline / cheaper)")
     ap.add_argument("--out-dir", default="eval_results")
     args = ap.parse_args()
 
@@ -350,7 +405,11 @@ def main():
     if args.judge:
         judge_llm = create_llm(provider=args.provider, model=args.model)
 
-    results = run(gpt, questions, use_judge=args.judge, judge_llm=judge_llm)
+    # The LLM used for claim-level faithfulness. This is the headline metric, so
+    # we always create it unless the user explicitly opts out (offline run).
+    faithfulness_llm = None if args.no_llm_faithfulness else create_llm(provider=args.provider, model=args.model)
+
+    results = run(gpt, questions, use_judge=args.judge, judge_llm=judge_llm, faithfulness_llm=faithfulness_llm)
     summary = summarize(results)
 
     run_name = args.run_name or f"{info['provider']}_{info['model']}_{datetime.now().strftime('%Y%m%d_%H%M%S')}"

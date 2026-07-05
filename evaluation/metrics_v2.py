@@ -237,11 +237,24 @@ def evaluate_refusal_correctness(
 
 
 def evaluate_hallucination(
-    question_meta: Dict[str, Any], answer: str, sources: List[Dict[str, Any]]
+    question_meta: Dict[str, Any],
+    answer: str,
+    sources: List[Dict[str, Any]],
+    *,
+    faithfulness: Optional[Dict[str, Any]] = None,
+    concept_coverage: Optional[Dict[str, Any]] = None,
+    full_context: Optional[str] = None,
 ) -> Dict[str, Any]:
     """Flag severe hallucinations. The strongest signal is the trap category:
     a fabricated entity question that is *answered* (not refused) is a severe
-    hallucination by definition."""
+    hallucination by definition.
+
+    The secondary faithfulness+coverage signal reuses the metrics already
+    computed in ``score_one`` when provided (single source of truth). When not
+    provided it recomputes them, preferring ``full_context`` (the complete
+    retrieved chunks) over the truncated ``sources`` excerpts so the score is
+    not artefactually depressed by truncation.
+    """
     group = question_meta.get("group", "")
     refused = is_refusal(answer)
     severe = False
@@ -258,13 +271,16 @@ def evaluate_hallucination(
     # Only counts as severe if the answer ALSO fails concept coverage -- a
     # well-paraphrased but on-topic, well-cited answer is NOT a hallucination.
     if not severe and not refused and question_meta.get("expected_behavior") == "answer":
-        faith = evaluate_faithfulness(answer, " ".join(s.get("content", "") for s in sources))
-        # concept coverage check
-        concepts = question_meta.get("required_concepts", [])
-        low_concept = bool(concepts) and not any(c.lower() in answer.lower() for c in concepts)
-        if faith["total"] >= 2 and faith["faithfulness"] < 0.2 and low_concept:
+        if faithfulness is None:
+            ctx = full_context if full_context is not None else " ".join(s.get("content", "") for s in sources)
+            faithfulness = evaluate_faithfulness(answer, ctx)
+        if concept_coverage is None:
+            concept_coverage = evaluate_concept_coverage(answer, question_meta.get("required_concepts", []))
+        # Use the SAME stem-aware coverage verdict used everywhere else.
+        low_concept = bool(question_meta.get("required_concepts")) and not concept_coverage["ok"]
+        if faithfulness["total"] >= 2 and faithfulness["faithfulness"] < 0.2 and low_concept:
             severe = True
-            reason = f"Very low faithfulness ({faith['faithfulness']:.0%}) AND missing required concepts."
+            reason = f"Very low faithfulness ({faithfulness['faithfulness']:.0%}) AND missing required concepts."
 
     return {"severe_hallucination": severe, "reason": reason, "ok": not severe}
 
