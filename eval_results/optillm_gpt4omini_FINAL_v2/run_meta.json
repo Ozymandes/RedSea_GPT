@@ -1,0 +1,19 @@
+{
+  "run_name": "optillm_gpt4omini_FINAL_v2",
+  "timestamp": "2026-07-04T22:33:34Z",
+  "provider": {
+    "provider": "optillm",
+    "protocol": "anthropic_messages",
+    "base_url": "https://optollm.optomatica.com/v1",
+    "model": "gpt-4o-mini",
+    "configured": true
+  },
+  "config": {
+    "retrieval_k": 7,
+    "refusal_threshold": 0.2,
+    "use_mmr": true,
+    "embedding_model": "sentence-transformers/all-mpnet-base-v2",
+    "smoke": false
+  },
+  "golden_set_size": 38
+}

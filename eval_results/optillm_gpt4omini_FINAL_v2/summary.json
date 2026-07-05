@@ -1,0 +1,66 @@
+{
+  "total": 38,
+  "pass_rate": 1.0,
+  "passed": 38,
+  "severe_hallucinations": 0,
+  "answerable": {
+    "count": 26,
+    "avg_concept_coverage": 0.9423,
+    "avg_faithfulness": 0.6747,
+    "citation_coverage": 1.0,
+    "citation_presence_rate": 1.0
+  },
+  "refusals": {
+    "count": 12,
+    "correct": 12,
+    "refusal_accuracy": 1.0
+  },
+  "latency_ms": {
+    "mean": 15724.4,
+    "median": 15420.8,
+    "p95": 21503.2,
+    "max": 22768.1
+  },
+  "by_group": {
+    "geology": {
+      "total": 4,
+      "passed": 4
+    },
+    "oceanography": {
+      "total": 4,
+      "passed": 4
+    },
+    "coral_heat": {
+      "total": 4,
+      "passed": 4
+    },
+    "biodiversity": {
+      "total": 4,
+      "passed": 4
+    },
+    "conservation": {
+      "total": 4,
+      "passed": 4
+    },
+    "synthesis": {
+      "total": 3,
+      "passed": 3
+    },
+    "off_topic": {
+      "total": 4,
+      "passed": 4
+    },
+    "unsupported": {
+      "total": 4,
+      "passed": 4
+    },
+    "hallucination_trap": {
+      "total": 4,
+      "passed": 4
+    },
+    "citation_integrity": {
+      "total": 3,
+      "passed": 3
+    }
+  }
+}
