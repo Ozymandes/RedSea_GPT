@@ -8,33 +8,15 @@
 
 ## Why this exists
 
-Some of my earliest memories are of the south Sinai coast — summers spent in
-the water around Dahab and Sharm, snorkeling over reefs I couldn't name yet
-but couldn't stop watching. I was the kid who wanted to know *why* the water
-was so clear, *why* the corals there seemed to survive heat that killed reefs
-elsewhere, *why* the fish were different on one side of a headland than the
-other. I expected to grow up and study the sea. Life routed me into AI
-instead, and for a long time those two halves — the one who wanted to
-understand the reef, and the one who builds language models — lived in
-separate boxes. RedSea GPT is the project where I let them meet.
+At 11, I was exactly the kind of kid who would disappear into books and documentaries about reefs, sharks, corals, deep-sea creatures, and anything remotely biological. The Red Sea was part of that obsession long before I had the vocabulary for what made it special. I did not know much about salinity gradients, coral resilience, endemicity, or rift systems. I just knew I wanted something that could explain it all properly.
 
-The honest spark was a failure. An early prototype — a small local LLM asked
-about Red Sea geology — confidently described a substance called *"Calcium
-Carbonate Resonance,"* a term that does not exist in any literature I could
-find. It sounded authoritative. It was fabricated. And that is exactly the
-failure mode that makes general-purpose LLMs dangerous in a specialised
-scientific domain: the Red Sea is geographically specific, scientifically
-nuanced, and most of the "common knowledge" about it online is half-correct.
-A model that pattern-matches on that half-correct internet will produce answers
-that *feel* right and aren't.
+Studying AI gave me the missing piece. After building retrieval systems, agentic workflows, evaluation scripts, and LLM interfaces, I had the slightly obvious thought: why not build the thing I would have wanted myself?
 
-So I set myself a constraint, the way an engineer sets a constraint: **build
-something I would actually trust to answer a question about a reef I care
-about.** Not a chatbot that sounds smart — a system where every claim cites a
-real peer-reviewed source and a page number, where out-of-scope questions are
-refused outright, and where a fabricated entity is treated as a worse outcome
-than an honest *"that isn't in my sources."* Everything in this repository is
-engineered around that one constraint.
+The first version immediately showed why this mattered. A small local model answered a Red Sea geology question by inventing a scientific-sounding term that was not in the literature. It sounded plausible. It was also completely unsupported. That is the dangerous part of LLMs in specialized domains: they can be wrong in a way that feels polished enough to trust.
+
+RedSea GPT is my attempt to engineer against that failure mode. It answers from a curated corpus of peer-reviewed Red Sea sources, cites the document and page behind its claims, and refuses questions the corpus cannot support. It uses retrieval, reranking, guardrails, grounding checks, and evaluation not because those are nice buzzwords, but because in this domain the system has to know when not to answer.
+
+The goal is simple: a Red Sea naturalist assistant that is curious and explanatory, but disciplined enough to stay grounded.
 
 ---
 
@@ -90,16 +72,24 @@ vocabulary to the audience.
     <td width="50%" align="center"><img src="docs/screenshots/04-tone-comparison.png" alt="Educational vs Expert tone on the same question" width="100%"></td>
   </tr>
   <tr>
-    <td width="50%" align="center"><em>A clean refusal — when a question isn't
+    <td colspan="2" align="center"><em>A clean refusal — when a question isn't
     covered by the sources, the system says so plainly instead of inventing an
-    answer.</em></td>
-    <td width="50%" align="center"><em>Multiturn memory: a follow-up with a
-    pronoun ("how deep is <i>it</i>?") is resolved against the prior turn
-    before retrieval.</em></td>
+    answer. Off-scope questions are refused <b>before</b> any retrieval or
+    generation, so they cost zero API tokens.</em></td>
   </tr>
   <tr>
-    <td width="50%" align="center"><img src="docs/screenshots/05-refusal.png" alt="Refusal of an unsupported question" width="100%"></td>
-    <td width="50%" align="center"><img src="docs/screenshots/06-multiturn.png" alt="Multiturn follow-up with pronoun resolution" width="100%"></td>
+    <td colspan="2" align="center"><img src="docs/screenshots/05-refusal.png" alt="Refusal of an out-of-scope question" width="100%"></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><em>Multiturn memory — the follow-up <code>and
+    what temperature does it reach in summer?</code> contains no noun the
+    retriever can use. The system rewrites it into a self-contained question
+    against the prior turn (<i>Gulf of Aqaba</i>) <b>before</b> retrieval, so
+    &ldquo;it&rdquo; resolves correctly across the two turns.</em></td>
+  </tr>
+  <tr>
+    <td width="50%" align="center" valign="top"><img src="docs/screenshots/06-multiturn.png" alt="Multiturn turn 1 — the Gulf of Aqaba depth answer" width="100%"></td>
+    <td width="50%" align="center" valign="top"><img src="docs/screenshots/06b-multiturn-alt.png" alt="Multiturn turn 2 — the follow-up temperature answer with pronoun resolved" width="100%"></td>
   </tr>
 </table>
 
