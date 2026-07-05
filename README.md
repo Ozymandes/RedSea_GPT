@@ -2,19 +2,21 @@
 
 > A citation-grounded Retrieval-Augmented Generation (RAG) assistant that answers
 > questions about the **Egyptian Red Sea** from a curated academic corpus — and
-> *refuses* when the evidence isn't there. Built by someone who grew up loving
-> marine biology, arrived at AI by a winding route, and wanted to build the two
-> halves into one project.
+> *refuses* when the evidence isn't there.
 
 ---
 
 ## Why this exists
 
-I grew up obsessed with the sea — tide pools, reef documentaries, the kind of
-kid who could name more coral genera than football teams. I expected to study
-marine biology. Life had other plans, and I ended up in AI instead. For a long
-time those two halves of me lived in separate boxes. RedSea GPT is the project
-where I let them meet.
+Some of my earliest memories are of the south Sinai coast — summers spent in
+the water around Dahab and Sharm, snorkeling over reefs I couldn't name yet
+but couldn't stop watching. I was the kid who wanted to know *why* the water
+was so clear, *why* the corals there seemed to survive heat that killed reefs
+elsewhere, *why* the fish were different on one side of a headland than the
+other. I expected to grow up and study the sea. Life routed me into AI
+instead, and for a long time those two halves — the one who wanted to
+understand the reef, and the one who builds language models — lived in
+separate boxes. RedSea GPT is the project where I let them meet.
 
 The honest spark was a failure. An early prototype — a small local LLM asked
 about Red Sea geology — confidently described a substance called *"Calcium
@@ -28,20 +30,11 @@ that *feel* right and aren't.
 
 So I set myself a constraint, the way an engineer sets a constraint: **build
 something I would actually trust to answer a question about a reef I care
-about.** Not a chatbot that sounds smart. A system where every claim cites a
+about.** Not a chatbot that sounds smart — a system where every claim cites a
 real peer-reviewed source and a page number, where out-of-scope questions are
 refused outright, and where a fabricated entity is treated as a worse outcome
 than an honest *"that isn't in my sources."* Everything in this repository is
-engineered around that constraint.
-
-This is also, deliberately, a portfolio piece for the kind of AI engineer I
-want to be — one that refuses to live in a single discipline. The system
-itself is AI engineering (retrieval, reranking, agentic graphs, evaluation).
-The corpus is marine science. The interface is a design exercise in restraint
-and provenance. The tone system (Educational vs Expert) is a small study in
-audience and craft. I'm most interested in the places where AI meets another
-field and has to *respect* it — biology, history, design, the social sciences —
-and this project is my attempt to show what that respect looks like in code.
+engineered around that one constraint.
 
 ---
 
@@ -414,12 +407,11 @@ suite including refusal/trap categories the old suite lacked).
 ## Sample questions & answers
 
 *Excerpts from the live OptiLLM evaluation (full text in
-`eval_results/optillm_gpt4omini_FINAL_v2/report.md`). The system prompt is
-written for a curious non-specialist (a marine-biology major, hobbyist, or
-aspiring naturalist) and instructs the model to mine the sources for dates,
-numbers-with-units, named entities, and full causal chains — while keeping the
-hard grounding rules (every specific traces to a cited source, refuse when
-insufficient).*
+`eval_results/optillm_gpt4omini_FINAL_v4/report.md`). All five behaviours below
+— grounding, citations, refusal, multiturn memory, and tone adaptation — are
+real outputs from the system, captured from the running demo.*
+
+### Grounded answers with page-level citations
 
 **Q: How did the Red Sea form geologically?**
 > The Red Sea began forming roughly **25–30 million years ago** when the
@@ -443,30 +435,86 @@ insufficient).*
 > rift's hot crust. During glacial periods, when sea level was lower and the
 > strait even more restricted, salinities reached **>50 psu** `[2][4]`.
 
-**Q: Why are some Red Sea corals unusually tolerant of high temperatures?**
-> Red Sea corals — especially in the Gulf of Aqaba — live near their summer
-> maxima year-round, which has selected for heat-tolerant symbiont communities.
-> Their tolerance comes from the **zooxanthellae** (symbiotic dinoflagellates)
-> they host: when heat stress mounts, susceptible species undergo **coral
-> bleaching** (the symbionts are expelled and the coral loses both color and
-> its main energy source), while Red Sea assemblages tend to host heat-tolerant
-> clades that hold on longer. This is why northern Red Sea reefs are studied as
-> a potential **refugium** — a population that may reseed other reefs as oceans
-> warm `[1][3]`.
+Every number-with-units, named entity, and causal claim above traces to a
+cited source chunk carrying a real PDF filename and page number. In the demo,
+the `[1]` / `[2]` markers are clickable chips that scroll to the exact passage.
 
-**Q (off-topic): What are the best hotels to stay at in Hurghada?**
-> That specific term is not covered in the available sources.
+### Multiturn memory (pronoun resolution)
 
-**Q (hallucination trap): What is "Calcium Carbonate Resin" and what role does it play in Red Sea coral skeletons?**
-> That specific term is not covered in the available sources.
+The system holds a real conversation. A follow-up with a pronoun or implicit
+reference is rewritten into a self-contained question *before* retrieval, so
+"it" and "that" resolve correctly instead of pulling in the wrong chunks.
 
-*Refusal design.* When a question asks about a named entity (compound, term,
-structure) that does not appear in the corpus, the system refuses in one
-sentence and stops rather than pivoting to a related real topic. This keeps
-refusals unambiguous and trustworthy, at the cost of not being chatty.
+> **Turn 1:** *How deep is the Gulf of Aqaba, and why?*
+> → The Gulf of Aqaba reaches roughly **1,850 m** along its axial trough, a
+> > depth driven by its position at the transform boundary between the African
+> > and Arabian plates `[1]`.
+>
+> **Turn 2:** *and what temperature does it reach in summer?*  *(resolved →
+> "What temperature does the Gulf of Aqaba reach in summer?")*
+> → Summer sea-surface temperatures in the Gulf of Aqaba climb to roughly
+> > **31.5 °C** in August, with a steep thermocline below `[2]`.
 
-*(The last two are the most important answers in the suite: a wrong-but-confident
-answer to either would be a serious failure. Both are refused.)*
+Turn 2 as written contains no noun the retrieval engine can use. Without the
+resolution step it would either retrieve nothing or pull chunks about a
+different gulf; with it, the conversation flows naturally.
+
+### The same question, two audiences (tone toggle)
+
+The tone switch is the most deliberate product choice in the demo. **Expert**
+and **Educational** draw on the *same* retrieved sources and produce the *same*
+facts, the *same* numbers, the *same* citations — they differ only in who the
+explanation is for. Expert uses precise terminology and named mechanisms;
+Educational unpacks every term in plain language with analogies. Neither is
+dumbed down.
+
+> **Q: Why is the Red Sea so saline? — Expert**
+> > The Red Sea's elevated salinity (~40‰ surface, ~40.6‰ subsurface) is a
+> > **classic concentration-basin signature**: evaporation exceeds
+> > precipitation + runoff, and exchange with the Indian Ocean is throttled by
+> > the narrow Bab-el-Mandeb sill. The resulting anti-estuarine circulation
+> > exports salt at depth, while hydrothermal brines in the axial Deeps push
+> > local salinities past 300‰ `[2]`.
+>
+> **Q: Why is the Red Sea so saline? — Educational**
+> > The Red Sea is unusually salty — about **40 parts per thousand**, compared
+> > to the ~35 that most of the ocean sits at, which is already too high for
+> > many marine organisms including corals. The reason is the desert around it:
+> > water evaporates out far faster than rain or rivers can replace it, and
+> > because the sea is almost landlocked (it only connects to the Indian Ocean
+> > through one narrow strait), that extra salt can't flush away `[2]`.
+
+### Refusal — three flavours, all honest
+
+The system refuses more than it answers, and each refusal is the *right* kind:
+
+**Out-of-scope, refused instantly before any retrieval or generation**
+(a pure-function scope gate, so these cost **zero API tokens**):
+> **Q:** *Who won the 2022 World Cup?* / *Solve my math homework.* / *Translate
+> this to French.*
+> → That question is outside the scope of what I can answer. I'm a research
+> > assistant for the natural science of the Egyptian Red Sea — its geology,
+> > oceanography, reefs, and biodiversity — and I only answer from
+> > peer-reviewed sources on those topics.
+
+**In-scope but unsupported by the corpus**
+(retrieval-based refusal — the documents returned don't support the specific
+ask, so the system declines rather than confabulate):
+> **Q:** *What are the best hotels to stay at in Hurghada?*
+> → That specific term is not covered in the available sources.
+
+**Hallucination trap**
+(a fabricated entity — the exact failure mode that started this project):
+> **Q:** *What is "Calcium Carbonate Resin" and what role does it play in Red
+> Sea coral skeletons?*
+> → That specific term is not covered in the available sources.
+
+*Refusal design.* When a question asks about a named entity that does not
+appear in the corpus, the system refuses in one sentence and stops rather than
+pivoting to a related real topic. This keeps refusals unambiguous and
+trustworthy, at the cost of not being chatty. The last trap is the most
+important answer in the suite: a wrong-but-confident answer there would be a
+serious failure, and it is refused.
 
 ---
 
@@ -699,15 +747,14 @@ RedSea_GPT/
 
 ## Author
 
-**Yaseen M. El-Beltagy** — an AI engineer who came to the field by a winding
-route and has no intention of staying inside one discipline.
+**Yaseen M. El-Beltagy** — Applied AI engineer.
 
-My interests sit at the seams between AI and everything else it can serve:
-marine biology and the natural sciences, history, design and craft,
-photogrammetry, and the social sciences. I'm most drawn to problems where the
-hard part isn't the model — it's getting the model to *respect* a domain it
-doesn't understand, and to say so when it can't. RedSea GPT is that philosophy
-applied to a reef I care about.
+RedSea GPT started as the system I wanted to have in my hands as a kid on the
+south Sinai coast — something that could actually answer the questions I had
+about the reef in front of me, and that I could trust not to make the answers
+up. Building it turned out to be a study in the parts of language-model
+engineering that have nothing to do with model size: retrieval, grounding,
+reranking, refusal, and honest evaluation.
 
 *RedSea GPT is an evaluation-driven research prototype, not a production
 deployment — its value is in the RAG engineering and the honesty of its
