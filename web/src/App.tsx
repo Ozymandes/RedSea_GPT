@@ -12,7 +12,7 @@ import {
   type StoredChat,
   loadChats,
   upsertChat,
-  deleteChat,
+  deleteChat as deleteChatFromStore,
   getActiveId,
   setActiveId,
   newChatId,
@@ -23,19 +23,21 @@ export default function App() {
   const [tone, setTone] = useState<Tone>("intuitive");
 
   // --- Persistent chat sessions -------------------------------------------
+  // `chats` is the SIDEBAR list (what to render). `messages` is the CURRENT
+  // conversation, owned independently by useChat. These are deliberately NOT
+  // derived from each other — deriving messages from chats created a render
+  // loop (persist wrote fresh objects → find() returned a new array ref →
+  // messages "reset" → persist fired again) that broke scrolling and made
+  // deletes flicker. Loading a past chat is now an EXPLICIT action.
   const [chats, setChats] = useState<StoredChat[]>([]);
   const [activeId, setActiveChatId] = useState<string | null>(null);
 
-  // The active chat's messages, loaded into the useChat hook.
-  const { messages, loading, send, reset, error, setMessages } = useChat(
-    tone,
-    activeId ? chats.find((c) => c.id === activeId)?.messages ?? [] : []
-  );
+  const { messages, loading, send, error, loadMessages, clearMessages } = useChat(tone);
 
-  // Sidebar open/closed. On desktop (md+) it's persistent; on mobile it's a drawer.
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [booted, setBooted] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const prevMsgLen = useRef(0);
 
   // Hydrate from localStorage on mount.
   useEffect(() => {
@@ -44,11 +46,15 @@ export default function App() {
     const aid = getActiveId();
     if (aid && stored.some((c) => c.id === aid)) {
       setActiveChatId(aid);
+      const found = stored.find((c) => c.id === aid);
+      if (found) loadMessages(found.messages);
     } else if (stored.length > 0) {
-      // auto-open the most recent
       setActiveChatId(stored[0].id);
+      setActiveId(stored[0].id);
+      loadMessages(stored[0].messages);
     }
     setBooted(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Open sidebar by default on desktop.
@@ -61,14 +67,21 @@ export default function App() {
   }, []);
 
   // Persist the active chat whenever its messages change.
+  // Reads a FRESH list from localStorage (not the React `chats` closure, which
+  // can be stale) so a concurrent delete elsewhere is never clobbered, and so
+  // we never resurrect a chat that was removed.
   useEffect(() => {
     if (!booted || !activeId || messages.length === 0) return;
-    const existing = chats.find((c) => c.id === activeId);
+    const fresh = loadChats();
+    const existing = fresh.find((c) => c.id === activeId);
+    // If the active chat was deleted from storage, do NOT re-create it.
+    // (Shouldn't happen now, but this is the definitive guard.)
+    if (!existing) return;
     const firstUser = messages.find((m) => m.role === "user");
     const updated: StoredChat = {
       id: activeId,
-      title: existing?.title || (firstUser ? deriveTitle(firstUser.text) : "New chat"),
-      createdAt: existing?.createdAt ?? Date.now(),
+      title: existing.title || (firstUser ? deriveTitle(firstUser.text) : "New chat"),
+      createdAt: existing.createdAt,
       updatedAt: Date.now(),
       tone,
       messages,
@@ -77,10 +90,19 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messages, activeId, booted]);
 
-  // Auto-scroll on new content.
+  // Auto-scroll — ONLY when a message was added, and ONLY if the user is
+  // already near the bottom. Never yanks the user down while they're reading
+  // earlier messages.
   useEffect(() => {
     const el = scrollRef.current;
-    if (el) el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
+    if (!el) return;
+    const grew = messages.length > prevMsgLen.current;
+    prevMsgLen.current = messages.length;
+    if (!grew) return;
+    const nearBottom = el.scrollHeight - el.scrollTop - el.clientHeight < 180;
+    if (nearBottom) {
+      el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
+    }
   }, [messages, loading]);
 
   const hasMessages = messages.length > 0;
@@ -90,41 +112,44 @@ export default function App() {
     const id = newChatId();
     setActiveChatId(id);
     setActiveId(id);
-    reset();
+    clearMessages();
     if (!window.matchMedia("(min-width: 768px)").matches) setSidebarOpen(false);
-  }, [reset]);
+  }, [clearMessages]);
 
   const selectChat = useCallback(
     (id: string) => {
+      // Read fresh from storage so we always load the canonical messages.
+      const found = loadChats().find((c) => c.id === id);
       setActiveChatId(id);
       setActiveId(id);
-      const found = chats.find((c) => c.id === id);
-      if (found) setMessages(found.messages);
+      if (found) loadMessages(found.messages);
       if (!window.matchMedia("(min-width: 768px)").matches) setSidebarOpen(false);
     },
-    [chats, setMessages]
+    [loadMessages]
   );
 
   const removeChat = useCallback(
     (id: string) => {
-      const next = deleteChat(id);
+      const next = deleteChatFromStore(id); // removes from localStorage
       setChats(next);
       if (activeId === id) {
         if (next.length > 0) {
-          selectChat(next[0].id);
+          const fallback = next[0];
+          setActiveChatId(fallback.id);
+          setActiveId(fallback.id);
+          loadMessages(fallback.messages);
         } else {
           setActiveChatId(null);
           setActiveId(null);
-          reset();
+          clearMessages();
         }
       }
     },
-    [activeId, selectChat, reset]
+    [activeId, loadMessages, clearMessages]
   );
 
   const handleSend = useCallback(
     (text: string) => {
-      // If no active chat, start one with this first message.
       if (!activeId) {
         const id = newChatId();
         setActiveChatId(id);

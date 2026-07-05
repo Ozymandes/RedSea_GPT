@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { postChat, postReset } from "../lib/api";
 import type { ChatMessage } from "../lib/types";
 
@@ -12,28 +12,30 @@ export interface UseChat {
   sessionId: string | null;
   send: (text: string) => Promise<void>;
   reset: () => Promise<void>;
-  setMessages: (m: ChatMessage[]) => void;
+  // Explicit loaders — NOT derived from a parents-side array. This breaks the
+  // render loop that occurs when messages are re-derived from a list that the
+  // persist effect keeps rewriting with fresh object references.
+  loadMessages: (m: ChatMessage[]) => void;
+  clearMessages: () => void;
 }
 
-export function useChat(tone: string, initialMessages: ChatMessage[] = []): UseChat {
-  const [messages, setMessagesState] = useState<ChatMessage[]>(initialMessages);
+export function useChat(tone: string): UseChat {
+  const [messages, setMessagesState] = useState<ChatMessage[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sessionId, setSessionId] = useState<string | null>(null);
   const abortRef = useRef<AbortController | null>(null);
 
-  // When the caller passes a new set of initial messages (e.g. loading a past
-  // chat from history), replace the current view. This lets us reuse one hook
-  // instance across active-chat switches.
-  useEffect(() => {
-    setMessagesState(initialMessages);
-    setSessionId(null); // server session resets when we load a different chat
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [initialMessages]);
-
-  const setMessages = useCallback((m: ChatMessage[]) => {
+  const loadMessages = useCallback((m: ChatMessage[]) => {
     setMessagesState(m);
     setSessionId(null);
+    setError(null);
+  }, []);
+
+  const clearMessages = useCallback(() => {
+    setMessagesState([]);
+    setSessionId(null);
+    setError(null);
   }, []);
 
   const send = useCallback(
@@ -100,5 +102,5 @@ export function useChat(tone: string, initialMessages: ChatMessage[] = []): UseC
     setError(null);
   }, [sessionId]);
 
-  return { messages, loading, error, sessionId, send, reset, setMessages };
+  return { messages, loading, error, sessionId, send, reset, loadMessages, clearMessages };
 }
