@@ -2,30 +2,46 @@
 
 > A citation-grounded Retrieval-Augmented Generation (RAG) assistant that answers
 > questions about the **Egyptian Red Sea** from a curated academic corpus — and
-> *refuses* when the evidence isn't there.
-
-RedSea GPT began as a local TinyLlama 1.1B prototype that confidently fabricated
-scientific facts (it invented a substance called *"Calcium Carbonate Resin"*).
-This repository is the matured version: a focused RAG system built around
-**retrieval grounding, page-level provenance, Maximal Marginal Relevance
-retrieval, and explicit refusal behaviour** rather than raw model size.
+> *refuses* when the evidence isn't there. Built by someone who grew up loving
+> marine biology, arrived at AI by a winding route, and wanted to build the two
+> halves into one project.
 
 ---
 
 ## Why this exists
 
-General-purpose LLMs hallucinate in specialised scientific domains, and the Red
-Sea is a particularly bad place for that: it is geographically specific,
-scientifically nuanced, and most "common knowledge" about it online is
-half-correct. A reliable assistant for this domain has to do three things that a
-plain chatbot cannot:
+I grew up obsessed with the sea — tide pools, reef documentaries, the kind of
+kid who could name more coral genera than football teams. I expected to study
+marine biology. Life had other plans, and I ended up in AI instead. For a long
+time those two halves of me lived in separate boxes. RedSea GPT is the project
+where I let them meet.
 
-1. **Answer only from a vetted corpus** of peer-reviewed sources.
-2. **Cite a real document and page** for every non-trivial claim.
-3. **Refuse** off-topic, unsupported, and fabricated-entity questions instead of
-   inventing a plausible-sounding answer.
+The honest spark was a failure. An early prototype — a small local LLM asked
+about Red Sea geology — confidently described a substance called *"Calcium
+Carbonate Resonance,"* a term that does not exist in any literature I could
+find. It sounded authoritative. It was fabricated. And that is exactly the
+failure mode that makes general-purpose LLMs dangerous in a specialised
+scientific domain: the Red Sea is geographically specific, scientifically
+nuanced, and most of the "common knowledge" about it online is half-correct.
+A model that pattern-matches on that half-correct internet will produce answers
+that *feel* right and aren't.
 
-Everything in this repo is engineered around those three constraints.
+So I set myself a constraint, the way an engineer sets a constraint: **build
+something I would actually trust to answer a question about a reef I care
+about.** Not a chatbot that sounds smart. A system where every claim cites a
+real peer-reviewed source and a page number, where out-of-scope questions are
+refused outright, and where a fabricated entity is treated as a worse outcome
+than an honest *"that isn't in my sources."* Everything in this repository is
+engineered around that constraint.
+
+This is also, deliberately, a portfolio piece for the kind of AI engineer I
+want to be — one that refuses to live in a single discipline. The system
+itself is AI engineering (retrieval, reranking, agentic graphs, evaluation).
+The corpus is marine science. The interface is a design exercise in restraint
+and provenance. The tone system (Educational vs Expert) is a small study in
+audience and craft. I'm most interested in the places where AI meets another
+field and has to *respect* it — biology, history, design, the social sciences —
+and this project is my attempt to show what that respect looks like in code.
 
 ---
 
@@ -483,11 +499,12 @@ answer to either would be a serious failure. Both are refused.)*
 ## Why this matters
 
 A "smart-sounding" answer is easy; a *trustworthy* answer in a specialised
-domain is hard. RedSea GPT is a small but complete study in the engineering that
-makes the latter possible: grounding every claim, refusing when you can't,
+domain is hard. RedSea GPT is a small but complete study in the engineering
+that makes the latter possible: grounding every claim, refusing when you can't,
 proving where each fact came from, and treating a fabricated entity as a worse
-outcome than an honest "I don't know." That is the difference between a chatbot
-and a system someone could actually rely on.
+outcome than an honest "I don't know." That is the difference between a
+chatbot and a system someone could actually rely on — and it's the standard I
+want to bring to every domain AI touches, not just this one.
 
 ---
 
@@ -682,8 +699,15 @@ RedSea_GPT/
 
 ## Author
 
-**Yaseen M. El-Beltagy** — Applied AI engineering, with a focus on reliable,
-grounded GenAI systems beyond simple chatbots.
+**Yaseen M. El-Beltagy** — an AI engineer who came to the field by a winding
+route and has no intention of staying inside one discipline.
+
+My interests sit at the seams between AI and everything else it can serve:
+marine biology and the natural sciences, history, design and craft,
+photogrammetry, and the social sciences. I'm most drawn to problems where the
+hard part isn't the model — it's getting the model to *respect* a domain it
+doesn't understand, and to say so when it can't. RedSea GPT is that philosophy
+applied to a reef I care about.
 
 *RedSea GPT is an evaluation-driven research prototype, not a production
 deployment — its value is in the RAG engineering and the honesty of its
