@@ -26,7 +26,7 @@ services:
     autoDeploy: true
     envVars:
       - key: LLM_PROVIDER
-        value: optillm
+        value: optollm            # brand spelling; "optillm" also accepted
       - key: OPTO_LLM_BASE_URL
         value: https://optollm.optomatica.com/v1
       - key: OPTO_LLM_MODEL

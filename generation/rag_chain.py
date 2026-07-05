@@ -326,6 +326,87 @@ class RedSeaGPT:
             "ungrounded_sentences": ungrounded_sentences[:3],  # First 3 ungrounded
         }
 
+    def _is_clearly_out_of_scope(self, question: str) -> Tuple[bool, str]:
+        """High-precision UPFRONT scope check. Runs BEFORE any LLM call or retrieval
+        so obviously off-topic questions are refused instantly without spending
+        API tokens on memory-resolution, embedding, or generation.
+
+        Conservative by design: it only refuses when CONFIDENT. A question passes
+        through to the normal pipeline (where the existing retrieval-based refusal
+        catches softer cases) unless it (a) carries NO in-scope signal AND (b)
+        matches a strong out-of-scope category. The in-scope allowlist is broad on
+        purpose so legit marine/reef/ocean questions are never false-positived.
+        """
+        q = question.lower()
+
+        # --- in-scope signals (any one grants passage) ---
+        in_scope = (
+            "red sea" in q or "redsea" in q
+            or "gulf of aqaba" in q or "aqaba" in q
+            or "gulf of suez" in q or "suez" in q
+            or "sinai" in q or "hurghada" in q or "sharm" in q
+            or "dahab" in q or "marsa alam" in q or "jeddah" in q
+            or "yanbu" in q or "eritrea" in q or "djibouti" in q
+            or "farasan" in q or "dalhak" in q or "dalak" in q
+            # reef / coral biology
+            or "coral" in q or "reef" in q or "scleractin" in q
+            or "zooxanthell" in q or "bleach" in q
+            or "mangrove" in q or "seagrass" in q or "phytoplankton" in q
+            or "kelp" in q
+            # oceanography / geology
+            or "salin" in q or "ocean" in q or "thermocline" in q
+            or "upwell" in q or "hydrothermal" in q or "vents" in q
+            or "rift" in q or "tectonic" in q or "basalt" in q
+            or "magma" in q or "mantle" in q or "spreading" in q
+            or "sediment" in q or "carbonate" in q or "acidif" in q
+            # biology / taxa
+            or "fish" in q or "ichthyo" in q or "endemic" in q
+            or "biodiversity" in q or "dolphin" in q or "dugong" in q
+            or "turtle" in q or "shark" in q or "cetacean" in q
+            or "plankton" in q or "invertebrate" in q or "crustacean" in q
+            or "mollus" in q or "echinoderm" in q
+            # marine science / environment
+            or "marine" in q or "ecosystem" in q or "conservation" in q
+            or "pollution" in q or "warming" in q or "coastal" in q
+        )
+        if in_scope:
+            return False, ""
+
+        # --- strong out-of-scope signals (specific phrases, not common words) ---
+        oos_categories = [
+            ("sports", ["world cup", "football", "soccer", "basketball", "baseball",
+                        "olympics", "super bowl", "who won", "match score", "champions league",
+                        "premier league", "nfl", "nba", "fifa", "cricket", "tennis"]),
+            ("politics", ["election", "who should i vote", "prime minister", "presidential candidate",
+                          "congress bill", "parliament vote", "democrat", "republican"]),
+            ("programming", ["python", "javascript", "java code", "c++", "react", "flutter",
+                             "docker", "kubernetes", "function error", "stack trace", "api endpoint",
+                             "sql query", "html css", "typescript", "golang", "rust crate",
+                             "how do i code", "debug this", "compile error"]),
+            ("celebrity/entertainment", ["taylor swift", "kim kardashian", "net worth",
+                                          "who is the actor", "movie cast", "new album",
+                                          "oscar winner", "grammy"]),
+            ("cooking/food", ["recipe for", "how do i cook", "how to cook", "how do i bake",
+                             "how to bake", "baking recipe", "bake bread", "bake a cake",
+                             "sourdough", "how do i make a cake"]),
+            ("personal/health advice", ["should i break up", "my boyfriend", "my girlfriend",
+                                         "my husband cheated", "diagnose me", "am i pregnant",
+                                         "my mental health"]),
+            ("finance", ["stock price", "bitcoin", "crypto", "ethereum", "investment advice",
+                         "mortgage rate", "how to invest"]),
+            ("general trivia (non-marine)", ["capital of", "population of france", "population of the us",
+                                              "president of the united", "largest country"]),
+        ]
+        for category, phrases in oos_categories:
+            if any(p in q for p in phrases):
+                return True, (
+                    f"Out-of-scope (upfront): question matches the '{category}' category and "
+                    f"carries no Red Sea / marine-science signal — refused before retrieval "
+                    f"or generation to avoid spending API tokens."
+                )
+
+        return False, ""
+
     def query(self, question: str, return_source_docs: bool = False,
               memory: Optional[ConversationMemory] = None,
               tone: str = DEFAULT_TONE) -> str | Dict[str, Any]:
@@ -363,6 +444,34 @@ class RedSeaGPT:
             >>> gpt.query("How did the Red Sea form?", memory=mem)
             >>> gpt.query("how fast is that happening?", memory=mem)  # resolves to spreading rate
         """
+        # Step −1: UPFRONT scope check. Refuse obviously off-topic questions
+        # BEFORE any LLM call (memory resolution), retrieval, or generation — so
+        # out-of-scope questions ("who won the world cup?") cost zero API tokens.
+        # Conservative: only fires when confident (no in-scope signal AND a strong
+        # out-of-scope match). Ambiguous questions fall through to the normal
+        # pipeline where the retrieval-based refusal handles them.
+        oos, oos_reason = self._is_clearly_out_of_scope(question)
+        if oos:
+            refusal_msg = (
+                "That question is outside the scope of what I can answer. I'm a "
+                "research assistant for the natural science of the Egyptian Red Sea "
+                "— its geology, oceanography, reefs, and biodiversity — and I only "
+                "answer from peer-reviewed sources on those topics. Ask me something "
+                "about the Red Sea and I'll ground every claim in a citation."
+            )
+            if return_source_docs:
+                return {
+                    "answer": refusal_msg,
+                    "sources": [],
+                    "question": question,
+                    "confidence": 0.0,
+                    "refusal": True,
+                    "retrieval_method": "upfront_scope_gate",
+                    "route": "upfront_refusal",
+                    "reason": oos_reason,
+                }
+            return refusal_msg
+
         # Step 0: If we have conversation history, rewrite the latest message into a
         # self-contained question so retrieval/topic-mismatch see the real intent.
         # Falls back to the raw question if memory is empty or resolution fails.

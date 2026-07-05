@@ -23,11 +23,13 @@ export function Header({
   return (
     <header className="sticky top-0 z-20 border-b hairline bg-bone/80 backdrop-blur-md">
       <div className="mx-auto flex h-14 max-w-3xl items-center gap-2 px-5">
-        {/* Menu button — shows on mobile/tablet, hidden when sidebar is open (md+) */}
+        {/* Menu button — visible whenever the sidebar is CLOSED (all screen sizes),
+            so a desktop user who collapsed the sidebar can reopen it. Hidden on
+            desktop when open (the sidebar shows its own collapse chevron then). */}
         <button
           onClick={onOpenSidebar}
           className={`pressable -ml-1 rounded-md p-1.5 text-ink/70 hover:bg-bone-100 hover:text-ink-950 ${
-            sidebarOpen ? "md:hidden" : "md:hidden"
+            sidebarOpen ? "md:hidden" : ""
           }`}
           aria-label="Open chat history"
         >

@@ -64,6 +64,40 @@ def test_provider_config_never_leaks_key():
         assert key_str not in blob, "real key value leaked into provider description"
 
 
+def test_optollm_brand_alias_resolves():
+    """Both spellings (brand "optollm" and legacy "optillm") must resolve to the
+    same provider preset, so a brand-correct LLM_PROVIDER value doesn't crash
+    the engine build at deploy time."""
+    from generation.llm_config import resolve_provider_config, PROVIDER_PRESETS
+
+    import os
+    saved = os.environ.get("LLM_PROVIDER")
+    os.environ["LLM_PROVIDER"] = "optollm"
+    try:
+        cfg_brand = resolve_provider_config()
+    finally:
+        if saved is None:
+            os.environ.pop("LLM_PROVIDER", None)
+        else:
+            os.environ["LLM_PROVIDER"] = saved
+
+    os.environ["LLM_PROVIDER"] = "optillm"
+    try:
+        cfg_legacy = resolve_provider_config()
+    finally:
+        if saved is None:
+            os.environ.pop("LLM_PROVIDER", None)
+        else:
+            os.environ["LLM_PROVIDER"] = saved
+
+    # Both must resolve to the same canonical preset (the alias maps optollm -> optillm).
+    assert cfg_brand["provider"] == "optillm", "brand spelling did not resolve via alias"
+    assert cfg_brand["provider"] == cfg_legacy["provider"]
+    assert cfg_brand["base_url"] == cfg_legacy["base_url"]
+    assert cfg_brand["protocol"] == cfg_legacy["protocol"]
+    assert "optollm" not in PROVIDER_PRESETS  # alias, not a duplicate preset
+
+
 def test_llm_object_repr_hides_secret():
     """The LLM client object must never expose the key via repr()/str()."""
     from generation.llm_config import create_llm
@@ -170,3 +204,39 @@ def test_metrics_faithfulness_is_explainable():
     assert f_bad["faithfulness"] <= 0.2, f_bad
     assert f_good["faithfulness"] > f_bad["faithfulness"]
     assert "evidence" in f_good
+
+
+# ---------------------------------------------------------------------------
+# Upfront scope gate (saves API tokens by refusing OOS questions pre-LLM)
+# ---------------------------------------------------------------------------
+def test_upfront_scope_gate_refuses_off_topic_and_passes_in_scope():
+    """Obviously off-topic questions are refused BEFORE any LLM call; legit Red
+    Sea / marine questions always pass through. Pure function — no engine load."""
+    from generation.rag_chain import RedSeaGPT
+    # Bypass __init__ (which loads the 1.6GB engine) — we only test the pure check.
+    g = RedSeaGPT.__new__(RedSeaGPT)
+
+    off_topic = [
+        "Who won the 2022 World Cup?",
+        "Write me a Python function to sort a list",
+        "What is the capital of France?",
+        "How do I bake sourdough bread?",
+        "What is the bitcoin price today?",
+        "Should I break up with my girlfriend?",
+    ]
+    for q in off_topic:
+        oos, reason = g._is_clearly_out_of_scope(q)
+        assert oos, f"should refuse upfront: {q!r} (reason={reason!r})"
+        assert reason, f"reason text missing for {q!r}"
+
+    in_scope = [
+        "How did the Red Sea form?",
+        "Why are some corals heat tolerant?",
+        "How deep is the Gulf of Aqaba?",
+        "What is the salinity of the water there?",
+        "Tell me about the mangroves",
+        "Which fish are endemic?",
+    ]
+    for q in in_scope:
+        oos, reason = g._is_clearly_out_of_scope(q)
+        assert not oos, f"should NOT be refused upfront: {q!r} (got reason={reason!r})"

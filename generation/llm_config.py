@@ -115,6 +115,12 @@ PROVIDER_PRESETS: Dict[str, Dict[str, Optional[str]]] = {
 }
 
 VALID_PROVIDERS = tuple(PROVIDER_PRESETS.keys())
+
+# Provider aliases. The product is branded "OptoLLM" (see the optollm.optomatica.com
+# URL and the OPTO_LLM_* env vars), but the preset key was written as "optillm".
+# Accept both spellings so a brand-correct ``LLM_PROVIDER=optollm`` resolves to the
+# same configuration. Auto-detection via OPTO_LLM_API_KEY already works either way.
+_PROVIDER_ALIASES = {"optollm": "optillm"}
 VALID_PROTOCOLS = ("anthropic_messages", "openai_chat")
 _USER_AGENT = "redsea-gpt/1.0 (+https://github.com/yaseen-elbeltagy)"
 _KEY_FRAG_RE = re.compile(r"sk-[A-Za-z0-9_\-]{3,}")
@@ -140,6 +146,9 @@ def resolve_provider_config(
 ) -> Dict[str, str]:
     """Resolve a fully-specified, secret-free-except-key provider config."""
     provider = (provider or os.getenv("LLM_PROVIDER") or _detect_provider_from_env()).strip().lower()
+    # Resolve brand aliases ("optollm" -> "optillm") before validation, so the
+    # canonical product name works as an LLM_PROVIDER value.
+    provider = _PROVIDER_ALIASES.get(provider, provider)
     if not provider:
         raise ValueError(
             "No LLM provider configured. Set one of OPTO_LLM_API_KEY / "
