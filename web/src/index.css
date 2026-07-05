@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===========================================================================
+   RedSea GPT — base styles + design tokens
+   Craft synthesized from emil-design-eng + minimalist-ui:
+   - off-black text on warm bone canvas (never #000)
+   - 1px hairline borders, no heavy shadows
+   - restrained motion (transform/opacity only, custom ease-out)
+   =========================================================================== */
+
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  color-scheme: light;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #f7f6f3;
+  /* warm bone canvas with a whisper of paper grain */
+  background-image:
+    radial-gradient(120% 80% at 50% -10%, rgba(14, 59, 67, 0.04), transparent 60%),
+    radial-gradient(80% 60% at 100% 100%, rgba(224, 120, 86, 0.025), transparent 55%);
+  background-attachment: fixed;
+  color: #0e3b43;
+  font-family: "Geist", "SF Pro Display", system-ui, -apple-system, sans-serif;
+  font-feature-settings: "ss01", "cv01", "cv03";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(224, 120, 86, 0.22);
+  color: #0a2e34;
+}
+
+/* Editorial serif headings */
+.font-editorial {
+  font-family: "Newsreader", "Instrument Serif", Georgia, serif;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+/* Hairline rule — the workhorse divider (minimalist-ui: 1px #EAEAEA) */
+.hairline {
+  border-color: #eaeaea;
+}
+
+/* Mono labels (keystrokes, meta, reasoning stats) */
+.mono-label {
+  font-family: "JetBrains Mono", "Geist Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #6b7480;
+}
+
+/* Citation chip inline in answer prose */
+.cite-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.15rem;
+  height: 1.15rem;
+  padding: 0 0.3rem;
+  margin: 0 0.05rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1;
+  color: #0e3b43;
+  background: #e1eef0;
+  border-radius: 4px;
+  vertical-align: 0.15em;
+  cursor: pointer;
+  transition: background 160ms var(--ease-out), transform 160ms var(--ease-out),
+    color 160ms var(--ease-out);
+}
+.cite-chip:hover {
+  background: #0e3b43;
+  color: #f7f6f3;
+}
+.cite-chip:active {
+  transform: scale(0.94);
+}
+.cite-chip[data-active="true"] {
+  background: #0e3b43;
+  color: #f7f6f3;
+}
+
+/* Answer prose styling — comfortable reading, generous line height */
+.answer-prose {
+  font-size: 16px;
+  line-height: 1.65;
+  color: #1a2f33;
+}
+.answer-prose p {
+  margin: 0 0 1em;
+}
+.answer-prose p:last-child {
+  margin-bottom: 0;
+}
+.answer-prose strong {
+  color: #0a2e34;
+  font-weight: 600;
+}
+.answer-prose h3,
+.answer-prose h4 {
+  font-family: "Newsreader", serif;
+  letter-spacing: -0.02em;
+  color: #0a2e34;
+  margin: 1.4em 0 0.5em;
+  line-height: 1.2;
+}
+.answer-prose h3 {
+  font-size: 1.15rem;
+}
+.answer-prose h4 {
+  font-size: 1rem;
+}
+
+/* Button press feedback (Kowalski: scale 0.97 on :active) */
+.pressable {
+  transition: transform 160ms var(--ease-out), background-color 160ms var(--ease-out),
+    color 160ms var(--ease-out), border-color 160ms var(--ease-out),
+    opacity 160ms var(--ease-out);
+}
+.pressable:active {
+  transform: scale(0.97);
+}
+
+/* Custom scrollbar — thin and quiet */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(14, 59, 67, 0.18) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(14, 59, 67, 0.16);
+  border-radius: 8px;
+}
+
+/* Reduced motion: respect the user. Calmer, not zero. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
