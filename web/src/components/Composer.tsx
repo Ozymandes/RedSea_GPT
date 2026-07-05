@@ -55,8 +55,7 @@ export function Composer({ onSend, disabled }: Props) {
           </button>
         </div>
         <p className="mt-2 px-1 text-[11px] text-muted/70">
-          Cites its sources. Refuses what it can&rsquo;t ground. Try a follow-up:
-          &ldquo;how deep is <em>it</em>?&rdquo;
+          Cites its sources. Refuses what it can&rsquo;t ground.
         </p>
       </div>
     </div>

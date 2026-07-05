@@ -63,10 +63,13 @@ export function Sidebar({ chats, activeId, open, onNew, onSelect, onDelete, onCl
               </div>
               <button
                 onClick={onClose}
-                className="pressable rounded-md p-1.5 text-muted hover:bg-bone-100 hover:text-ink md:hidden"
-                aria-label="Close sidebar"
+                className="pressable rounded-md p-1.5 text-muted hover:bg-bone-100 hover:text-ink"
+                aria-label="Collapse sidebar"
+                title="Collapse"
               >
-                ×
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M15 6l-6 6 6 6" />
+                </svg>
               </button>
             </div>
 
@@ -96,7 +99,7 @@ export function Sidebar({ chats, activeId, open, onNew, onSelect, onDelete, onCl
                       <li key={c.id} className="group relative">
                         <button
                           onClick={() => onSelect(c.id)}
-                          className={`pressable block w-full rounded-md px-2.5 py-2 text-left ${
+                          className={`pressable block w-full rounded-md px-2.5 py-2 pr-8 text-left ${
                             active ? "bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04)]" : "hover:bg-white/60"
                           }`}
                         >
@@ -118,14 +121,15 @@ export function Sidebar({ chats, activeId, open, onNew, onSelect, onDelete, onCl
                             </span>
                           </div>
                         </button>
-                        {/* Delete — appears on hover/focus */}
+                        {/* Delete — always visible (faint), reliable on touch/desktop */}
                         <button
                           onClick={(e) => {
+                            e.preventDefault();
                             e.stopPropagation();
                             onDelete(c.id);
                           }}
-                          className="pressable absolute right-1.5 top-1/2 -translate-y-1/2 rounded p-1 text-muted opacity-0 transition-opacity hover:bg-coral-soft/40 hover:text-coral-deep group-hover:opacity-100 focus:opacity-100"
-                          aria-label="Delete conversation"
+                          className="pressable absolute right-1 top-1/2 z-20 -translate-y-1/2 rounded p-1.5 text-muted/50 transition-colors hover:bg-coral-soft/50 hover:text-coral-deep"
+                          aria-label={`Delete conversation: ${c.title}`}
                           title="Delete"
                         >
                           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
