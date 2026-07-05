@@ -37,8 +37,7 @@ export function ToneToggle({ tone, onChange, disabled }: Props) {
           tone === "intuitive" ? "text-bone" : "text-ink/65 hover:text-ink-950"
         }`}
       >
-        <span className="hidden sm:inline">Naturalist</span>
-        <span className="sm:hidden">Simple</span>
+        Educational
       </button>
       <button
         onClick={() => onChange("technical")}
@@ -48,8 +47,7 @@ export function ToneToggle({ tone, onChange, disabled }: Props) {
           tone === "technical" ? "text-bone" : "text-ink/65 hover:text-ink-950"
         }`}
       >
-        <span className="hidden sm:inline">University</span>
-        <span className="sm:hidden">Technical</span>
+        Expert
       </button>
     </div>
   );

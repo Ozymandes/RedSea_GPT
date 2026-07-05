@@ -4,6 +4,7 @@ import type { ChatMessage } from "../lib/types";
 import { ReasoningPanel } from "./ReasoningPanel";
 import { CitationCard } from "./CitationCard";
 import { ShieldIcon } from "./Icons";
+import { AnswerBody } from "./AnswerBody";
 
 interface Props {
   message: ChatMessage;
@@ -12,36 +13,6 @@ interface Props {
 // Render the assistant answer: turn [n] markers into interactive chips that
 // scroll to / highlight the matching citation card. We do NOT render arbitrary
 // markdown HTML from the model for safety; we render paragraphs + inline chips.
-function AnswerBody({ text, onChip }: { text: string; onChip: (id: number) => void }) {
-  return (
-    <div className="answer-prose">
-      {text.split(/\n{2,}/).map((para, pi) => {
-        const segments = para.split(/(\[\d+\])/g);
-        return (
-          <p key={pi}>
-            {segments.map((seg, si) => {
-              const m = /^\[(\d+)\]$/.exec(seg);
-              if (m) {
-                const id = parseInt(m[1], 10);
-                return (
-                  <button
-                    key={si}
-                    className="cite-chip"
-                    onClick={() => onChip(id)}
-                    aria-label={`See source ${id}`}
-                  >
-                    {id}
-                  </button>
-                );
-              }
-              return <span key={si}>{seg}</span>;
-            })}
-          </p>
-        );
-      })}
-    </div>
-  );
-}
 
 export function MessageView({ message }: Props) {
   const [activeCitation, setActiveCitation] = useState<number | null>(null);

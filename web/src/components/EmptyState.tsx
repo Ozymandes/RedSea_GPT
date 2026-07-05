@@ -5,8 +5,8 @@ import type { Suggestion } from "../lib/types";
 const SUGGESTIONS: Suggestion[] = [
   { label: "How did the Red Sea form?", prompt: "How did the Red Sea form geologically?" },
   { label: "Why is it so salty?", prompt: "Why is the Red Sea so much saltier than other seas?" },
-  { label: "Heat-tolerant corals", prompt: "Why are some Red Sea corals unusually tolerant of high temperatures?" },
-  { label: "Gulf of Aqaba", prompt: "Tell me about the Gulf of Aqaba and its depth." },
+  { label: "Why are some corals heat-tolerant?", prompt: "Why are some Red Sea corals unusually tolerant of high temperatures?" },
+  { label: "How deep is the Gulf of Aqaba?", prompt: "How deep is the Gulf of Aqaba, and why?" },
 ];
 
 interface Props {
