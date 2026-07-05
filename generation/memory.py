@@ -89,10 +89,12 @@ class ConversationMemory:
             return ""
         lines = ["=== PREVIOUS CONVERSATION (use for context; cite only freshly retrieved sources) ==="]
         for i, t in enumerate(turns, 1):
-            # Trim answer to keep the prompt bounded.
+            # Bound answer length per turn, but generously enough to preserve real
+            # conversational context (the previous answer's specific claims / numbers
+            # a follow-up may reference). ~800 chars ~ 2-3 substantive sentences.
             ans = t.answer.strip().replace("\n", " ")
-            if len(ans) > 280:
-                ans = ans[:280].rstrip() + "…"
+            if len(ans) > 800:
+                ans = ans[:800].rstrip() + "…"
             lines.append(f"Turn {i}")
             lines.append(f"  User: {t.question}")
             lines.append(f"  Assistant: {ans}")

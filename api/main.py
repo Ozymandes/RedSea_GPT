@@ -91,6 +91,7 @@ class ChatRequest(BaseModel):
     message: str = Field(..., min_length=1, max_length=2000)
     session_id: Optional[str] = None
     agent: Optional[bool] = None  # per-request override of REDSEA_ENGINE
+    tone: Optional[str] = "intuitive"  # "technical" | "intuitive"
 
 
 class Citation(BaseModel):
@@ -121,6 +122,7 @@ class ChatResponse(BaseModel):
     reasoning: ReasoningTrace
     session_id: str
     engine: str
+    tone: str
     error: Optional[str] = None
 
 
@@ -169,8 +171,12 @@ def chat(req: ChatRequest) -> ChatResponse:
     use_agent = ENGINE_MODE == "agent"
 
     mem = SESSIONS.get_or_create(req.session_id)
+    # Normalize tone; default intuitive.
+    tone = (req.tone or "intuitive").strip().lower()
+    if tone not in ("technical", "intuitive"):
+        tone = "intuitive"
     try:
-        result = engine.query(req.message, return_source_docs=True, memory=mem)
+        result = engine.query(req.message, return_source_docs=True, memory=mem, tone=tone)
     except Exception as exc:  # noqa: BLE001 - never crash the API
         logger.exception("Engine query failed")
         return ChatResponse(
@@ -180,6 +186,7 @@ def chat(req: ChatRequest) -> ChatResponse:
             reasoning=ReasoningTrace(),
             session_id=_sid_from_mem(mem),
             engine=ENGINE_MODE,
+            tone=tone,
             error=f"{exc.__class__.__name__}: {exc}",
         )
 
@@ -221,6 +228,7 @@ def chat(req: ChatRequest) -> ChatResponse:
         reasoning=reasoning,
         session_id=_sid_from_mem(mem),
         engine=("agent" if use_agent else "baseline"),
+        tone=tone,
     )
 
 

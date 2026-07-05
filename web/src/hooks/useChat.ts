@@ -14,7 +14,7 @@ export interface UseChat {
   reset: () => Promise<void>;
 }
 
-export function useChat(): UseChat {
+export function useChat(tone: string): UseChat {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -33,7 +33,7 @@ export function useChat(): UseChat {
       const ctl = new AbortController();
       abortRef.current = ctl;
       try {
-        const res = await postChat(trimmed, sessionId, ctl.signal);
+        const res = await postChat(trimmed, sessionId, tone, ctl.signal);
         setSessionId(res.session_id);
         const asst: ChatMessage = {
           id: uid(),
@@ -69,7 +69,7 @@ export function useChat(): UseChat {
         abortRef.current = null;
       }
     },
-    [loading, sessionId]
+    [loading, sessionId, tone]
   );
 
   const reset = useCallback(async () => {

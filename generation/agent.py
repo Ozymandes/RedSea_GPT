@@ -28,6 +28,7 @@ from langchain_core.documents import Document
 from .graph import build_graph
 from .llm_config import create_llm
 from .memory import ConversationMemory, resolve_query_with_history
+from .prompts import DEFAULT_TONE
 from .reranker import Reranker
 from .retrievers import HybridRetriever
 from .tools import _make_retrieval_tools
@@ -107,7 +108,8 @@ class RedSeaAgent:
         logger.info("BM25 corpus populated: %d chunks.", len(docs))
 
     def query(self, question: str, return_source_docs: bool = False,
-              memory: Optional[ConversationMemory] = None):
+              memory: Optional[ConversationMemory] = None,
+              tone: str = DEFAULT_TONE):
         """Run the agentic graph for a question.
 
         Returns the same dict shape as ``RedSeaGPT.query(return_source_docs=True)``
@@ -117,6 +119,9 @@ class RedSeaAgent:
         into a self-contained question (so the graph's classify/retrieve nodes
         see the real intent) before invocation. Falls back to the raw question
         on any failure.
+
+        Tone: 'technical' (university-level) or 'intuitive' (hobbyist) selects
+        the generation prompt. Grounding is identical either way.
         """
         history_block = ""
         resolved_question = question
@@ -125,7 +130,7 @@ class RedSeaAgent:
             history_block = memory.format_for_prompt()
         try:
             final = self.graph_app.invoke(
-                {"question": resolved_question, "history": history_block},
+                {"question": resolved_question, "history": history_block, "tone": tone},
                 config={"recursion_limit": self._recursion_limit},
             )
         except Exception as exc:  # noqa: BLE001

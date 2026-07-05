@@ -25,6 +25,7 @@ export interface ChatResponse {
   reasoning: ReasoningTrace;
   session_id: string;
   engine: string;
+  tone: string;
   error?: string | null;
 }
 

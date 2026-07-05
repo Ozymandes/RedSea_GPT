@@ -62,6 +62,10 @@ class AgentState(TypedDict, total=False):
     # so the model can phrase answers naturally and reference earlier turns.
     history: str
 
+    # Output tone: "technical" (university-level) or "intuitive" (hobbyist).
+    # Selects which prompt the generate node uses. Same grounding either way.
+    tone: str
+
     # The router's decision: "retrieve" (in-domain, needs the corpus) or
     # "refuse" (off-topic / out of scope).
     route: str

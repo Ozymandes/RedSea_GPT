@@ -8,10 +8,10 @@ interface Props {
   rawUser: string; // to show "you asked X -> understood Y"
 }
 
-function Stat({ label, value }: { label: string; value: string | null }) {
+function Stat({ label, value, hint }: { label: string; value: string | null; hint?: string }) {
   if (value == null || value === "") return null;
   return (
-    <div className="flex flex-col gap-0.5">
+    <div className="flex flex-col gap-0.5" title={hint}>
       <span className="mono-label text-[9.5px]">{label}</span>
       <span className="font-mono text-[12px] text-ink-950">{value}</span>
     </div>
@@ -34,7 +34,7 @@ export function ReasoningPanel({ reasoning, rawUser }: Props) {
   const summaryParts: string[] = [];
   if (method) summaryParts.push(method);
   if (r.retrieval_rounds != null) summaryParts.push(`${r.retrieval_rounds} round${r.retrieval_rounds === 1 ? "" : "s"}`);
-  if (confidence) summaryParts.push(`${confidence} conf.`);
+  if (confidence) summaryParts.push(`${confidence} relevance`);
   const summary = summaryParts.join(" · ");
 
   return (
@@ -97,7 +97,11 @@ export function ReasoningPanel({ reasoning, rawUser }: Props) {
                   label="Rounds"
                   value={r.retrieval_rounds != null ? String(r.retrieval_rounds) : null}
                 />
-                <Stat label="Confidence" value={confidence} />
+                <Stat
+                  label="Source relevance"
+                  value={confidence}
+                  hint="Average match between the question and the retrieved passages (cosine similarity). This is a retrieval-match signal, not a guarantee of correctness."
+                />
               </div>
 
               {r.verification &&

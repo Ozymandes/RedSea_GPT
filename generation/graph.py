@@ -42,7 +42,7 @@ from langchain_core.documents import Document
 from langchain_core.language_models.llms import BaseLLM
 from langgraph.graph import END, START, StateGraph
 
-from .prompts import create_rag_prompt, format_context
+from .prompts import create_rag_prompt, format_context, DEFAULT_TONE, VALID_TONES
 from .query_rewriter import generate_subqueries, generate_hyde
 from .state import AgentState
 
@@ -234,7 +234,10 @@ class GraphNodes:
         history = state.get("history", "") or ""
         if history:
             context = history + context
-        formatted = self.prompt.format(context=context, question=state["question"])
+        # Per-tone prompt: technical (dense) vs intuitive (terms unpacked).
+        tone = state.get("tone") or DEFAULT_TONE
+        prompt = create_rag_prompt(tone if tone in VALID_TONES else DEFAULT_TONE)
+        formatted = prompt.format(context=context, question=state["question"])
         answer = self._call(formatted)
         return {"answer": answer, "trace": {"generate": round(time.perf_counter() - t0, 3)}}
 

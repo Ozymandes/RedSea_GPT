@@ -8,7 +8,7 @@ import numpy as np
 
 from .llm_config import create_llm
 from .memory import ConversationMemory, Turn, resolve_query_with_history
-from .prompts import create_rag_prompt, format_context
+from .prompts import create_rag_prompt, format_context, DEFAULT_TONE, VALID_TONES
 from .utils import clean_source_path
 
 
@@ -58,8 +58,9 @@ class RedSeaGPT:
         # Initialize LLM (provider-agnostic; configured via env or llm_config)
         self.llm = create_llm(**(llm_config or {}))
 
-        # Create prompt template
-        self.prompt = create_rag_prompt()
+        # Prompt templates are built per-tone on demand (cheap; cached upstream).
+        # Keep a default-tone instance for the legacy simple_chain path.
+        self.prompt = create_rag_prompt(DEFAULT_TONE)
 
         # Create the RAG chain
         self.chain = self._create_rag_chain()
@@ -326,7 +327,8 @@ class RedSeaGPT:
         }
 
     def query(self, question: str, return_source_docs: bool = False,
-              memory: Optional[ConversationMemory] = None) -> str | Dict[str, Any]:
+              memory: Optional[ConversationMemory] = None,
+              tone: str = DEFAULT_TONE) -> str | Dict[str, Any]:
         """
         Query RedSea GPT with a question.
 
@@ -346,6 +348,7 @@ class RedSeaGPT:
             question: User's question about the Red Sea
             return_source_docs: Whether to return source documents and metadata
             memory: Optional conversation buffer for multiturn chat
+            tone: "technical" (university-level) or "intuitive" (hobbyist-friendly)
 
         Returns:
             Generated answer (or dict with answer, sources, and metadata if return_source_docs=True)
@@ -450,7 +453,10 @@ class RedSeaGPT:
 
         # Step 4: Generate answer (the generator sees the RESOLVED question so it
         # answers the real intent; the user still sees their raw message in the UI).
-        formatted_prompt = self.prompt.format(context=context, question=resolved_question)
+        # The prompt is selected per-tone: 'technical' (dense, jargon-permitting) vs
+        # 'intuitive' (same specifics, every term unpacked in plain language).
+        prompt = create_rag_prompt(tone if tone in VALID_TONES else DEFAULT_TONE)
+        formatted_prompt = prompt.format(context=context, question=resolved_question)
         answer = self.llm.invoke(formatted_prompt)
 
         # Extract string if it's a structured output

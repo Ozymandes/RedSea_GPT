@@ -6,9 +6,11 @@ import { EmptyState } from "./components/EmptyState";
 import { MessageView } from "./components/Message";
 import { ThinkingState } from "./components/ThinkingState";
 import { useChat } from "./hooks/useChat";
+import type { Tone } from "./components/ToneToggle";
 
 export default function App() {
-  const { messages, loading, send, reset, error } = useChat();
+  const [tone, setTone] = useState<Tone>("intuitive");
+  const { messages, loading, send, reset, error } = useChat(tone);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [booted, setBooted] = useState(false);
 
@@ -29,7 +31,7 @@ export default function App() {
 
   return (
     <div className="flex h-full flex-col">
-      <Header engine={engine} onReset={reset} hasMessages={hasMessages} />
+      <Header engine={engine} onReset={reset} hasMessages={hasMessages} tone={tone} onToneChange={setTone} />
 
       <main ref={scrollRef} className="flex-1 overflow-y-auto">
         {!hasMessages ? (

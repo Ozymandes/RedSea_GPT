@@ -5,12 +5,13 @@ const API_BASE = "/api";
 export async function postChat(
   message: string,
   sessionId: string | null,
+  tone: string,
   signal?: AbortSignal
 ): Promise<ChatResponse> {
   const res = await fetch(`${API_BASE}/chat`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message, session_id: sessionId }),
+    body: JSON.stringify({ message, session_id: sessionId, tone }),
     signal,
   });
   if (!res.ok) {
