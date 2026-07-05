@@ -38,10 +38,16 @@ export default function App() {
   const [booted, setBooted] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const prevMsgLen = useRef(0);
+  // IDs of chats we've ever shown/created. Used to distinguish a NEW chat (must
+  // be created in storage) from a DELETED chat (must never resurrect). The
+  // earlier `if (!existing) return` guard mistakenly treated new chats as
+  // deleted and never saved them.
+  const knownIds = useRef<Set<string>>(new Set());
 
   // Hydrate from localStorage on mount.
   useEffect(() => {
     const stored = loadChats();
+    stored.forEach((c) => knownIds.current.add(c.id)); // seed known set
     setChats(stored);
     const aid = getActiveId();
     if (aid && stored.some((c) => c.id === aid)) {
@@ -67,21 +73,18 @@ export default function App() {
   }, []);
 
   // Persist the active chat whenever its messages change.
-  // Reads a FRESH list from localStorage (not the React `chats` closure, which
-  // can be stale) so a concurrent delete elsewhere is never clobbered, and so
-  // we never resurrect a chat that was removed.
+  // - NEW chats (in knownIds but not yet in storage) are CREATED.
+  // - DELETED chats (not in knownIds) are never resurrected.
+  // - EXISTING chats are updated.
   useEffect(() => {
     if (!booted || !activeId || messages.length === 0) return;
-    const fresh = loadChats();
-    const existing = fresh.find((c) => c.id === activeId);
-    // If the active chat was deleted from storage, do NOT re-create it.
-    // (Shouldn't happen now, but this is the definitive guard.)
-    if (!existing) return;
+    if (!knownIds.current.has(activeId)) return; // deleted — do not resurrect
     const firstUser = messages.find((m) => m.role === "user");
+    const existing = chats.find((c) => c.id === activeId);
     const updated: StoredChat = {
       id: activeId,
-      title: existing.title || (firstUser ? deriveTitle(firstUser.text) : "New chat"),
-      createdAt: existing.createdAt,
+      title: existing?.title || (firstUser ? deriveTitle(firstUser.text) : "New chat"),
+      createdAt: existing?.createdAt ?? Date.now(),
       updatedAt: Date.now(),
       tone,
       messages,
@@ -110,6 +113,7 @@ export default function App() {
 
   const startNewChat = useCallback(() => {
     const id = newChatId();
+    knownIds.current.add(id); // mark as known so the persist effect will create it
     setActiveChatId(id);
     setActiveId(id);
     clearMessages();
@@ -120,6 +124,7 @@ export default function App() {
     (id: string) => {
       // Read fresh from storage so we always load the canonical messages.
       const found = loadChats().find((c) => c.id === id);
+      knownIds.current.add(id);
       setActiveChatId(id);
       setActiveId(id);
       if (found) loadMessages(found.messages);
@@ -130,11 +135,13 @@ export default function App() {
 
   const removeChat = useCallback(
     (id: string) => {
+      knownIds.current.delete(id); // ensure it never resurrects
       const next = deleteChatFromStore(id); // removes from localStorage
       setChats(next);
       if (activeId === id) {
         if (next.length > 0) {
           const fallback = next[0];
+          knownIds.current.add(fallback.id);
           setActiveChatId(fallback.id);
           setActiveId(fallback.id);
           loadMessages(fallback.messages);
@@ -152,6 +159,7 @@ export default function App() {
     (text: string) => {
       if (!activeId) {
         const id = newChatId();
+        knownIds.current.add(id);
         setActiveChatId(id);
         setActiveId(id);
       }

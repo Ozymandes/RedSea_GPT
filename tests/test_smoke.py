@@ -223,6 +223,23 @@ def test_upfront_scope_gate_refuses_off_topic_and_passes_in_scope():
         "How do I bake sourdough bread?",
         "What is the bitcoin price today?",
         "Should I break up with my girlfriend?",
+        # New categories (broadened coverage):
+        "Solve my math homework",
+        "Solve 2x + 5 = 15",
+        "Translate hello to french",
+        "Write me a poem about love",
+        "Tell me a joke",
+        "Explain quantum physics",
+        "How do I fix my car engine",
+        "Best gpu for gaming",
+        "What is the meaning of life",
+        "Help me with my resume",
+        "Summarize the bible",
+        "Who wrote hamlet",
+        "Diagnose my chest pain",
+        "Explain the french revolution",
+        "Tell me about taylor swift",
+        "Write me a business plan",
     ]
     for q in off_topic:
         oos, reason = g._is_clearly_out_of_scope(q)
@@ -236,6 +253,13 @@ def test_upfront_scope_gate_refuses_off_topic_and_passes_in_scope():
         "What is the salinity of the water there?",
         "Tell me about the mangroves",
         "Which fish are endemic?",
+        # New in-scope probes (must NOT be false-positived by the broader gate):
+        "What causes coral bleaching?",
+        "Are there hydrothermal vents?",
+        "Describe the thermocline",
+        "How fast is the sea floor spreading?",
+        "How does warming affect reefs?",
+        "What is the spreading rate of the rift?",
     ]
     for q in in_scope:
         oos, reason = g._is_clearly_out_of_scope(q)
