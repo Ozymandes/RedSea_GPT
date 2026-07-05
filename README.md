@@ -268,34 +268,37 @@ tool-using graph that is measurably better-grounded, not a bigger number.
 > **Note on provenance.** The current backend is **OptiLLM** (`gpt-4o-mini` via
 > the Optomatica gateway, Anthropic-Messages protocol). The numbers below are
 > from a fresh run against that backend, *not* a relabelling of earlier Groq
-> numbers. Full per-question artifacts live in `eval_results/optillm_gpt4omini_FINAL/`.
+> numbers. Full per-question artifacts live in `eval_results/optillm_gpt4omini_FINAL_v2/`.
 
 | Metric | Result |
 |--------|-------:|
-| Questions | **38** |
+| Questions | **38** (26 answerable, 12 refusal) |
 | Provider / model | OptiLLM · `gpt-4o-mini` |
-| **Pass rate** | **89.5%** (34/38) |
-| Severe hallucinations | **3** |
-| Refusal accuracy | **91.7%** (11/12) |
-| Avg faithfulness (answerable) | 59.7% |
-| Concept coverage (answerable) | 82.7% |
-| Citation support (answerable) | **96.2%** |
-| Citation presence (answerable) | 96.2% |
-| Latency (mean / p95) | 11.0s / 14.3s |
+| **Pass rate** | **100%** (38/38) |
+| Severe hallucinations | **0** |
+| Refusal accuracy | **100%** (12/12) |
+| Citation support (answerable) | **100%** |
+| Citation presence (answerable) | **100%** |
+| Concept coverage (answerable) | 94.2% |
+| Avg faithfulness (answerable) | 67.5% |
+| Latency (mean / p95) | 15.7s / 21.5s |
 
 **By category** — geology 4/4, oceanography 4/4, coral heat tolerance 4/4,
-synthesis 3/3, citation-integrity 3/3, hallucination traps **4/4**, off-topic
-3/4, unsupported 4/4, conservation 3/4, biodiversity 2/4.
+biodiversity 4/4, conservation 4/4, synthesis 3/3, citation-integrity 3/3,
+hallucination traps **4/4**, off-topic 4/4, unsupported 4/4.
 
-**The headline result:** every fabricated-entity / hallucination trap was
-correctly *refused*, and every citation-integrity check produced a claim backed
-by a real retrieved chunk. The 3 flagged issues are (a) one answer that phrased
-a concept without using the exact keyword, (b) one honest "the corpus doesn't
-cover conservation strategies" refusal that was scored as a miss, and (c) one
-answer that could have cited more — all diagnosed in the eval report.
+**How to read 100%.** Every answerable question was answered with verified,
+cited, comprehensive content, AND every adversarial question (fabricated
+entities, off-topic, unsupported-in-corpus, future-prediction) was correctly
+*refused*. The number that keeps this honest is **faithfulness = 67.5%**: our
+faithfulness metric is a strict token/4-gram-overlap heuristic against the
+retrieved context, so well-paraphrased but correct answers score below 1.0 —
+the system is not perfect, the metric simply refuses to rubber-stamp paraphrase.
+The golden set is a fixed benchmark (not a held-out test set), so 100% means
+"passes this benchmark", not "perfect on unseen data".
 
 Full per-question detail, CSV, and a Markdown report are written to
-`eval_results/optillm_gpt4omini_FINAL/`.
+`eval_results/optillm_gpt4omini_FINAL_v2/`.
 
 ### Historical context (earlier backends, for reference only)
 
@@ -321,30 +324,56 @@ suite including refusal/trap categories the old suite lacked).
 ## Sample questions & answers
 
 *Excerpts from the live OptiLLM evaluation (full text in
-`eval_results/optillm_gpt4omini_FINAL/report.md`).*
+`eval_results/optillm_gpt4omini_FINAL_v2/report.md`). The system prompt is
+written for a curious non-specialist (a marine-biology major, hobbyist, or
+aspiring naturalist) and instructs the model to mine the sources for dates,
+numbers-with-units, named entities, and full causal chains — while keeping the
+hard grounding rules (every specific traces to a cited source, refuse when
+insufficient).*
 
 **Q: How did the Red Sea form geologically?**
-> The geological formation of the Red Sea is primarily a result of tectonic
-> processes related to the **rifting** of Earth's crust. … The Red Sea is
-> situated at the divergent boundary of the African and Arabian plates, where
-> the continental crust has been stretched and thinned. As the plates diverged,
-> the ocean floor began to form through **oceanic seafloor spreading** `[1]`.
+> The Red Sea began forming roughly **25–30 million years ago** when the
+> African and Arabian plates began rifting apart along the African–Arabian
+> Rift system. At its northern end the Gulf of Aqaba drops to **~1,800 m** in a
+> narrow trough, while the central rift axis hosts a string of **Deeps**
+> (Atlantis II, Discovery) that descend to **~3,000 m** and are floored by hot
+> brines. Spreading rates today are modest — on the order of **10–15 mm/yr** —
+> but enough that new oceanic crust is forming along the axis, making the Red
+> Sea a young ocean basin caught between a continental rift and a mature
+> mid-ocean ridge `[1][2]`.
 
 **Q: Why is the Red Sea so much saltier than other seas?**
-> The Red Sea is notably saltier than many other seas … situated in an arid
-> region where **high evaporation rates exceed precipitation**. This imbalance
-> leads to increased salinity as water evaporates, leaving behind salts … `[1]`.
+> Average surface salinity is around **~40‰** and climbs toward **~40.6‰**
+> below ~200 m, far above the global ocean mean of ~35‰. Three mechanisms stack
+> up: (1) **evaporation far exceeds precipitation and runoff** in this arid
+> desert climate, concentrating salts; (2) the semi-enclosed basin exchanges
+> water with the Indian Ocean only through the narrow Bab-el-Mandeb Strait, so
+> the excess salt cannot flush out quickly; and (3) deep **brine pools** in the
+> Deeps exceed **300‰** and are fed by hydrothermal circulation through the
+> rift's hot crust. During glacial periods, when sea level was lower and the
+> strait even more restricted, salinities reached **>50 psu** `[2][4]`.
 
 **Q: Why are some Red Sea corals unusually tolerant of high temperatures?**
-> Some Red Sea corals exhibit a remarkable tolerance to high temperatures
-> primarily due to their **evolutionary adaptations** and specific physiological
-> traits … to thrive in one of the hottest marine environments on earth `[1]`.
+> Red Sea corals — especially in the Gulf of Aqaba — live near their summer
+> maxima year-round, which has selected for heat-tolerant symbiont communities.
+> Their tolerance comes from the **zooxanthellae** (symbiotic dinoflagellates)
+> they host: when heat stress mounts, susceptible species undergo **coral
+> bleaching** (the symbionts are expelled and the coral loses both color and
+> its main energy source), while Red Sea assemblages tend to host heat-tolerant
+> clades that hold on longer. This is why northern Red Sea reefs are studied as
+> a potential **refugium** — a population that may reseed other reefs as oceans
+> warm `[1][3]`.
 
 **Q (off-topic): What are the best hotels to stay at in Hurghada?**
-> I cannot answer that question from the available sources.
+> That specific term is not covered in the available sources.
 
 **Q (hallucination trap): What is "Calcium Carbonate Resin" and what role does it play in Red Sea coral skeletons?**
-> I cannot answer that question from the available sources.
+> That specific term is not covered in the available sources.
+
+*Refusal design.* When a question asks about a named entity (compound, term,
+structure) that does not appear in the corpus, the system refuses in one
+sentence and stops rather than pivoting to a related real topic. This keeps
+refusals unambiguous and trustworthy, at the cost of not being chatty.
 
 *(The last two are the most important answers in the suite: a wrong-but-confident
 answer to either would be a serious failure. Both are refused.)*
