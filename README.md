@@ -50,6 +50,52 @@ Everything in this repo is engineered around those three constraints.
 
 ---
 
+## In action
+
+The interactive demo (FastAPI + React) turns the pipeline into a grounded
+Q&A interface: every claim carries inline `[n]` citation chips that scroll to
+the source passage and page, a reasoning trace shows the resolved question and
+retrieval route, and a two-tone switch keeps the same specifics but adapts the
+vocabulary to the audience.
+
+<table>
+  <tr>
+    <td width="50%" align="center"><em>The landing state — editorial hero with
+    suggestion prompts. Each question is a real, grounded entry point.</em></td>
+    <td width="50%" align="center"><em>A grounded answer with inline citation
+    chips and source cards showing the exact passage and page number.</em></td>
+  </tr>
+  <tr>
+    <td width="50%" align="center"><img src="docs/screenshots/01-hero.png" alt="Landing hero with suggestion prompts" width="100%"></td>
+    <td width="50%" align="center"><img src="docs/screenshots/02-grounded-answer.png" alt="Grounded answer with citations and source cards" width="100%"></td>
+  </tr>
+  <tr>
+    <td width="50%" align="center"><em>The reasoning trace: the resolved
+    (history-aware) question, the retrieval route, and per-source relevance.</em></td>
+    <td width="50%" align="center"><em>The tone switch on the same question —
+    <b>Educational</b> unpacks every term; <b>Expert</b> uses precise
+    terminology and named mechanisms.</em></td>
+  </tr>
+  <tr>
+    <td width="50%" align="center"><img src="docs/screenshots/03-reasoning.png" alt="Reasoning trace panel" width="100%"></td>
+    <td width="50%" align="center"><img src="docs/screenshots/04-tone-comparison.png" alt="Educational vs Expert tone on the same question" width="100%"></td>
+  </tr>
+  <tr>
+    <td width="50%" align="center"><em>A clean refusal — when a question isn't
+    covered by the sources, the system says so plainly instead of inventing an
+    answer.</em></td>
+    <td width="50%" align="center"><em>Multiturn memory: a follow-up with a
+    pronoun ("how deep is <i>it</i>?") is resolved against the prior turn
+    before retrieval.</em></td>
+  </tr>
+  <tr>
+    <td width="50%" align="center"><img src="docs/screenshots/05-refusal.png" alt="Refusal of an unsupported question" width="100%"></td>
+    <td width="50%" align="center"><img src="docs/screenshots/06-multiturn.png" alt="Multiturn follow-up with pronoun resolution" width="100%"></td>
+  </tr>
+</table>
+
+---
+
 ## Architecture
 
 ```mermaid
@@ -462,7 +508,8 @@ cp .env.example .env
 ### Environment variables
 
 See [`.env.example`](.env.example) for the full list with placeholders. The
-short version: set `LLM_PROVIDER` (default `optillm`) and the matching
+short version: set `LLM_PROVIDER` (the brand spelling `optollm` and the legacy
+`optillm` are both accepted) and the matching
 `*_API_KEY` / `*_BASE_URL` / `*_MODEL`. **Never commit your real `.env`** — it
 is gitignored.
 
@@ -556,7 +603,7 @@ embedding model resident), not a config tweak. So:
 1. New project → deploy from `Ozymandes/RedSea_GPT`. Railway auto-detects the
    `Dockerfile` and builds the multi-stage image (~6–8 min).
 2. Set environment variables in Railway's dashboard (never in the repo):
-   `LLM_PROVIDER=optillm`, `OPTO_LLM_API_KEY=<your-key>`,
+   `LLM_PROVIDER=optollm`, `OPTO_LLM_API_KEY=<your-key>`,
    `OPTO_LLM_BASE_URL=https://optollm.optomatica.com/v1`,
    `OPTO_LLM_MODEL=gpt-4o-mini`. No `REDSEA_DEV_ORIGINS` needed — same-origin.
 3. Pick an instance with ≥2GB RAM. Railway gives you a URL like
