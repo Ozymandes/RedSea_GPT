@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { postChat, postReset } from "../lib/api";
 import type { ChatMessage } from "../lib/types";
 
@@ -12,14 +12,29 @@ export interface UseChat {
   sessionId: string | null;
   send: (text: string) => Promise<void>;
   reset: () => Promise<void>;
+  setMessages: (m: ChatMessage[]) => void;
 }
 
-export function useChat(tone: string): UseChat {
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
+export function useChat(tone: string, initialMessages: ChatMessage[] = []): UseChat {
+  const [messages, setMessagesState] = useState<ChatMessage[]>(initialMessages);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sessionId, setSessionId] = useState<string | null>(null);
   const abortRef = useRef<AbortController | null>(null);
+
+  // When the caller passes a new set of initial messages (e.g. loading a past
+  // chat from history), replace the current view. This lets us reuse one hook
+  // instance across active-chat switches.
+  useEffect(() => {
+    setMessagesState(initialMessages);
+    setSessionId(null); // server session resets when we load a different chat
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialMessages]);
+
+  const setMessages = useCallback((m: ChatMessage[]) => {
+    setMessagesState(m);
+    setSessionId(null);
+  }, []);
 
   const send = useCallback(
     async (text: string) => {
@@ -27,7 +42,7 @@ export function useChat(tone: string): UseChat {
       if (!trimmed || loading) return;
       setError(null);
       const userMsg: ChatMessage = { id: uid(), role: "user", text: trimmed };
-      setMessages((m) => [...m, userMsg]);
+      setMessagesState((m) => [...m, userMsg]);
       setLoading(true);
 
       const ctl = new AbortController();
@@ -46,11 +61,11 @@ export function useChat(tone: string): UseChat {
           error: res.error ?? null,
           raw_user: trimmed,
         };
-        setMessages((m) => [...m, asst]);
+        setMessagesState((m) => [...m, asst]);
       } catch (e) {
         if ((e as Error).name === "AbortError") return;
         setError((e as Error).message || "Something went wrong");
-        setMessages((m) => [
+        setMessagesState((m) => [
           ...m,
           {
             id: uid(),
@@ -80,10 +95,10 @@ export function useChat(tone: string): UseChat {
         /* ignore */
       }
     }
-    setMessages([]);
+    setMessagesState([]);
     setSessionId(null);
     setError(null);
   }, [sessionId]);
 
-  return { messages, loading, error, sessionId, send, reset };
+  return { messages, loading, error, sessionId, send, reset, setMessages };
 }

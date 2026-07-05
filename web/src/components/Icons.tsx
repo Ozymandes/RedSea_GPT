@@ -61,3 +61,9 @@ export const ShieldIcon = (p: P) => (
     <path d="M9 12l2 2 4-4" />
   </svg>
 );
+
+export const MenuIcon = (p: P) => (
+  <svg {...base(p)}>
+    <path d="M4 7h16M4 12h16M4 17h16" />
+  </svg>
+);
