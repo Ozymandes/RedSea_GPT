@@ -27,6 +27,7 @@ from langchain_core.documents import Document
 
 from .graph import build_graph
 from .llm_config import create_llm
+from .memory import ConversationMemory, resolve_query_with_history
 from .reranker import Reranker
 from .retrievers import HybridRetriever
 from .tools import _make_retrieval_tools
@@ -105,15 +106,26 @@ class RedSeaAgent:
         self.hybrid.set_corpus(docs)
         logger.info("BM25 corpus populated: %d chunks.", len(docs))
 
-    def query(self, question: str, return_source_docs: bool = False):
+    def query(self, question: str, return_source_docs: bool = False,
+              memory: Optional[ConversationMemory] = None):
         """Run the agentic graph for a question.
 
         Returns the same dict shape as ``RedSeaGPT.query(return_source_docs=True)``
         so the two are interchangeable in evaluation harnesses.
+
+        Multiturn: when ``memory`` is non-empty, the latest message is rewritten
+        into a self-contained question (so the graph's classify/retrieve nodes
+        see the real intent) before invocation. Falls back to the raw question
+        on any failure.
         """
+        history_block = ""
+        resolved_question = question
+        if memory is not None and not memory.is_empty:
+            resolved_question = resolve_query_with_history(self.llm, question, memory)
+            history_block = memory.format_for_prompt()
         try:
             final = self.graph_app.invoke(
-                {"question": question},
+                {"question": resolved_question, "history": history_block},
                 config={"recursion_limit": self._recursion_limit},
             )
         except Exception as exc:  # noqa: BLE001
@@ -125,6 +137,7 @@ class RedSeaAgent:
                     "sources": [],
                     "retrieved_chunks": [],
                     "question": question,
+                    "resolved_question": resolved_question,
                     "confidence": 0.0,
                     "refusal": False,
                     "retrieval_method": "graph",
@@ -154,6 +167,7 @@ class RedSeaAgent:
                 "sources": sources,
                 "retrieved_chunks": chunks,
                 "question": question,
+                "resolved_question": resolved_question,
                 "confidence": _avg_relevance(final),
                 "refusal": refused,
                 "retrieval_method": "graph_crag",

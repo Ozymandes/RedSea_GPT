@@ -8,6 +8,7 @@ import sys
 from typing import Optional
 from generation.rag_chain import RedSeaGPT, create_rag_chain
 from generation.llm_config import describe_active_provider
+from generation.memory import ConversationMemory, Turn
 from logging_wrapper import LoggedRedSeaGPT  # Logging wrapper
 
 
@@ -139,6 +140,10 @@ def run_interactive_cli(
     print_welcome_message()
 
     conversation_count = 0
+    # Multiturn memory: lets the user ask follow-ups with pronouns / implicit
+    # references ("how deep is it?", "and its salinity?"). The engine rewrites
+    # the latest message into a self-contained question before retrieval.
+    memory = ConversationMemory(max_turns=6)
 
     while True:
         try:
@@ -164,11 +169,36 @@ def run_interactive_cli(
                 print(f"\n{'✅' if show_sources else '❌'} Source display: {'enabled' if show_sources else 'disabled'}\n")
                 continue
 
+            # Multiturn commands
+            if question.lower() in ("/clear", "clear memory"):
+                memory.clear()
+                print("\n Conversation memory cleared.\n")
+                continue
+            if question.lower() in ("/history", "/mem"):
+                if memory.is_empty:
+                    print("\n (no conversation history yet)\n")
+                else:
+                    print(f"\n Conversation history ({memory.num_turns} turn{'s' if memory.num_turns != 1 else ''}):")
+                    for i, t in enumerate(memory.turns, 1):
+                        rq = f"  -> resolved: {t.resolved_question}" if t.resolved_question and t.resolved_question != t.question else ""
+                        print(f"   {i}. You: {t.question[:70]}")
+                        if rq:
+                            print(rq)
+                    print("")
+                continue
+
             # Process the question
             conversation_count += 1
             print(f"\n Thinking... (Question #{conversation_count})")
 
-            result = gpt.query(question, return_source_docs=True)
+            result = gpt.query(question, return_source_docs=True, memory=memory)
+            # Record this turn so the next question can reference it.
+            memory.add(Turn(
+                question=question,
+                answer=str(result.get("answer", "")),
+                sources=result.get("sources", []) or [],
+                resolved_question=result.get("resolved_question"),
+            ))
             metadata = {
                 'confidence': result.get('confidence'),
                 'refusal': result.get('refusal', False),

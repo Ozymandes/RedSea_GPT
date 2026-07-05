@@ -7,6 +7,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 
 from .llm_config import create_llm
+from .memory import ConversationMemory, Turn, resolve_query_with_history
 from .prompts import create_rag_prompt, format_context
 from .utils import clean_source_path
 
@@ -324,7 +325,8 @@ class RedSeaGPT:
             "ungrounded_sentences": ungrounded_sentences[:3],  # First 3 ungrounded
         }
 
-    def query(self, question: str, return_source_docs: bool = False) -> str | Dict[str, Any]:
+    def query(self, question: str, return_source_docs: bool = False,
+              memory: Optional[ConversationMemory] = None) -> str | Dict[str, Any]:
         """
         Query RedSea GPT with a question.
 
@@ -333,10 +335,17 @@ class RedSeaGPT:
         - Refusal logic for low-confidence queries
         - Structured citations [1], [2], [3]
         - Hallucination detection
+        - Multiturn conversation memory: when ``memory`` is provided and non-empty,
+          the latest message is rewritten into a self-contained question using the
+          conversation history (so pronouns/implicit references like "how deep is
+          it?" retrieve correctly). The full history is also shown to the generator
+          so it can phrase the answer naturally. Falls back to the raw question on
+          any failure.
 
         Args:
             question: User's question about the Red Sea
             return_source_docs: Whether to return source documents and metadata
+            memory: Optional conversation buffer for multiturn chat
 
         Returns:
             Generated answer (or dict with answer, sources, and metadata if return_source_docs=True)
@@ -346,20 +355,33 @@ class RedSeaGPT:
             >>> result = gpt.query("What corals live in the Red Sea?", return_source_docs=True)
             >>> print(result['answer'])
             >>> print(result['sources'])
+            >>> # Multiturn:
+            >>> mem = ConversationMemory()
+            >>> gpt.query("How did the Red Sea form?", memory=mem)
+            >>> gpt.query("how fast is that happening?", memory=mem)  # resolves to spreading rate
         """
-        # Step 1: Retrieve documents (with or without MMR)
+        # Step 0: If we have conversation history, rewrite the latest message into a
+        # self-contained question so retrieval/topic-mismatch see the real intent.
+        # Falls back to the raw question if memory is empty or resolution fails.
+        history_block = ""
+        resolved_question = question
+        if memory is not None and not memory.is_empty:
+            resolved_question = resolve_query_with_history(self.llm, question, memory)
+            history_block = memory.format_for_prompt()
+
+        # Step 1: Retrieve documents using the RESOLVED question (handles pronouns).
         if self.use_mmr:
-            source_docs, relevance_scores = self._mmr_retrieve(question, k=self.retrieval_k)
+            source_docs, relevance_scores = self._mmr_retrieve(resolved_question, k=self.retrieval_k)
         else:
-            source_docs = self.vectordb.similarity_search(question, k=self.retrieval_k)
+            source_docs = self.vectordb.similarity_search(resolved_question, k=self.retrieval_k)
             # Calculate relevance scores for standard retrieval
-            query_embedding = self.embeddings.embed_query(question)
+            query_embedding = self.embeddings.embed_query(resolved_question)
             doc_embeddings = self.embeddings.embed_documents([doc.page_content for doc in source_docs])
             similarities = cosine_similarity([query_embedding], doc_embeddings)[0]
             relevance_scores = list(similarities)
 
-        # Step 2: Check for topic mismatch between question and retrieved content
-        topic_mismatch = self._check_topic_mismatch(question, source_docs)
+        # Step 2: Check for topic mismatch between (resolved) question and retrieved content
+        topic_mismatch = self._check_topic_mismatch(resolved_question, source_docs)
 
         if topic_mismatch['has_mismatch']:
             refusal_msg = (
@@ -417,13 +439,18 @@ class RedSeaGPT:
                 return refusal_msg
 
         # Step 3: Format context (with or without structured citations)
+        # Prepend the conversation history (if any) so the generator can phrase
+        # the answer naturally and reference earlier turns.
         if self.structured_citations:
             context = self._format_context_with_citations(source_docs)
         else:
             context = format_context(source_docs)
+        if history_block:
+            context = history_block + context
 
-        # Step 4: Generate answer
-        formatted_prompt = self.prompt.format(context=context, question=question)
+        # Step 4: Generate answer (the generator sees the RESOLVED question so it
+        # answers the real intent; the user still sees their raw message in the UI).
+        formatted_prompt = self.prompt.format(context=context, question=resolved_question)
         answer = self.llm.invoke(formatted_prompt)
 
         # Extract string if it's a structured output
@@ -564,6 +591,7 @@ class RedSeaGPT:
                     for i, doc in enumerate(source_docs, start=1)
                 ],
                 "question": question,
+                "resolved_question": resolved_question,
                 "confidence": avg_relevance,
                 "refusal": False,
                 "retrieval_method": "MMR" if self.use_mmr else "similarity",

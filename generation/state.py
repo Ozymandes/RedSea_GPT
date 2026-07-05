@@ -57,6 +57,11 @@ class AgentState(TypedDict, total=False):
     # The user's original question (never mutated).
     question: str
 
+    # Conversation history block (multiline string) for multiturn chat.
+    # Empty when running single-turn. The generate node prepends it to context
+    # so the model can phrase answers naturally and reference earlier turns.
+    history: str
+
     # The router's decision: "retrieve" (in-domain, needs the corpus) or
     # "refuse" (off-topic / out of scope).
     route: str

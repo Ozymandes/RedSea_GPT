@@ -230,6 +230,10 @@ class GraphNodes:
         docs: List[Document] = state.get("documents", []) or []
         # If grading kept nothing, refuse downstream; here we just generate from what we have.
         context = format_context(docs)
+        # Prepend conversation history (multiturn) so the model can reference prior turns.
+        history = state.get("history", "") or ""
+        if history:
+            context = history + context
         formatted = self.prompt.format(context=context, question=state["question"])
         answer = self._call(formatted)
         return {"answer": answer, "trace": {"generate": round(time.perf_counter() - t0, 3)}}

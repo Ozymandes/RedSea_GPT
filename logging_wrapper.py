@@ -71,8 +71,8 @@ class LoggedRedSeaGPT:
         self.logger = SimpleLogger() if enable_logging else None
         self.session_id = f"session_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}"
 
-    def query(self, question: str, return_source_docs: bool = False) -> Any:
-        """Query with logging"""
+    def query(self, question: str, return_source_docs: bool = False, **kwargs) -> Any:
+        """Query with logging. Extra kwargs (e.g. ``memory``) are forwarded."""
         start_time = time.time()
 
         # Log request
@@ -80,7 +80,7 @@ class LoggedRedSeaGPT:
             self.logger.log_request(question, self.session_id)
 
         # Call actual query
-        result = self.gpt.query(question, return_source_docs=return_source_docs)
+        result = self.gpt.query(question, return_source_docs=return_source_docs, **kwargs)
 
         # Calculate latency
         latency_ms = (time.time() - start_time) * 1000
