@@ -1,0 +1,37 @@
+# Render Blueprint for SINGLE-HOST deploy.
+#
+# One web service serves both the API (/api/*) and the built React frontend
+# (everything else) from one container. This is the simplest topology and
+# matches how the app runs locally (uvicorn serving web/dist via REDSEA_WEB_DIR).
+#
+# RAM REALITY (verified, 2026-07): the baseline RAG engine needs ~1.6GB resident
+# at boot (PyTorch + sentence-transformers embedding model + ChromaDB index in
+# memory). That is FUNDAMENTAL — every retrieval needs the embedding model
+# resident; there is no quick trim without switching to an embedding API.
+#
+#   - Render Free / Starter (512MB): OOM-kills on boot. Will not run.
+#   - Render Standard (2GB, ~$25/mo): works, no cold start, but pricey for a demo.
+#
+# For a fresh-grad budget, Railway ($5 trial, you pick instance RAM, 2GB works)
+# is the pragmatic ship-today equivalent of this single-host topology.
+# See README "Web demo" section for the full comparison.
+
+services:
+  - type: web
+    name: redsea-gpt
+    runtime: docker
+    plan: standard            # MUST be 'standard' (2GB) — free/starter (512MB) OOM
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: LLM_PROVIDER
+        value: optillm
+      - key: OPTO_LLM_BASE_URL
+        value: https://optollm.optomatica.com/v1
+      - key: OPTO_LLM_MODEL
+        value: gpt-4o-mini
+      - key: REDSEA_ENGINE
+        value: baseline       # baseline = no 1.1GB reranker at boot
+      - key: OPTO_LLM_API_KEY
+        sync: false           # set this secret in the Render dashboard, NOT here

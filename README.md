@@ -533,39 +533,44 @@ cd web && npm install && npm run dev
 # open http://localhost:5173
 ```
 
-### Deploy
+### Deploy (single host)
 
-The demo deploys as two services (a static frontend on Vercel, the FastAPI
-backend on Railway). Vercel's Hobby tier cannot run the backend itself — its
-serverless functions cap at 10s (queries here take ~15-20s), the 1.1GB
-reranker exceeds the 250MB bundle limit, and ChromaDB needs a persistent
-filesystem. The split below is the standard modern pattern and gets the best
-of both: a cold-start-free frontend and a persistent backend process.
+The demo runs as **one service**: the FastAPI app serves both `/api/*` and the
+built React frontend (via `REDSEA_WEB_DIR`). The included `Dockerfile` builds
+the frontend and bundles it into the Python image, so any Docker-capable host
+gives you a one-service, one-URL deploy — no separate frontend hosting needed.
 
-**Backend (Railway, GitHub-connected):**
+**RAM reality (measured, not guessed):** the baseline engine needs ~1.6GB
+resident at boot — PyTorch + the local sentence-transformers embedding model +
+the ChromaDB index in memory. That is fundamental (every retrieval needs the
+embedding model resident), not a config tweak. So:
 
-1. New project → deploy from the `Ozymandes/RedSea_GPT` repo. Railway detects
-   the `Dockerfile` and builds the multi-stage image.
+- **Render Free / Starter (512MB)** — OOM-kills on boot. Will not run.
+- **Render Standard (2GB, ~$25/mo)** — works, no cold start. See `render.yaml`.
+- **Railway ($5 trial credit, you pick instance RAM)** — 2GB works, no cold
+  start, ~2–3 weeks always-on. **The pragmatic ship-today choice.**
+- **Fly.io** — 256MB free won't fit; a 1–2GB paid VM (~$5/mo) does.
+
+**Railway (recommended, single service):**
+
+1. New project → deploy from `Ozymandes/RedSea_GPT`. Railway auto-detects the
+   `Dockerfile` and builds the multi-stage image (~6–8 min).
 2. Set environment variables in Railway's dashboard (never in the repo):
    `LLM_PROVIDER=optillm`, `OPTO_LLM_API_KEY=<your-key>`,
    `OPTO_LLM_BASE_URL=https://optollm.optomatica.com/v1`,
-   `OPTO_LLM_MODEL=gpt-4o-mini`, and `REDSEA_DEV_ORIGINS=<your-vercel-url>`
-   (the CORS allow-list, comma-separated).
-3. Railway exposes a URL like `https://redsea-gpt.up.railway.app`. Hit
-   `/api/health` to confirm.
+   `OPTO_LLM_MODEL=gpt-4o-mini`. No `REDSEA_DEV_ORIGINS` needed — same-origin.
+3. Pick an instance with ≥2GB RAM. Railway gives you a URL like
+   `https://redsea-gpt.up.railway.app`. Hit `/api/health` to confirm — that's
+   your one and only URL, frontend and all.
 
-**Frontend (Vercel, GitHub-connected):**
-
-1. New project → import `Ozymandes/RedSea_GPT`. Vercel reads `vercel.json`:
-   it builds `web/` and rewrites `/api/*` to the Railway backend.
-2. Set one environment variable in Vercel: `RAILWAY_BACKEND_URL` = your
-   Railway URL (e.g. `https://redsea-gpt.up.railway.app`).
-3. Deploy. Visit the Vercel URL.
+**Render (alternative, paid Standard required):** import the repo, Render reads
+`render.yaml` (plan: `standard` for the 2GB RAM), set `OPTO_LLM_API_KEY` in the
+dashboard, deploy. Same single-URL result.
 
 The backend image ships **baseline RAG** by default (`REDSEA_ENGINE=baseline`),
-which does not load the 1.1GB reranker at boot — keeping the container small
-enough for a free/trial tier. The agentic CRAG path is available by setting
-`REDSEA_ENGINE=agent`; it then lazily downloads the reranker on first request.
+which does not load the 1.1GB reranker at boot. The agentic CRAG path is
+available via `REDSEA_ENGINE=agent` (it lazily downloads the reranker with its
+existing graceful fallback).
 
 ---
 
