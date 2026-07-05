@@ -41,6 +41,18 @@ The goal is simple: a Red Sea naturalist assistant that is curious and explanato
 
 ---
 
+## Who it is for
+
+RedSea GPT is designed for two kinds of users who often need the same evidence but not the same explanation.
+
+For students, biology enthusiasts, divers, and budding naturalists, the educational mode explains concepts in plain language: what a term means, why it matters, and how the pieces connect. It is meant to feel closer to a good field guide or a patient teaching assistant than a textbook dump.
+
+For marine biology students, researchers, conservation practitioners, and technically curious users, the expert mode keeps the answer tighter, denser, and more terminology-rich. It still uses the same retrieved sources and the same citations; the difference is not the facts, but the level of explanation.
+
+That distinction matters because scientific communication is not one-size-fits-all. A beginner asking why Red Sea corals tolerate heat and a marine biology student asking about coral stress response may need the same papers, but they do not need the same answer. The system is built around that idea: one evidence base, two levels of explanation, no unsupported improvisation.
+
+---
+
 ## In action
 
 The interactive demo (FastAPI + React) turns the pipeline into a grounded
